@@ -1,0 +1,143 @@
+<!-- start: HORIZONTAL MENU  -->
+<div class="horizontal-menu-wrapper">
+	<div class="horizontal-nav-container" ct-fullheight="window" data-ct-fullheight-exclusion="header" data-ct-fullheight-if="isSmallDevice">
+		<ul class="nav navbar-nav no-border">
+			<li ui-sref-active="active">
+				<a ui-sref="app.dashboard"> <letter-icon data="{{ 'sidebar.nav.dashboard.MAIN' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span translate="sidebar.nav.dashboard.MAIN"> Dashboards </span> </a>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Company</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listcompany"> <letter-icon data="{{ 'L C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Company </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addcompany"> <letter-icon data="{{ 'A C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Company </span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Tranco Admin</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listtrancoadmin"> <letter-icon data="{{ 'L T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Tranco Admin </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addtrancoadmin"> <letter-icon data="{{ 'A T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Tranco Admin </span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Transcribers</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listtranscriber"> <letter-icon data="{{ 'T R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Transcribers </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addtranscriber"> <letter-icon data="{{ 'A T ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Transcribers</span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'Q A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Quality Assurance</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listqa"> <letter-icon data="{{ 'L Q' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Quality Assurance </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addqa"> <letter-icon data="{{ 'A Q ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Quality Assurance</span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'DR' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Doctor</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listdoc"> <letter-icon data="{{ 'L D' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Doctor </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.adddoc"> <letter-icon data="{{ 'A D ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Doctor</span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'NU' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Nurse</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listnurse"> <letter-icon data="{{ 'L N' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Nurse </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addnurse"> <letter-icon data="{{ 'A N ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Nurse</span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'PA' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Practice Admin</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listpracticeadmin"> <letter-icon data="{{ 'L P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Practice Admin </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addpracticeadmin"> <letter-icon data="{{ 'A P ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Practice Admin</span> </a>
+					</li>
+				</ul>
+			</li>	
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown" uib-dropdown>
+					<a href="#" class="dropdown-toggle nav-user-wrapper" data-toggle="dropdown" uib-dropdown-toggle > <img alt="" src="assets/images/avatar-1.jpg" > <span>Admin</span> <span class="caret"></span> </a>
+
+					<ul class="dropdown-menu pull-right animated fadeInRight">
+						<li>
+							<a ui-sref="app.pages.user" translate="topbar.user.PROFILE"> My Profile </a>
+						</li>
+						<li>
+							<a ui-sref="app.pages.calendar" translate="topbar.user.CALENDAR"> My Calendar </a>
+						</li>
+						<li>
+							<a ui-sref="app.pages.messages" translate="topbar.user.MESSAGES"> My Messages (3) </a>
+						</li>
+						<li>
+							<a ui-sref="login.lockscreen" translate="topbar.user.LOCKSCREEN"> Lock Screen </a>
+						</li>
+						<li class="divider"></li>
+						<li>
+							<a ui-sref="logout" translate="topbar.user.LOGOUT"> Log Out </a>
+						</li>
+					</ul>
+				</li>
+		</ul>
+	</div>
+</div>
+<!-- end: HORIZONTAL MENU-->
+<!-- start: HORIZONTAL MENU  -->
+<div class="horizontal-menu-wrapper">
+	<div class="horizontal-nav-container" ct-fullheight="window" data-ct-fullheight-exclusion="header" data-ct-fullheight-if="isSmallDevice">
+		<ul class="nav navbar-nav no-border">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'AP' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Appointment</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listappoinment"> <letter-icon data="{{ 'L A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Appointment </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addappoinment"> <letter-icon data="{{ 'A A ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Appointment</span> </a>
+					</li>
+				</ul>
+			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Receptionist</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listreceptionist"> <letter-icon data="{{ 'L R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Receptionist </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addreceptionist"> <letter-icon data="{{ 'A R ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Receptionist</span> </a>
+					</li>
+				</ul>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+<!-- end: HORIZONTAL MENU
