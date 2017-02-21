@@ -64,6 +64,7 @@ app.constant('JS_REQUIRES', {
         'practiceadminCtrl': 'assets/js/controllers/practiceadminCtrl.js',
         'appointmentCtrl': 'assets/js/controllers/appointmentCtrl.js',
         'receptionistCtrl': 'assets/js/controllers/receptionistCtrl.js',
+        'patientCtrl': 'assets/js/controllers/patientCtrl.js',
     },
     //*** angularJS Modules
     modules: [{

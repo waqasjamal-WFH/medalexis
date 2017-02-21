@@ -58,6 +58,22 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Elements'
         },
         resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'companyCtrl')
+    }).state('app.listpatient', {
+        url: '/listpatient',
+        templateUrl: "assets/views/listpatient.html",
+        title: 'ngTable',
+        ncyBreadcrumb: {
+            label: 'ngTable'
+        },
+        resolve: loadSequence('ngTable', 'patientCtrl')
+    }).state('app.addpatient', {
+        url: '/addpatient',
+        templateUrl: "assets/views/addpatient.html",
+        title: 'Add Company',
+        ncyBreadcrumb: {
+            label: 'Elements'
+        },
+        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'patientCtrl')
     }).state('app.listtranscriber', {
         url: '/listtranscriber',
         templateUrl: "assets/views/listtranscriber.html",

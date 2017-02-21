@@ -136,6 +136,17 @@
 					</li>
 				</ul>
 			</li>
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Patients</span> <span class="caret"></span></a>
+				<ul uib-dropdown-menu>
+					<li ui-sref-active="active">
+						<a ui-sref="app.listpatient"> <letter-icon data="{{ 'L P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Patients </span> </a>
+					</li>
+					<li ui-sref-active="active">
+						<a ui-sref="app.addpatient"> <letter-icon data="{{ 'A P ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Patients</span> </a>
+					</li>
+				</ul>
+			</li>
 			
 		</ul>
 	</div>
