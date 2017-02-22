@@ -7,6 +7,10 @@
                     <h5 class="over-title margin-bottom-15">Transcriber <span class="text-bold">List</span></h5>
                     <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
                     <div ng-controller="listtranscriberCtrl">
+                        <form class="form-inline">
+                            <input ng-model="query" type="text"
+                                   placeholder="Filter by" autofocus>
+                        </form>
                         <div class="row margin-bottom-10">
                             <div class="col-md-12">
                                 <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">
@@ -14,10 +18,9 @@
                                 </button>
                             </div>
                         </div>
-                        <strong>Sorting:</strong> {{tableParams.sorting()|json}}
                         <div class="table-responsive">
                             <table ng-table="tableParams" class="table">
-                                <tbody ng-repeat="p in $data">
+                                <tbody ng-repeat="p in $data | filter:query">
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
                                         <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{p.fn}}</td>
