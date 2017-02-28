@@ -127,5 +127,8 @@ app.constant('JS_REQUIRES', {
     }, {
         name: 'angularSpectrumColorpicker',
         files: ['bower_components/angular-spectrum-colorpicker/dist/angular-spectrum-colorpicker.min.js']
+    }, {
+        name: 'froala',
+        files: ['bower_components/froala/src/angular-froala.js','bower_components/froala/src/froala-sanitize.js']
     }]
 });

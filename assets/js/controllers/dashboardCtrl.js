@@ -420,20 +420,20 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   
  // ...............http call for list of transcriber and qa start here....................//
     // var qatranlist;
-    $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
-    .then(function(response,data) {
+  //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
+  //   .then(function(response,data) {
 
-      //console.log(response);
-      if(response.data.result=="success"){
-        console.log(response.data.data);
-        $scope.list=response.data.data
-         // qatranlist=response.data.data
-      }else{
-       $scope.list=response.data.data
-      }
-    }).catch(function(){
-    // console.log(userdata);
-  });  
+  //     //console.log(response);
+  //     if(response.data.result=="success"){
+  //       console.log(response.data.data);
+  //       $scope.list=response.data.data
+  //        // qatranlist=response.data.data
+  //     }else{
+  //      $scope.list=response.data.data
+  //     }
+  //   }).catch(function(){
+  //   // console.log(userdata);
+  // });  
 
     // ...............http call for list of transcriber and qa end here....................//
   $scope.items = items;
@@ -441,42 +441,46 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     item: $scope.list
   };
 //.........................get selected transcriber and qa for a selected task START here.....................//
-   $http.get(
-    $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
-    {params:{"task_ID":$scope.taskid}})
-    .then(function(response,data) {
-      console.log(response.data);
-      $scope.assignedQA=response.data.result[1].username;
-      $scope.assignedtrans=response.data.result[0].username;
+   // $http.get(
+   //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
+   //  {params:{"task_ID":$scope.taskid}})
+   //  .then(function(response,data) {
+   //    console.log(response.data);
+   //    $scope.assignedQA=response.data.result[1].username;
+   //    $scope.assignedtrans=response.data.result[0].username;
 
-      $scope.assignedQAID=response.data.result[1].id;
-      $scope.assignedtransID=response.data.result[0].id;
-      console.log( "hello "+$scope.assignedQAID);
-      console.log( "hello "+$scope.assignedtransID);
-      $scope.qa=response.data.result[1].id;
-      $scope.transcriber=response.data.result[0].id;
-    })
+   //    $scope.assignedQAID=response.data.result[1].id;
+   //    $scope.assignedtransID=response.data.result[0].id;
+   //    console.log( "hello "+$scope.assignedQAID);
+   //    console.log( "hello "+$scope.assignedtransID);
+   //    $scope.qa=response.data.result[1].id;
+   //    $scope.transcriber=response.data.result[0].id;
+   //  })
 
-//.........................get selected transcriber and qa for a selected task END here.....................//
+  //.........................get selected transcriber and qa for a selected task END here.....................//
   
   
 
-//....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
-
-    if($scope.qa!="undefined" || $scope.transcriber!="undefined"){
+    console.log($scope.hpi);
+    console.log($scope.ros);
+    console.log($scope.cc);
+    console.log($scope.hx);
+    console.log($scope.plan);
+    // if($scope.qa!="undefined" || $scope.transcriber!="undefined"){
       
-      $http.get(
-      $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/assigntask",
-      {params:{"qaid":$scope.qa,"tranID":$scope.transcriber,"taskID":$scope.taskid}})
-      .then(function(response,data) {
-        console.log(response);
-      })
-    }else{
-      console.log("undefined both")
-    }  
-console.log($scope.qa);
-console.log($scope.transcriber);
+    //   $http.get(
+    //   $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/assigntask",
+    //   {params:{"qaid":$scope.qa,"tranID":$scope.transcriber,"taskID":$scope.taskid}})
+    //   .then(function(response,data) {
+    //     console.log(response);
+    //   })
+    // }else{
+    //   console.log("undefined both")
+    // }  
+    // console.log($scope.qa);
+    // console.log($scope.transcriber);
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
