@@ -71,7 +71,7 @@
 									</td>
 									<td>
 										<input type=button class="btn btn-primary btn-sm" id="editRowBtn{{user.task_id}}"
-                                                       ng-click="setEditId(user.task_id)" value="View">
+                                                        ng-click="open()" value="View">
                                         <button class="btn btn-primary btn-sm" ng-click="openmodel(user.task_id)">Ttranscribe/Edit       </button>
 									</td>
 								</tr>
@@ -101,7 +101,7 @@
 														{{taskfiles[column.field][column.subfield] ||  taskfiles[column.field]}}
 													</td>
 													<td>
-														<button class="btn btn-primary btn-xs ti-settings" ng-click="open(taskfiles.filepath)">
+														<button class="btn btn-primary btn-xs ti-settings">
 
 														</button>
 													</td>
@@ -113,19 +113,12 @@
                             </tbody>					
 						</table>
 
+
 						<!-- modal html for action button start -->
 
 						<script type="text/ng-template" id="myModalContent.html" data-backdrop="static">
-							<div class="modal-header">
-								// <audio id="myVideo" src="{{pathi}}" ng-model="myAudio" width="500" controls>
-
-								// </audio>
-							</div>
-							<div class="modal-body">
+							<iframe ng-src="{{url}}" style="width: 100%; height: 400px;" ></iframe>
 							
-								// <textarea froala ng-model="myHtml"></textarea>
-								// <!--<textarea class="fr-view" ng-model="myHtml" ></textarea>-->
-							</div>
 							<div class="modal-footer">
 								<button class="btn btn-primary" ng-click="ok()">OK</button>
 								<button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
@@ -137,12 +130,14 @@
 
 						<script type="text/ng-template" id="myModalContent1.html" data-backdrop="static">
 							<div class="modal-header">
+
 								<h2><b>HPI</b></h2>
 								<audio id="myVideo" src="assets/views/song.mp3" ng-model="hpi_audio" style="width: 800px;" loop controls>
 
 								</audio>
 							</div>
 							<div class="modal-body">
+
 
 								<textarea froala ng-model="hpi"></textarea>
 								<!--<textarea class="fr-view" ng-model="hpi" ></textarea>-->

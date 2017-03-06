@@ -1,0 +1,35 @@
+{
+  "name": "pdfmake",
+    "homepage": "https://github.com/tuckerjt07/pdfmake.git#master",
+  "authors": [
+    "Jacob Tucker <tuckerjt07@gmail.com>"
+  ],
+  "description": "Client/server side PDF printer/displayer in pure JavaScript",
+  "main": ["build/pdfmake.js", "build/vfs_fonts.js"],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "pdf",
+    "javascript",
+    "printing",
+    "layout"
+  ],
+  "version": "1.0.0",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "Gruntfile.js",
+    "dev-playground",
+    "gulpfile.js",
+    "webpack.config.js",
+    "README.md",
+    "bootstrap",
+    "bower.json",
+    "examples",
+    "node_modules",
+    "package.json",
+    "src",
+    "tests"
+  ]
+}

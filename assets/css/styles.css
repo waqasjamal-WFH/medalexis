@@ -77,6 +77,10 @@ body {
   }
 }
 
+.app-modal-window .modal-dialog {
+  width: 1200px;
+}
+
 ::-moz-selection {
   background: #407887;
   text-shadow: none;

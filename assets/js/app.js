@@ -30,5 +30,6 @@ angular.module("packet", [
 	'duScroll',
 	'pascalprecht.translate',
 	'FBAngular',
-	'froala'
+	'froala',
+	'ngPDFKit'
 ]);
