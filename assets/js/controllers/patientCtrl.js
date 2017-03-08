@@ -1,14 +1,69 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addcompanyCtrl', ["$scope","$location",function($scope,$location){
+app.controller('addpatientCtrl', ["$scope","$location",function($scope,$location){
 	// $scope.name="hello waqas";
+    $scope.access_right=[
+    "Add Company",
+    "List Company",
+    "Add Tranco Admin",
+    "List Tranco Admin",
+    "Add Transcriber",
+    "List Transcriber",
+    "Add QA",
+    "List QA",
+    "Add Doctor",
+    "List Doctor",
+    "Add Nurse",
+    "List Nurse",
+    "Add Practice Admin",
+    "List Practice Admin",
+    "Add Appoinment",
+    "List Appoinment",
+    "Add Receptionist",
+    "List Receptionist",
+    "Add Patient",
+    "List Patient"
+    ];
+
+    $scope.doctors=[
+    "Doctor 1",
+    "Doctor 2",
+    "Doctor 3",
+    "Doctor 4",
+    "Doctor 5",
+    "Doctor 6",
+    "Doctor 7",
+    "Doctor 8",
+    "Doctor 9",
+    "Doctor 10",
+    "Doctor 11",
+    "Doctor 12",
+    
+    "Doctor 13"
+    ];
+
+
+    $scope.selectOptionsObjects = [
+        {
+            id: 0,
+            name: "Apples"
+        },
+        {
+            id: 1,
+            name: "Bananas"
+        },
+        {
+            id: 2,
+            name: "Peaches"
+        }
+    ];
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams", function ($scope, $filter, ngTableParams) {
+app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", function ($scope, $filter, ngTableParams) {
     var data = [{
         "id": 1,
         "lm": 138661285100,

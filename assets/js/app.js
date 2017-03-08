@@ -31,5 +31,8 @@ angular.module("packet", [
 	'pascalprecht.translate',
 	'FBAngular',
 	'froala',
-	'ngPDFKit'
+	'ngPDFKit',
+	// 'btorfs.multiselect',
+	// 'am.multiselect'
+	'ui.multiselect'
 ]);

@@ -59,6 +59,7 @@
     <link rel="stylesheet" data-ng-href="assets/css/themes/{{ app.layout.theme }}.css" />
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="bower_components/amitava82-angular-multiselect/dist/multiselect.css">
 </head>
 <body ng-controller="AppCtrl">
     <div ui-view id="app" class="lyt-4" ng-class="{'app-mobile' : app.isMobile, 'app-navbar-fixed' : app.layout.isNavbarFixed, 'app-sidebar-fixed' : app.layout.isSidebarFixed, 'app-sidebar-closed':app.layout.isSidebarClosed, 'app-footer-fixed':app.layout.isFooterFixed}"></div>
@@ -160,7 +161,10 @@
      <script src="bower_components/ng-pdfkit/source/ng-pdfkit.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
-
+<!-- <script src="bower_components/angular-bootstrap-multiselect/dist/angular-bootstrap-multiselect.min.js"></script> -->
+<script src="bower_components/angular-bootstrap-multiselect/angular-bootstrap-multiselect.js"></script>
+<script src="bower_components/amitava82-angular-multiselect/dist/multiselect.js"></script>
+<script src="bower_components/amitava82-angular-multiselect/dist/multiselect-tpls.js"></script>
 
     <script src="assets/js/app.js"></script>
     <script src="assets/js/main.js"></script>

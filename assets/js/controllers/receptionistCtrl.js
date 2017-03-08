@@ -2,6 +2,61 @@
 // .......add company controller start ..............................///
 app.controller('addreceptionistCtrl', ["$scope","$location",function($scope,$location){
 	$scope.name="hello practice admin";
+    $scope.access_right=[
+    "Add Company",
+    "List Company",
+    "Add Tranco Admin",
+    "List Tranco Admin",
+    "Add Transcriber",
+    "List Transcriber",
+    "Add QA",
+    "List QA",
+    "Add Doctor",
+    "List Doctor",
+    "Add Nurse",
+    "List Nurse",
+    "Add Practice Admin",
+    "List Practice Admin",
+    "Add Appoinment",
+    "List Appoinment",
+    "Add Receptionist",
+    "List Receptionist",
+    "Add Patient",
+    "List Patient"
+    ];
+
+    $scope.companies=[
+    "Company 1",
+    "Company 2",
+    "Company 3",
+    "Company 4",
+    "Company 5",
+    "Company 6",
+    "Company 7",
+    "Company 8",
+    "Company 9",
+    "Company 10",
+    "Company 11",
+    "Company 12",
+    
+    "Company 13"
+    ];
+
+
+    $scope.selectOptionsObjects = [
+        {
+            id: 0,
+            name: "Apples"
+        },
+        {
+            id: 1,
+            name: "Bananas"
+        },
+        {
+            id: 2,
+            name: "Peaches"
+        }
+    ];
 }]);
 
 // .......add company controller end ..............................///
