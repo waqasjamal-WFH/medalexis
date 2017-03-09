@@ -222,12 +222,12 @@ $scope.tableParams = new ngTableParams({
         }
       });
 
-    modalInstance.result.then(function (selectedItem) {
-      $scope.selected = selectedItem;
-    }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
-    });
-  };
+      modalInstance.result.then(function (selectedItem) { 
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
 
     // ...............model open function for assigning qa and transcriber end here..............//
 }]);

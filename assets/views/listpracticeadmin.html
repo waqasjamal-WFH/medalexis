@@ -22,24 +22,89 @@
                             <table ng-table="tableParams" class="table">
                                 <tbody ng-repeat="p in $data | filter:query">
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                        <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
-                                        <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{p.fn}}</td>
-                                        <td class="rowTd" data-title="'Lastname'" sortable="'ln'">{{p.ln}}</td>
-                                        <td class="rowTd" data-title="'Description'" sortable="'dc'">{{p.dc}}</td>
-                                        <td class="rowTd" data-title="'Email'" sortable="'em'">{{p.em}}</td>
-                                        <td class="rowTd" data-title="'Phone'" sortable="'ph'">{{p.ph}}</td>
+                                        <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.id}}</td>
+                                        <td class="rowTd" data-title="'Last Name'" sortable="'fn'">{{p.fn}}</td>
+                                        <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.ln}}</td>
+                                        <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.dc}}</td>
+                                        <td class="rowTd" data-title="'Phone Number'" sortable="'em'">{{p.em}}</td>
+                                        <td class="rowTd" data-title="'Access Rights'" sortable="'ph'">{{p.ph}}</td>
+                                        <td class="rowTd" data-title="'Associate to a Company'" sortable="'ph'">{{p.ph}}</td>
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                                 <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
-                                                       ng-click="setEditId(p.id)">
+                                                       ng-click="openmodel()">
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr ng-show="editId===p.id" ng-if="editId===p.id">
-                                        <td colspan="7" ng-include src="'assets/views/editRow.html'"></td>
-                                    </tr>
                                 </tbody>
                             </table>
+
+                            <script type="text/ng-template" id="myModalContent1.html" data-backdrop="static">
+                                <div class="modal-header">
+                                    <h3>Edit Practice Admin</h3>
+                                </div>
+                                <div class="modal-body">
+                                     <form role="form" autocomplete="false">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="First Name" class="form-control underline input-lg" value="{{name}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Last Name" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="email" placeholder="Email" class="form-control underline input-sm" >
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" placeholder="Password" class="form-control underline input-sm">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Address" class="form-control underline input-sm">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Phone Number" class="form-control underline input-sm">
+                                        </div>
+
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title">Access Rights</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <multiselect
+                                                ng-model="selectModel"
+                                                options="c for c in access_right"    
+                                                data-multiple="true"                  
+                                                scroll-after-rows="5"                 
+                                                ms-header="Select Access Right"
+                                                width="273px">
+                                           </multiselect>
+                                        </div>
+                                       
+                                        
+                                        <div class="panel-heading">
+                                            <h5 class="panel-title">Associate to a Company</h5>
+                                        </div>
+                                        <div class="form-group">
+                                            <multiselect
+                                                ng-model="selectModel"
+                                                options="c for c in companies"    
+                                                data-multiple="true"                  
+                                                scroll-after-rows="5"                 
+                                                ms-header="Select Company"
+                                                width="273px">
+                                           </multiselect>
+                                        </div>    
+                                        <div class="form-group">
+                                            <button type="submit" data-ng-click="submit()" class="btn btn-wide btn-o btn-primary">
+                                                Submit
+                                            </button>
+                                        </div>    
+                                    </form>
+                                </div>
+                                    
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                                    <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+                                </div>
+                            </script>
                         </div>
                     </div>
                 </div>

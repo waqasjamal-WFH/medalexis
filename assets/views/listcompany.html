@@ -40,15 +40,68 @@
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                                 <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
-                                                       ng-click="setEditId(p.id)">
+                                                       ng-click="openmodel()">
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr ng-show="editId===p.id" ng-if="editId===p.id">
-                                        <td colspan="15" ng-include src="'assets/views/editCompany.html'"></td>
-                                    </tr>
                                 </tbody>
                             </table>
+                            <script type="text/ng-template" id="myModalContent1.html" data-backdrop="static">
+                                <div class="modal-header">
+                                    <h3>Edit Company</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <form role="form">
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Company Short name" class="form-control underline input-lg" value="{{name}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Company Full name" class="form-control underline input-lg" value="{{name}}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Company Address" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="date" placeholder="joining date" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="City" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="State" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Zip Code" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Country" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Phone" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Fax" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="E-mail" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Client Web Address" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Client Time Zone" class="form-control underline">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Administrative Person Full Name" class="form-control underline">
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" ng-click="ok()">OK</button>
+                                    <button class="btn btn-primary btn-o" ng-click="cancel()">Cancel</button>
+                                </div>    
+                            </script>
                         </div>
                     </div>
                 </div>

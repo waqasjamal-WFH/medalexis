@@ -63,7 +63,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location",function($scope,$loca
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams", function ($scope, $filter, ngTableParams) {
+app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", function ($scope, $filter, ngTableParams, $uibModal, $log ) {
     var data = [{
         "id": 1,
         "lm": 138661285100,
@@ -238,6 +238,161 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams", fun
     $scope.setEditId = function (pid) {
         $scope.editId = pid;
     };
+
+    // ...............model open function for assigning qa and transcriber start here..............//
+    $scope.openmodel = function () {
+      // $scope.taskid=taskId
+      // console.log(taskId);
+    
+      var modalInstance = $uibModal.open({
+
+        templateUrl: 'myModalContent1.html',
+        controller: 'ModalUiCtrl',
+        scope : $scope,
+        size: 'lg',
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            // return $scope.taskid;
+            // $scope.list=qatranlist;
+            // console.log(qatranlist);
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) { 
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+    };
+
+    // ...............model open function for assigning qa and transcriber end here..............//
 }]);
 
 // .......LIST company controller end ..............................///
+
+
+// EDIT model controller start here.............................////
+
+
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
+  
+    $scope.access_right=[
+    "Add Company",
+    "List Company",
+    "Add Tranco Admin",
+    "List Tranco Admin",
+    "Add Transcriber",
+    "List Transcriber",
+    "Add QA",
+    "List QA",
+    "Add Doctor",
+    "List Doctor",
+    "Add Nurse",
+    "List Nurse",
+    "Add Practice Admin",
+    "List Practice Admin",
+    "Add Appoinment",
+    "List Appoinment",
+    "Add Receptionist",
+    "List Receptionist",
+    "Add Patient",
+    "List Patient"
+    ];
+
+     $scope.doctors=[
+    "Doctor 1",
+    "Doctor 2",
+    "Doctor 3",
+    "Doctor 4",
+    "Doctor 5",
+    "Doctor 6",
+    "Doctor 7",
+    "Doctor 8",
+    "Doctor 9",
+    "Doctor 10",
+    "Doctor 11",
+    "Doctor 12",
+    
+    "Doctor 13"
+    ];
+
+
+    $scope.selectOptionsObjects = [
+        {
+            id: 0,
+            name: "Apples"
+        },
+        {
+            id: 1,
+            name: "Bananas"
+        },
+        {
+            id: 2,
+            name: "Peaches"
+        }
+    ];
+
+
+
+
+
+ // ...............http call for list of transcriber and qa start here....................//
+    // var qatranlist;
+  //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
+  //   .then(function(response,data) {
+
+  //     //console.log(response);
+  //     if(response.data.result=="success"){
+  //       console.log(response.data.data);
+  //       $scope.list=response.data.data
+  //        // qatranlist=response.data.data
+  //     }else{
+  //      $scope.list=response.data.data
+  //     }
+  //   }).catch(function(){
+  //   // console.log(userdata);
+  // });  
+
+    // ...............http call for list of transcriber and qa end here....................//
+  $scope.items = items;
+  $scope.selected = {
+    item: $scope.list
+  };
+//.........................get selected transcriber and qa for a selected task START here.....................//
+   // $http.get(
+   //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
+   //  {params:{"task_ID":$scope.taskid}})
+   //  .then(function(response,data) {
+   //    console.log(response.data);
+   //    $scope.assignedQA=response.data.result[1].username;
+   //    $scope.assignedtrans=response.data.result[0].username;
+
+   //    $scope.assignedQAID=response.data.result[1].id;
+   //    $scope.assignedtransID=response.data.result[0].id;
+   //    console.log( "hello "+$scope.assignedQAID);
+   //    console.log( "hello "+$scope.assignedtransID);
+   //    $scope.qa=response.data.result[1].id;
+   //    $scope.transcriber=response.data.result[0].id;
+   //  })
+
+  //.........................get selected transcriber and qa for a selected task END here.....................//
+  
+  
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
+  $scope.ok = function () {
+
+    
+  };
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
+
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };  
+}]);
+
+/// EDIT model controller end here ..............................//
