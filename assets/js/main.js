@@ -183,7 +183,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster){
             .then(function(response) {
                 if(response.data.status=="success"){
                     $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/";
-                    //console.log(response.data);
+                    console.log(response.data);
                 }else{
                     $scope.toaster = {
                         type: 'error',
