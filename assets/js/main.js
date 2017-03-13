@@ -182,7 +182,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster){
             $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/login", data)
             .then(function(response) {
                 if(response.data.status=="success"){
-                    $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/";
+                    $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/app/dashboard";
                     console.log(response.data);
                 }else{
                     $scope.toaster = {
