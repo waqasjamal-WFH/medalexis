@@ -165,11 +165,11 @@ app.run(["$templateCache", function ($templateCache) {
 	    "");    
 }]);
 
-app.factory('userdataSession',function($http,$window,$location,toaster){
+app.factory('userdataSession',function($http,$window,$location,toaster,$localStorage){
     var userdata={};
     //adding user data on login
     var addUser= function(data,$scope){
-        console.log(data);
+        // console.log(data);
         if(data.email===undefined || data.password===undefined || data.email==="" || data.password===""){
             $scope.toaster = {
                         type: 'error',
@@ -183,7 +183,8 @@ app.factory('userdataSession',function($http,$window,$location,toaster){
             .then(function(response) {
                 if(response.data.status=="success"){
                     $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
-                    console.log(response.data);
+                    $localStorage.user_data=response.data;
+                    // console.log(response.data);
                 }else{
                     $scope.toaster = {
                         type: 'error',

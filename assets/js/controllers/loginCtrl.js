@@ -4,7 +4,7 @@
  */
 
 
-app.controller('loginCtrl', ["$scope","$http","$location","toaster","userdataSession", function ($scope,$http,$location,toaster,userdataSession) {
+app.controller('loginCtrl', ["$scope","$http","$location","toaster","userdataSession","$localStorage", function ($scope,$http,$location,toaster,userdataSession,$localStorage) {
 
     $scope.submitto=function(){
 
