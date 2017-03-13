@@ -169,7 +169,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster){
     var userdata={};
     //adding user data on login
     var addUser= function(data,$scope){
-        //console.log(data);
+        console.log(data);
         if(data.email===undefined || data.password===undefined){
             $scope.toaster = {
                         type: 'error',
