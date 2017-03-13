@@ -170,7 +170,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster){
     //adding user data on login
     var addUser= function(data,$scope){
         console.log(data);
-        if(data.email===undefined || data.password===undefined){
+        if(data.email===undefined || data.password===undefined || data.email==="" || data.password===""){
             $scope.toaster = {
                         type: 'error',
                         title: 'Login Unsuccessful',
