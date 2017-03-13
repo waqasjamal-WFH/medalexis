@@ -25,7 +25,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     // APPLICATION ROUTES
     // -----------------------------------
     // For any unmatched url, redirect to /app/dashboard
-    $urlRouterProvider.otherwise("app/dashboard");
+    $urlRouterProvider.otherwise("login/signin");
     //
     // Set up the states
     $stateProvider.state('app', {
@@ -623,25 +623,25 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
     })
 
         // Login routes
-    // .state('login', {
-    //      url: '/login',
-    //     template: '<div ui-view class="fade-in-right-big smooth"></div>',
-    //     abstract: true
-    // }).state('login.signin', {
-    //     url: '/signin',
-    //     templateUrl: "assets/views/login_login.html",
-    //     controller:"loginCtrl",
-    //     //resolve: loadSequence('toasterCtrl', 'ngNotify')
-    // }).state('login.forgot', {
-    //     url: '/forgot',
-    //     templateUrl: "assets/views/login_forgot.html"
-    // }).state('login.registration', {
-    //     url: '/registration',
-    //     templateUrl: "assets/views/login_registration.html"
-    // }).state('login.lockscreen', {
-    //         url: '/lock',
-    //         templateUrl: "assets/views/login_lock_screen.html"
-    // })
+    .state('login', {
+         url: '/login',
+        template: '<div ui-view class="fade-in-right-big smooth"></div>',
+        abstract: true
+    }).state('login.signin', {
+        url: '/signin',
+        templateUrl: "assets/views/login_login.html",
+        controller:"loginCtrl",
+        //resolve: loadSequence('toasterCtrl', 'ngNotify')
+    }).state('login.forgot', {
+        url: '/forgot',
+        templateUrl: "assets/views/login_forgot.html"
+    }).state('login.registration', {
+        url: '/registration',
+        templateUrl: "assets/views/login_registration.html"
+    }).state('login.lockscreen', {
+            url: '/lock',
+            templateUrl: "assets/views/login_lock_screen.html"
+    })
 
     .state('logout', {
         url: '/logout',

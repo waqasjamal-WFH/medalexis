@@ -164,3 +164,53 @@ app.run(["$templateCache", function ($templateCache) {
 	    "</table>\n" +
 	    "");    
 }]);
+
+app.factory('userdataSession',function($http,$window,$location,toaster){
+    var userdata={};
+    //adding user data on login
+    var addUser= function(data,$scope){
+        //console.log(data);
+        if(data.email===undefined || data.password===undefined){
+            $scope.toaster = {
+                        type: 'error',
+                        title: 'Login Unsuccessful',
+                        text: 'Please enter your email and password'
+                    };
+                    //console.log('in condition');
+                    return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        }else{
+            $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/login", data)
+            .then(function(response) {
+                if(response.data.status=="success"){
+                    $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/";
+                    //console.log(response.data);
+                }else{
+                    $scope.toaster = {
+                        type: 'error',
+                        title: 'Login Unsuccessful',
+                        text: 'Please enter correct email or password'
+                    };
+                    return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+                }
+            }).catch(function(){
+            //console.log(userdata);
+        });
+        } // end of else
+        
+    };
+
+    var getUser = function(callback){
+        $http.get($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/muappsessionCheck")
+        .then(function(response) {
+
+            callback(response.data);
+        });
+
+    };
+
+    return {
+        addUser:addUser,
+        getUser:getUser
+    }
+
+});
