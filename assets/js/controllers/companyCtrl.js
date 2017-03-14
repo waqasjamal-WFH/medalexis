@@ -1,6 +1,6 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster",function($scope,$location,$http, toaster){
+app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$localStorage",function($scope,$location,$http, toaster ,$localStorage){
   $scope.submit= function (){
     var short_name=$scope.short_name;
     var full_name=$scope.full_name;
@@ -16,7 +16,8 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster",funct
     var timezone=$scope.timezone;
     var admin_person_name=$scope.admin_person_name;
 
-    var data= {
+    console.log($localStorage.user_data.response.token);
+    var data= {"token":"asd","data":{
       "short_name":short_name,
       "full_name":full_name,
       "address":address,
@@ -29,12 +30,12 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster",funct
       "e_mail":e_mail,
       "website":website,
       "timezone":timezone,
-      "admin_person_name":admin_person_name,
-    };
+      "admin_person_name":admin_person_name
+    }};
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
     .then(function(response) {
-      console.log(response);
+      console.log(response.data);
       // if(response.data.status=="success"){
       //   $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
       //   $localStorage.user_data=response.data;
