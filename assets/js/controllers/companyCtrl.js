@@ -52,6 +52,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
           text: 'Error adding Company'
         };
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+      } 
     }).catch(function(){
           console.log("erroe adding company");
     });
