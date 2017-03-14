@@ -46,7 +46,6 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster",funct
         //   text: 'Please enter correct email or password'
         // };
         // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-      }
     }).catch(function(){
           //console.log(userdata);
     });
