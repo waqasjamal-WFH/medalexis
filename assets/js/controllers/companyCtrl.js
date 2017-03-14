@@ -15,9 +15,10 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
     var website=$scope.website;
     var timezone=$scope.timezone;
     var admin_person_name=$scope.admin_person_name;
+    var token=$localStorage.user_data.response.token;
 
-    console.log($localStorage.user_data.response.token);
-    var data= {"token":"asd","data":{
+    // console.log($localStorage.user_data.response.token);  
+    var data= {"token":token ,"data":{
       "short_name":short_name,
       "full_name":full_name,
       "address":address,
