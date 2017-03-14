@@ -44,7 +44,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
           text: 'Company Added Successfully'
         };
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        
+        $scope.short_name="";
       }else{
         $scope.toaster = {
           type: 'error',
