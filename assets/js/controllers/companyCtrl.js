@@ -1,7 +1,56 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addcompanyCtrl', ["$scope","$location",function($scope,$location){
-	// $scope.name="hello waqas";
+app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster",function($scope,$location,$http, toaster){
+  $scope.submit= function (){
+    var short_name=$scope.short_name;
+    var full_name=$scope.full_name;
+    var address=$scope.address;
+    var city=$scope.city;
+    var state=$scope.state;
+    var zip_code=$scope.zip_code;
+    var country=$scope.country;
+    var phone=$scope.phone;
+    var fax=$scope.fax;
+    var e_mail=$scope.e_mail;
+    var website=$scope.website;
+    var timezone=$scope.timezone;
+    var admin_person_name=$scope.admin_person_name;
+
+    var data= {
+      "short_name":short_name,
+      "full_name":full_name,
+      "address":address,
+      "city":city,
+      "state":state,
+      "zip_code":zip_code,
+      "country":country,
+      "phone":phone,
+      "fax":fax,
+      "e_mail":e_mail,
+      "website":website,
+      "timezone":timezone,
+      "admin_person_name":admin_person_name,
+    };
+
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
+    .then(function(response) {
+      console.log(response);
+      // if(response.data.status=="success"){
+      //   $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
+      //   $localStorage.user_data=response.data;
+      //   // console.log(response.data);
+      // }else{
+        // $scope.toaster = {
+        //   type: 'error',
+        //   title: 'Login Unsuccessful',
+        //   text: 'Please enter correct email or password'
+        // };
+        // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+      }
+    }).catch(function(){
+          //console.log(userdata);
+    });
+  }
 }]);
 
 // .......add company controller end ..............................///
