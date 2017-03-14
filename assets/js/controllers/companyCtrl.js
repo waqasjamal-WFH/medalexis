@@ -49,7 +49,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
         // };
         // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
     }).catch(function(){
-          //console.log(userdata);
+          console.log("erroe adding company");
     });
   }
 }]);
