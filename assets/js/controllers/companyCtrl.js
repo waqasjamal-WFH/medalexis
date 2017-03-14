@@ -37,17 +37,21 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
     .then(function(response) {
       console.log(response.data);
-      // if(response.data.status=="success"){
-      //   $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
-      //   $localStorage.user_data=response.data;
-      //   // console.log(response.data);
-      // }else{
-        // $scope.toaster = {
-        //   type: 'error',
-        //   title: 'Login Unsuccessful',
-        //   text: 'Please enter correct email or password'
-        // };
-        // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+      if(response.data.status=="success"){
+        $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Company Added Successfully'
+        };
+        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        
+      }else{
+        $scope.toaster = {
+          type: 'error',
+          title: 'Unsuccessful',
+          text: 'Error adding Company'
+        };
+        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
     }).catch(function(){
           console.log("erroe adding company");
     });
