@@ -81,22 +81,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         "admin_person_name": "No data"
     }];
 
-    //................................http post request for getting company list start here........................
-    var data;
-    var param={'token' :$localStorage.user_data.response.token};
-    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-    .then(function(response) {
-      // console.log(response.data);
-      if(response.data.status=="success"){
-        console.log(response.data.data);
-         data=response.data.data;
-      }else{
-        data=static_data;
-      } 
-    }).catch(function(){
-          console.log("error adding company");
-    }); 
-    //.............................http post request for getting company list end here...............................
+    
     $scope.tableParams = new ngTableParams({
        page: 1, // show first page
        count: 5, // count per page
@@ -107,7 +92,22 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
            name: 'M' // initial filter
        }
     }, {
-      
+        //................................http post request for getting company list start here........................
+        var data;
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+            console.log(response.data.data);
+             data=response.data.data;
+          }else{
+            data=static_data;
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        }); 
+      //.............................http post request for getting company list end here...............................
        total: data.length, // length of data
         getData: function ($defer, params) {
           // var param={'token' :$localStorage.user_data.response.token};
