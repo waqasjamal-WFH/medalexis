@@ -221,29 +221,20 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
           var param={'token' :$localStorage.user_data.response.token};
           $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
           .then(function(response) {
-            console.log(response.data);
-            // if(response.data.status=="success"){
-            //   $scope.toaster = {
-            //     type: 'success',
-            //     title: 'Successful',
-            //     text: 'Company Added Successfully'
-            //   };
-            //   return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-             
-            // }else{
-            //   $scope.toaster = {
-            //     type: 'error',
-            //     title: 'Unsuccessful',
-            //     text: 'Error adding Company'
-            //   };
-            //   return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-            // } 
+            // console.log(response.data);
+            if(response.data.status=="success"){
+              console.log(response.data.data);
+              var orderedData = params.sorting() ? $filter('orderBy')(response.data.data, params.orderBy()) : response.data.data;
+              $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            }else{
+              
+            } 
           }).catch(function(){
                 console.log("erroe adding company");
           });
            // use build-in angular filter
-           var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-           $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+           // var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
+           // $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
         }
     });
 
