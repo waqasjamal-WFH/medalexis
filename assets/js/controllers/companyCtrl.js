@@ -63,7 +63,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", function ($scope, $filter, ngTableParams,$uibModal,$log) {
+app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage) {
     var data = [{
         "id": 1,
         "lm": 138661285100,
@@ -206,23 +206,46 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         "dl": false
     }];
 
-         $scope.tableParams = new ngTableParams({
-                 page: 1, // show first page
-                 count: 5, // count per page
-                 sorting: {
-                     title: 'desc' // initial sorting
-                 },
-                 filter: {
-                     name: 'M' // initial filter
-                 }
-             }, {
-                 total: data.length, // length of data
-                 getData: function ($defer, params) {
-                     // use build-in angular filter
-                     var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-                     $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                 }
-             });
+    $scope.tableParams = new ngTableParams({
+       page: 1, // show first page
+       count: 5, // count per page
+       sorting: {
+           title: 'desc' // initial sorting
+       },
+       filter: {
+           name: 'M' // initial filter
+       }
+    }, {
+       total: data.length, // length of data
+       getData: function ($defer, params) {
+          var param={'token' :$localStorage.user_data.response.token};
+          $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+          .then(function(response) {
+            console.log(response);
+            // if(response.data.status=="success"){
+            //   $scope.toaster = {
+            //     type: 'success',
+            //     title: 'Successful',
+            //     text: 'Company Added Successfully'
+            //   };
+            //   return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+             
+            // }else{
+            //   $scope.toaster = {
+            //     type: 'error',
+            //     title: 'Unsuccessful',
+            //     text: 'Error adding Company'
+            //   };
+            //   return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            // } 
+          }).catch(function(){
+                console.log("erroe adding company");
+          });
+           // use build-in angular filter
+           var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
+           $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+       }
+    });
 
 
 
