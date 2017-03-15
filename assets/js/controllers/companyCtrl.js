@@ -216,7 +216,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
            name: 'M' // initial filter
        }
     }, {
-       total: response.data.data.length, // length of data
+       total: data.length, // length of data
         getData: function ($defer, params) {
           var param={'token' :$localStorage.user_data.response.token};
           $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
