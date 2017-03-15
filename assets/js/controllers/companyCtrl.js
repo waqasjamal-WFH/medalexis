@@ -81,6 +81,22 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         "admin_person_name": "No data"
     }];
 
+    //................................http post request for getting company list start here........................
+    var data;
+    var param={'token' :$localStorage.user_data.response.token};
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+    .then(function(response) {
+      // console.log(response.data);
+      if(response.data.status=="success"){
+        console.log(response.data.data);
+         data=response.data.data;
+      }else{
+        data=static_data;
+      } 
+    }).catch(function(){
+          console.log("error adding company");
+    }); 
+    //.............................http post request for getting company list end here...............................
     $scope.tableParams = new ngTableParams({
        page: 1, // show first page
        count: 5, // count per page
@@ -92,20 +108,20 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
        }
     }, {
       
-       // total: data.length, // length of data
+       total: data.length, // length of data
         getData: function ($defer, params) {
-          var param={'token' :$localStorage.user_data.response.token};
-          $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-          .then(function(response) {
-            // console.log(response.data);
-            if(response.data.status=="success"){
-              console.log(response.data.data);
-              var dataa=response.data.data;
+          // var param={'token' :$localStorage.user_data.response.token};
+          // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+          // .then(function(response) {
+          //   // console.log(response.data);
+          //   if(response.data.status=="success"){
+          //     console.log(response.data.data);
+          //     var dataa=response.data.data;
 
-              var orderedData = params.sorting() ? $filter('orderBy')(dataa, params.orderBy()) : dataa;
+              var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }else{
-              var orderedData = params.sorting() ? $filter('orderBy')(static_data, params.orderBy()) : static_data;
+              var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             } 
           }).catch(function(){
