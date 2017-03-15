@@ -93,22 +93,22 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
        }
     }, {
         //................................http post request for getting company list start here........................
-        var data;
+        var datas;
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
         .then(function(response) {
           // console.log(response.data);
           if(response.data.status=="success"){
             console.log(response.data.data);
-             data=response.data.data;
+             datas=response.data.data;
           }else{
-            data=static_data;
+            datas=static_data;
           } 
         }).catch(function(){
               console.log("error adding company");
         }); 
       //.............................http post request for getting company list end here...............................
-       total: data.length, // length of data
+       total: datas.length, // length of data
         getData: function ($defer, params) {
           // var param={'token' :$localStorage.user_data.response.token};
           // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
