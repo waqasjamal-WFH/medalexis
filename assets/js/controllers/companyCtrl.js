@@ -63,7 +63,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage) {
+app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location) {
     var data = [{
         "id": 1,
         "lm": 138661285100,
@@ -217,7 +217,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
        }
     }, {
        total: data.length, // length of data
-       getData: function ($defer, params) {
+        getData: function ($defer, params) {
           var param={'token' :$localStorage.user_data.response.token};
           $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
           .then(function(response) {
@@ -244,7 +244,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
            // use build-in angular filter
            var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
            $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-       }
+        }
     });
 
 
