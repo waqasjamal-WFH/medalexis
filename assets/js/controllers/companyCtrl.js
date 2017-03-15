@@ -93,7 +93,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
        }
     }, {
         //................................http post request for getting company list start here........................
-        var datas;
+        var datas={};
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
         .then(function(response,datas) {
