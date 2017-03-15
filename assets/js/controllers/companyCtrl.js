@@ -216,7 +216,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
            name: 'M' // initial filter
        }
     }, {
-       total: data.length, // length of data
+      var dataa;
+       total: dataa.length, // length of data
         getData: function ($defer, params) {
           var param={'token' :$localStorage.user_data.response.token};
           $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
@@ -224,7 +225,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             // console.log(response.data);
             if(response.data.status=="success"){
               console.log(response.data.data);
-              var dataa=response.data.data;
+               dataa=response.data.data;
+
               var orderedData = params.sorting() ? $filter('orderBy')(dataa, params.orderBy()) : dataa;
               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }else{
