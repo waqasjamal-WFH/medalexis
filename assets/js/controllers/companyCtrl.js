@@ -96,7 +96,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         var datas;
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-        .then(function(response) {
+        .then(function(response,datas) {
           // console.log(response.data);
           if(response.data.status=="success"){
             console.log(response.data.data);
