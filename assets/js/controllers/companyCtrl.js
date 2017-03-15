@@ -123,10 +123,10 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             // }else{
             //   var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
             //   $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            // } 
-          }).catch(function(){
-                console.log("error adding company");
-          });
+          //   // } 
+          // }).catch(function(){
+          //       console.log("error adding company");
+          // });
            // use build-in angular filter
            // var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
            // $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
