@@ -81,57 +81,62 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         "admin_person_name": "No data"
     }];
 
-    
-    $scope.tableParams = new ngTableParams({
-       page: 1, // show first page
-       count: 5, // count per page
-       sorting: {
-           title: 'desc' // initial sorting
-       },
-       filter: {
-           name: 'M' // initial filter
-       }
-    }, {
-        //................................http post request for getting company list start here........................
-        var datas={};
+    //................................http post request for getting company list start here........................
+        // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-        .then(function(response,datas) {
+        .then(function(response) {
           // console.log(response.data);
           if(response.data.status=="success"){
-            console.log(response.data.data);
-             datas=response.data.data;
+            
+            var datas=response.data.data;
+            console.log(datas);
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
+
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
           }else{
-            datas=static_data;
+            var datas=static_data;
+            console.log(datas);
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
+
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
           } 
         }).catch(function(){
               console.log("error adding company");
         }); 
       //.............................http post request for getting company list end here...............................
-       total: datas.length, // length of data
-        getData: function ($defer, params) {
-          // var param={'token' :$localStorage.user_data.response.token};
-          // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-          // .then(function(response) {
-          //   // console.log(response.data);
-          //   if(response.data.status=="success"){
-          //     console.log(response.data.data);
-          //     var dataa=response.data.data;
-
-              var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-              $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            // }else{
-            //   var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-            //   $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-          //   // } 
-          // }).catch(function(){
-          //       console.log("error adding company");
-          // });
-           // use build-in angular filter
-           // var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-           // $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-        }
-    });
+    
+    
 
 
 
