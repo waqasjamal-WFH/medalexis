@@ -224,7 +224,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             // console.log(response.data);
             if(response.data.status=="success"){
               console.log(response.data.data);
-              var orderedData = params.sorting() ? $filter('orderBy')(response.data.data, params.orderBy()) : response.data.data;
+              var dataa=response.data.data;
+              var orderedData = params.sorting() ? $filter('orderBy')(dataa, params.orderBy()) : dataa;
               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
             }else{
               

@@ -23,20 +23,20 @@
                             <table ng-table="tableParams" class="table">
                                 <tbody ng-repeat="p in $data | filter:query">
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                        <td class="rowTd" data-title="'Company Short Name'" sortable="'id'">{{p.id}}</td>
-                                        <td class="rowTd" data-title="'Company Full Name'" sortable="'fn'">{{p.fn}}</td>
-                                        <td class="rowTd" data-title="'Company Address'" sortable="'ln'">{{p.ln}}</td>
-                                        <td class="rowTd" data-title="'Joining date'" sortable="'dc'">{{p.dc}}</td>
-                                        <td class="rowTd" data-title="'City'" sortable="'em'">{{p.em}}</td>
-                                        <td class="rowTd" data-title="'State'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Zip Code'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Country'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Phone'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Fax'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'E-mail'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Client Web Address'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Client time zone'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd" data-title="'Administrative person Fullname'" sortable="'ph'">{{p.ph}}</td>
+                                        <td class="rowTd" data-title="'Company Short Name'" sortable="'short_name'">{{p.short_name}}</td>
+                                        <td class="rowTd" data-title="'Company Full Name'" sortable="'full_name'">{{p.full_name}}</td>
+                                        <td class="rowTd" data-title="'Company Address'" sortable="'address'">{{p.address}}</td>
+                                        <td class="rowTd" data-title="'Joining date'" sortable="'date'">{{p.date}}</td>
+                                        <td class="rowTd" data-title="'City'" sortable="'city'">{{p.city}}</td>
+                                        <td class="rowTd" data-title="'State'" sortable="'state'">{{p.state}}</td>
+                                        <td class="rowTd" data-title="'Zip Code'" sortable="'zip_code'">{{p.zip_code}}</td>
+                                        <td class="rowTd" data-title="'Country'" sortable="'country'">{{p.country}}</td>
+                                        <td class="rowTd" data-title="'Phone'" sortable="'phone'">{{p.phone}}</td>
+                                        <td class="rowTd" data-title="'Fax'" sortable="'fax'">{{p.fax}}</td>
+                                        <td class="rowTd" data-title="'E-mail'" sortable="'e_mail'">{{p.e_mail}}</td>
+                                        <td class="rowTd" data-title="'Client Web Address'" sortable="'web_address'">{{p.web_address}}</td>
+                                        <td class="rowTd" data-title="'Client time zone'" sortable="'time_zone'">{{p.time_zone}}</td>
+                                        <td class="rowTd" data-title="'Administrative person Fullname'" sortable="'admin_person_name'">{{p.admin_person_name}}</td>
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                                 <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
