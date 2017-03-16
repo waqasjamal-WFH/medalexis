@@ -163,9 +163,9 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
     };
 
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function () {
+    $scope.openmodel = function (companyId) {
       // $scope.taskid=taskId
-      // console.log(taskId);
+      console.log(companyId);
     
       var modalInstance = $uibModal.open({
 
