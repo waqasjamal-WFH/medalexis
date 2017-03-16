@@ -168,7 +168,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
       // $scope.taskid=taskId
       // console.log(companyId);
       $scope.showLoader = true;
-$scope.showform = false;
+    $scope.showform = false;
+      
       var modalInstance = $uibModal.open({
 
               templateUrl: 'myModalContent1.html',
@@ -304,20 +305,20 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         }
     ];
     
-    $scope.short_name=$scope.onecompany[0].short_name;
-    $scope.full_name=$scope.onecompany[0].full_name;
-    $scope.address=$scope.onecompany[0].address;
-    $scope.date=$scope.onecompany[0].date;
-    $scope.city=$scope.onecompany[0].city;
-    $scope.state=$scope.onecompany[0].state;
-    $scope.zip_code=$scope.onecompany[0].zip_code;
-    $scope.country=$scope.onecompany[0].country;
-    $scope.phone=$scope.onecompany[0].phone;
-    $scope.fax=$scope.onecompany[0].fax;
-    $scope.e_mail=$scope.onecompany[0].e_mail;
-    $scope.website=$scope.onecompany[0].web_address;
-    $scope.timezone=$scope.onecompany[0].time_zone;
-    $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
+    // $scope.short_name=$scope.onecompany[0].short_name;
+    // $scope.full_name=$scope.onecompany[0].full_name;
+    // $scope.address=$scope.onecompany[0].address;
+    // $scope.date=$scope.onecompany[0].date;
+    // $scope.city=$scope.onecompany[0].city;
+    // $scope.state=$scope.onecompany[0].state;
+    // $scope.zip_code=$scope.onecompany[0].zip_code;
+    // $scope.country=$scope.onecompany[0].country;
+    // $scope.phone=$scope.onecompany[0].phone;
+    // $scope.fax=$scope.onecompany[0].fax;
+    // $scope.e_mail=$scope.onecompany[0].e_mail;
+    // $scope.website=$scope.onecompany[0].web_address;
+    // $scope.timezone=$scope.onecompany[0].time_zone;
+    // $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
   
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
