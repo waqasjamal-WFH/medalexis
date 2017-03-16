@@ -167,26 +167,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
 
       // $scope.taskid=taskId
       // console.log(companyId);
-      $scope.showLoader = true;
-      $scope.showform = false;
       
-      $scope.onecompany;
-
-
-
-
-      var param={
-            'token' :$localStorage.user_data.response.token,
-            'companyid': companyId
-          };
-
-      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
-        .then(function(response) {
-          $scope.showLoader = false;
-          // console.log(response.data);
-          if(response.data.status=="success"){
-
-            $scope.onecompany=response.data.data;
+      $scope.companyId= companyId;
             var modalInstance = $uibModal.open({
 
               templateUrl: 'myModalContent1.html',
@@ -196,7 +178,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
               backdrop: 'static',
               resolve: {
                 items: function () {
-                  return $scope.onecompany;
+                  return $scope.companyId;
                   // $scope.list=qatranlist;
                   // console.log(qatranlist);
                 }
@@ -208,38 +190,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             }, function () {
               $log.info('Modal dismissed at: ' + new Date());
             });
-            
-            $scope.showLoader = false;
-            $scope.showform = true;
-            
-          }else{
-            
-          } 
-        }).catch(function(){
-              console.log("error adding company");
-        });
-//===============================
-        // var modalInstance = $uibModal.open({
-
-        //       templateUrl: 'myModalContent1.html',
-        //       controller: 'ModalUiCtrl',
-        //       scope : $scope,
-        //       size: 'lg',
-        //       backdrop: 'static',
-        //       resolve: {
-        //         items: function () {
-        //           return $scope.onecompany;
-        //           // $scope.list=qatranlist;
-        //           // console.log(qatranlist);
-        //         }
-        //       }
-        //     });
-
-        //     modalInstance.result.then(function (selectedItem) { 
-        //       $scope.selected = selectedItem;
-        //     }, function () {
-        //       $log.info('Modal dismissed at: ' + new Date());
-        //     });
+            $scope.showLoader = true;
+      $scope.showform = false;
       
     };
 
@@ -309,8 +261,26 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             name: "Peaches"
         }
     ];
-    
-    $scope.short_name=$scope.onecompany[0].short_name;
+
+
+    var param={
+            'token' :$localStorage.user_data.response.token,
+            'companyid': $scope.companyId
+          };
+
+      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
+        .then(function(response) {
+
+          // console.log(response.data);
+          if(response.data.status=="success"){
+            $scope.showLoader = false;
+          $scope.showform = true;
+            console.log(response.data.data);
+            $scope.onecompany=response.data.data;
+
+
+
+            $scope.short_name=$scope.onecompany[0].short_name;
     $scope.full_name=$scope.onecompany[0].full_name;
     $scope.address=$scope.onecompany[0].address;
     $scope.date=$scope.onecompany[0].date;
@@ -324,6 +294,40 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     $scope.website=$scope.onecompany[0].web_address;
     $scope.timezone=$scope.onecompany[0].time_zone;
     $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
+            // var modalInstance = $uibModal.open({
+
+            //   templateUrl: 'myModalContent1.html',
+            //   controller: 'ModalUiCtrl',
+            //   scope : $scope,
+            //   size: 'lg',
+            //   backdrop: 'static',
+            //   resolve: {
+            //     items: function () {
+            //       return $scope.onecompany;
+            //       // $scope.list=qatranlist;
+            //       // console.log(qatranlist);
+            //     }
+            //   }
+            // });
+
+            // modalInstance.result.then(function (selectedItem) { 
+            //   $scope.selected = selectedItem;
+            // }, function () {
+            //   $log.info('Modal dismissed at: ' + new Date());
+            // });
+
+           
+            
+          }else{
+            
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        });
+
+
+    
+    
   
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
