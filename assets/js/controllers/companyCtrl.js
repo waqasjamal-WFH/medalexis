@@ -170,7 +170,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
       $scope.showLoader = true;
       $scope.showform = false;
       
-
+      $scope.onecompany;
 
 
 
@@ -184,7 +184,6 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
           $scope.showLoader = false;
           // console.log(response.data);
           if(response.data.status=="success"){
-            
             $scope.onecompany=response.data.data;
             $scope.showLoader = false;
             $scope.showform = true;
