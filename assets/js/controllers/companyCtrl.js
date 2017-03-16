@@ -36,7 +36,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
     .then(function(response) {
-      console.log(response.data);
+      // console.log(response.data);
       if(response.data.status=="success"){
         $scope.toaster = {
           type: 'success',
@@ -44,6 +44,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
           text: 'Company Added Successfully'
         };
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        $location.path('app/listcompany');
        
       }else{
         $scope.toaster = {
@@ -90,7 +91,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
           if(response.data.status=="success"){
             
             var datas=response.data.data;
-            console.log(datas);
+            // console.log(datas);
             $scope.tableParams = new ngTableParams({
                page: 1, // show first page
                count: 5, // count per page
@@ -111,7 +112,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             });
           }else{
             var datas=static_data;
-            console.log(datas);
+            // console.log(datas);
             $scope.tableParams = new ngTableParams({
                page: 1, // show first page
                count: 5, // count per page
