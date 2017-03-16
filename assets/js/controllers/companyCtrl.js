@@ -43,8 +43,9 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
           title: 'Successful',
           text: 'Company Added Successfully'
         };
+        $location.path('app/listcompany');
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        $location.path('listcompany');
+
        
       }else{
         $scope.toaster = {
