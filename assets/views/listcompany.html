@@ -52,10 +52,10 @@
                                 <div class="modal-header">
                                     <h3>Edit Company</h3>
                                 </div>
-                                <div class="modal-body" ng-show="showLoader">
+                                <div class="modal-body" ng-if="showLoader">
                                     <img src="assets/images/default.gif"> 
                                 </div>
-                                <div class="modal-body" ng-show="showform">
+                                <div class="modal-body" ng-if="showform">
                                     <form role="form">
                                         <div class="form-group">
                                             <input type="text" placeholder="Company Short name" class="form-control underline input-lg" ng-model="short_name">
