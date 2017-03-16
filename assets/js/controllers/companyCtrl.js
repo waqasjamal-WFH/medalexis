@@ -275,8 +275,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             name: "Peaches"
         }
     ];
-    console.log($scope.onecompany);
-    console.log("$scope.onecompany");
+    console.log($scope.onecompany[0].address);
   $scope.items = items;
   $scope.selected = {
     item: $scope.list
