@@ -164,8 +164,27 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
 
     // ...............model open function for assigning qa and transcriber start here..............//
     $scope.openmodel = function (companyId) {
+
       // $scope.taskid=taskId
-      console.log(companyId);
+      // console.log(companyId);
+      var param={
+            'token' :$localStorage.user_data.response.token,
+            'companyid': companyId
+          };
+      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
+        .then(function(response) {
+          console.log(response.data);
+          // if(response.data.status=="success"){
+            
+          //   var datas=response.data.data;
+          //   // console.log(datas);
+            
+          // }else{
+            
+          // } 
+        }).catch(function(){
+              console.log("error adding company");
+        });
     
       var modalInstance = $uibModal.open({
 
