@@ -193,129 +193,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
     // ...............model open function for assigning qa and transcriber end here..............//
 }]);
 
-// .......LIST company controller end ..............................///// EDIT model controller start here.............................////
+// .......LIST company controller end ..............................//
 
-
-// app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
-  
-//     $scope.access_right=[
-//     "Add Company",
-//     "List Company",
-//     "Add Tranco Admin",
-//     "List Tranco Admin",
-//     "Add Transcriber",
-//     "List Transcriber",
-//     "Add QA",
-//     "List QA",
-//     "Add Doctor",
-//     "List Doctor",
-//     "Add Nurse",
-//     "List Nurse",
-//     "Add Practice Admin",
-//     "List Practice Admin",
-//     "Add Appoinment",
-//     "List Appoinment",
-//     "Add Receptionist",
-//     "List Receptionist",
-//     "Add Patient",
-//     "List Patient"
-//     ];
-
-//     $scope.companies=[
-//     "Company 1",
-//     "Company 2",
-//     "Company 3",
-//     "Company 4",
-//     "Company 5",
-//     "Company 6",
-//     "Company 7",
-//     "Company 8",
-//     "Company 9",
-//     "Company 10",
-//     "Company 11",
-//     "Company 12",
-    
-//     "Company 13"
-//     ];
-
-
-//     $scope.selectOptionsObjects = [
-//         {
-//             id: 0,
-//             name: "Apples"
-//         },
-//         {
-//             id: 1,
-//             name: "Bananas"
-//         },
-//         {
-//             id: 2,
-//             name: "Peaches"
-//         }
-//     ];
-
-
-
-
-
-//  // ...............http call for list of transcriber and qa start here....................//
-//     // var qatranlist;
-//   //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
-//   //   .then(function(response,data) {
-
-//   //     //console.log(response);
-//   //     if(response.data.result=="success"){
-//   //       console.log(response.data.data);
-//   //       $scope.list=response.data.data
-//   //        // qatranlist=response.data.data
-//   //     }else{
-//   //      $scope.list=response.data.data
-//   //     }
-//   //   }).catch(function(){
-//   //   // console.log(userdata);
-//   // });  
-
-//     // ...............http call for list of transcriber and qa end here....................//
-//   $scope.items = items;
-//   $scope.selected = {
-//     item: $scope.list
-//   };
-// //.........................get selected transcriber and qa for a selected task START here.....................//
-//    // $http.get(
-//    //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
-//    //  {params:{"task_ID":$scope.taskid}})
-//    //  .then(function(response,data) {
-//    //    console.log(response.data);
-//    //    $scope.assignedQA=response.data.result[1].username;
-//    //    $scope.assignedtrans=response.data.result[0].username;
-
-//    //    $scope.assignedQAID=response.data.result[1].id;
-//    //    $scope.assignedtransID=response.data.result[0].id;
-//    //    console.log( "hello "+$scope.assignedQAID);
-//    //    console.log( "hello "+$scope.assignedtransID);
-//    //    $scope.qa=response.data.result[1].id;
-//    //    $scope.transcriber=response.data.result[0].id;
-//    //  })
-
-//   //.........................get selected transcriber and qa for a selected task END here.....................//
-  
-  
-
-//   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
-//   $scope.ok = function () {
-    
-    
-//   };
-
-//   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
-
-
-//   $scope.cancel = function () {
-//     $uibModalInstance.dismiss('cancel');
-//   };  
-// }]);
-
-/// EDIT model controller end here ..............................//
 
 // EDIT model controller start here.............................////
 
@@ -428,7 +307,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
 
-    
+    console.log("edit conpelete here");
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
