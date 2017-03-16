@@ -168,20 +168,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
       // $scope.taskid=taskId
       // console.log(companyId);
       $scope.showLoader = true;
-      var param={
-            'token' :$localStorage.user_data.response.token,
-            'companyid': companyId
-          };
-      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
-        .then(function(response) {
-          $scope.showLoader = false;
-          // console.log(response.data);
-          if(response.data.status=="success"){
-            
-            // var datas=response.data.data;
-            $scope.onecompany=response.data.data;
-
-            var modalInstance = $uibModal.open({
+$scope.showform = false;
+      var modalInstance = $uibModal.open({
 
               templateUrl: 'myModalContent1.html',
               controller: 'ModalUiCtrl',
@@ -190,7 +178,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
               backdrop: 'static',
               resolve: {
                 items: function () {
-                  return $scope.onecompany;
+                  // return $scope.onecompany;
                   // $scope.list=qatranlist;
                   // console.log(qatranlist);
                 }
@@ -202,6 +190,44 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
             }, function () {
               $log.info('Modal dismissed at: ' + new Date());
             });
+
+
+
+
+      var param={
+            'token' :$localStorage.user_data.response.token,
+            'companyid': companyId
+          };
+      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
+        .then(function(response) {
+          $scope.showLoader = false;
+          // console.log(response.data);
+          if(response.data.status=="success"){
+            
+            $scope.onecompany=response.data.data;
+            $scope.showLoader = false;
+            $scope.showform = true;
+            // var modalInstance = $uibModal.open({
+
+            //   templateUrl: 'myModalContent1.html',
+            //   controller: 'ModalUiCtrl',
+            //   scope : $scope,
+            //   size: 'lg',
+            //   backdrop: 'static',
+            //   resolve: {
+            //     items: function () {
+            //       return $scope.onecompany;
+            //       // $scope.list=qatranlist;
+            //       // console.log(qatranlist);
+            //     }
+            //   }
+            // });
+
+            // modalInstance.result.then(function (selectedItem) { 
+            //   $scope.selected = selectedItem;
+            // }, function () {
+            //   $log.info('Modal dismissed at: ' + new Date());
+            // });
           }else{
             
           } 
