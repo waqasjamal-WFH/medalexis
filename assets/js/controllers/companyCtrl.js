@@ -173,40 +173,40 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
           };
       $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
         .then(function(response) {
-          console.log(response.data);
-          // if(response.data.status=="success"){
+          // console.log(response.data);
+          if(response.data.status=="success"){
             
-          //   var datas=response.data.data;
-          //   // console.log(datas);
+            // var datas=response.data.data;
+            $scope.onecompany=response.data.data;
+
+            var modalInstance = $uibModal.open({
+
+              templateUrl: 'myModalContent1.html',
+              controller: 'ModalUiCtrl',
+              scope : $scope,
+              size: 'lg',
+              backdrop: 'static',
+              resolve: {
+                items: function () {
+                  return $scope.onecompany;
+                  // $scope.list=qatranlist;
+                  // console.log(qatranlist);
+                }
+              }
+            });
+
+            modalInstance.result.then(function (selectedItem) { 
+              $scope.selected = selectedItem;
+            }, function () {
+              $log.info('Modal dismissed at: ' + new Date());
+            });
+          }else{
             
-          // }else{
-            
-          // } 
+          } 
         }).catch(function(){
               console.log("error adding company");
         });
-    
-      var modalInstance = $uibModal.open({
-
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
-        scope : $scope,
-        size: 'lg',
-        backdrop: 'static',
-        resolve: {
-          items: function () {
-            // return $scope.taskid;
-            // $scope.list=qatranlist;
-            // console.log(qatranlist);
-          }
-        }
-      });
-
-      modalInstance.result.then(function (selectedItem) { 
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+      
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
@@ -275,54 +275,12 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             name: "Peaches"
         }
     ];
-
-
-
-
-
- // ...............http call for list of transcriber and qa start here....................//
-    // var qatranlist;
-  //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
-  //   .then(function(response,data) {
-
-  //     //console.log(response);
-  //     if(response.data.result=="success"){
-  //       console.log(response.data.data);
-  //       $scope.list=response.data.data
-  //        // qatranlist=response.data.data
-  //     }else{
-  //      $scope.list=response.data.data
-  //     }
-  //   }).catch(function(){
-  //   // console.log(userdata);
-  // });  
-
-    // ...............http call for list of transcriber and qa end here....................//
+    console.log($scope.onecompany);
+    console.log("$scope.onecompany");
   $scope.items = items;
   $scope.selected = {
     item: $scope.list
   };
-//.........................get selected transcriber and qa for a selected task START here.....................//
-   // $http.get(
-   //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
-   //  {params:{"task_ID":$scope.taskid}})
-   //  .then(function(response,data) {
-   //    console.log(response.data);
-   //    $scope.assignedQA=response.data.result[1].username;
-   //    $scope.assignedtrans=response.data.result[0].username;
-
-   //    $scope.assignedQAID=response.data.result[1].id;
-   //    $scope.assignedtransID=response.data.result[0].id;
-   //    console.log( "hello "+$scope.assignedQAID);
-   //    console.log( "hello "+$scope.assignedtransID);
-   //    $scope.qa=response.data.result[1].id;
-   //    $scope.transcriber=response.data.result[0].id;
-   //  })
-
-  //.........................get selected transcriber and qa for a selected task END here.....................//
-  
-  
-
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
 
