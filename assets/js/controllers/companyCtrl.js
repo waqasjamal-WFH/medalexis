@@ -167,12 +167,14 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
 
       // $scope.taskid=taskId
       // console.log(companyId);
+      $scope.showLoader = true;
       var param={
             'token' :$localStorage.user_data.response.token,
             'companyid': companyId
           };
       $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
         .then(function(response) {
+          $scope.showLoader = false;
           // console.log(response.data);
           if(response.data.status=="success"){
             
