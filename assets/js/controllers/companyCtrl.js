@@ -276,6 +276,8 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         }
     ];
     console.log($scope.onecompany[0].address);
+
+    $scope.address=$scope.onecompany[0].address;
   $scope.items = items;
   $scope.selected = {
     item: $scope.list
