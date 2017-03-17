@@ -75,7 +75,9 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
     //      toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
 
     if($rootScope.opentoast== "1"){
+      $timeout(function () {
       console.log("hello");
+
        $scope.toaster = {
           type: 'success',
           title: 'Successful',
@@ -84,6 +86,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
          $rootScope.opentoast== "";
+       }, 1000);   
     };
     
     var static_data = [{
