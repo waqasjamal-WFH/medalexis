@@ -185,7 +185,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage,toaster) {
   
     $scope.access_right=[
     "Add Company",
@@ -313,6 +313,30 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     }};
 
     console.log(data);
+
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedCompany", data)
+    .then(function(response) {
+      if(response.data.status=="success"){
+        
+        console.log(response.data.data);
+        $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Company Added Successfully'
+        };
+        $location.path('app/listcompany');
+        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+      }else{
+          $scope.toaster = {
+          type: 'error',
+          title: 'Unsuccessful',
+          text: 'Error adding Company'
+        };
+        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);    
+      } 
+    }).catch(function(){
+          console.log("error adding company");
+    });
     
   };
 
