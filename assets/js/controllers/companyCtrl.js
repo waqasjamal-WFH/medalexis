@@ -323,7 +323,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
           title: 'Successful',
           text: 'Company Edit Successfully'
         };
-        toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text
+        toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
 // if( toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text) ){
   $uibModalInstance.dismiss('cancel');
         
