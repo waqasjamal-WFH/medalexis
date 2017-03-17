@@ -65,7 +65,16 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location) {
+app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster) {
+    if($rootScope.opentoast== true){
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Company Edit Successfully'
+        };
+        $rootScope.opentoast== false;
+        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+    };
     var static_data = [{
         "short_name": 'No data',
         "full_name": "No data",
@@ -317,21 +326,19 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     .then(function(response) {
       if(response.data.status=="success"){
         
-       
-        $scope.toaster = {
-          type: 'success',
-          title: 'Successful',
-          text: 'Company Edit Successfully'
-        };
-        toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-// if( toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text) ){
+       $rootScope.opentoast= true;
+        // $scope.toaster = {
+        //   type: 'success',
+        //   title: 'Successful',
+        //   text: 'Company Edit Successfully'
+        // };
+        // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
   $uibModalInstance.dismiss('cancel');
         
         $state.go('app.listcompany', {}, { reload: true });
 
          
         console.log("dismisss work");
-      // };
          
       }else{
           $scope.toaster = {
