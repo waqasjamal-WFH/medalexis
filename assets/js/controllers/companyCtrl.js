@@ -312,7 +312,6 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       "admin_person_name":admin_person_name
     }};
 
-    console.log(data);
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedCompany", data)
     .then(function(response) {
@@ -322,7 +321,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.toaster = {
           type: 'success',
           title: 'Successful',
-          text: 'Company Added Successfully'
+          text: 'Company Edit Successfully'
         };
         $location.path('app/listcompany');
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
@@ -330,7 +329,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
           $scope.toaster = {
           type: 'error',
           title: 'Unsuccessful',
-          text: 'Error adding Company'
+          text: 'Error Editing Company'
         };
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);    
       } 
