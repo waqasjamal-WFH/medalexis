@@ -317,15 +317,16 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     .then(function(response) {
       if(response.data.status=="success"){
         
-        console.log(response.data.data);
+       
         $scope.toaster = {
           type: 'success',
           title: 'Successful',
           text: 'Company Edit Successfully'
         };
-        $uibModalInstance.dismiss('cancel');
-        $location.path('app/listcompany');
+         $uibModalInstance.dismiss('cancel');
+        $location.path('app/addcompany');
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        console.log("dismisss work");
       }else{
           $scope.toaster = {
           type: 'error',
