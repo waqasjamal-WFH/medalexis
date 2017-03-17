@@ -185,7 +185,7 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage,toaster$state, $stateParams) {
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage,toaster,$state, $stateParams) {
   
     $scope.access_right=[
     "Add Company",
