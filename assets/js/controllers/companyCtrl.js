@@ -331,20 +331,11 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     .then(function(response) {
       if(response.data.status=="success"){
         
-       $rootScope.opentoast= "1";
-        // $scope.toaster = {
-        //   type: 'success',
-        //   title: 'Successful',
-        //   text: 'Company Edit Successfully'
-        // };
-        // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        $rootScope.opentoast= "1";
+        
         $uibModalInstance.dismiss('cancel');
         
         $state.go('app.listcompany', {}, { reload: true });
-
-         
-        console.log("dismisss work");
-         
       }else{
           $scope.toaster = {
           type: 'error',
