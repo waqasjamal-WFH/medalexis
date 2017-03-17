@@ -324,8 +324,9 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
           text: 'Company Edit Successfully'
         };
          $uibModalInstance.dismiss('cancel');
-        $location.path('app/addcompany');
-        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        // $location.path('app/addcompany');
+        $state.go('app.listcompany');
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
         console.log("dismisss work");
       }else{
           $scope.toaster = {
