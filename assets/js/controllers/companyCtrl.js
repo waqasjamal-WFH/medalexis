@@ -137,24 +137,6 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
               console.log("error adding company");
         }); 
       //.............................http post request for getting company list end here...............................
-    
-    
-
-
-
-
-
-    
-    // $scope.tableParams = new ngTableParams({
-    //     page: 1,
-    //     count: 10
-    // }, {
-    //     total: data.length,
-    //     getData: function ($defer, params) {
-    //         var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-    //         $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    //     }
-    // });
 
     $scope.editId = -1;
 
@@ -169,30 +151,29 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
       // console.log(companyId);
       
       $scope.companyId= companyId;
-            var modalInstance = $uibModal.open({
+      var modalInstance = $uibModal.open({
 
-              templateUrl: 'myModalContent1.html',
-              controller: 'ModalUiCtrl',
-              scope : $scope,
-              size: 'lg',
-              backdrop: 'static',
-              resolve: {
-                items: function () {
-                  return $scope.companyId;
-                  // $scope.list=qatranlist;
-                  // console.log(qatranlist);
-                }
-              }
-            });
+        templateUrl: 'myModalContent1.html',
+        controller: 'ModalUiCtrl',
+        scope : $scope,
+        size: 'lg',
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            return $scope.companyId;
+            // $scope.list=qatranlist;
+            // console.log(qatranlist);
+          }
+        }
+      });
 
-            modalInstance.result.then(function (selectedItem) { 
-              $scope.selected = selectedItem;
-            }, function () {
-              $log.info('Modal dismissed at: ' + new Date());
-            });
-            $scope.showLoader = true;
+      modalInstance.result.then(function (selectedItem) { 
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $scope.showLoader = true;
       $scope.showform = false;
-      
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
@@ -266,73 +247,73 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     var param={
             'token' :$localStorage.user_data.response.token,
             'companyid': $scope.companyId
-          };
+    };
 
-      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
-        .then(function(response) {
-
-          // console.log(response.data);
-          if(response.data.status=="success"){
-            $scope.showLoader = false;
-          $scope.showform = true;
-            console.log(response.data.data);
-            $scope.onecompany=response.data.data;
-
-
-
-            $scope.short_name=$scope.onecompany[0].short_name;
-    $scope.full_name=$scope.onecompany[0].full_name;
-    $scope.address=$scope.onecompany[0].address;
-    $scope.date=$scope.onecompany[0].date;
-    $scope.city=$scope.onecompany[0].city;
-    $scope.state=$scope.onecompany[0].state;
-    $scope.zip_code=$scope.onecompany[0].zip_code;
-    $scope.country=$scope.onecompany[0].country;
-    $scope.phone=$scope.onecompany[0].phone;
-    $scope.fax=$scope.onecompany[0].fax;
-    $scope.e_mail=$scope.onecompany[0].e_mail;
-    $scope.website=$scope.onecompany[0].web_address;
-    $scope.timezone=$scope.onecompany[0].time_zone;
-    $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
-            // var modalInstance = $uibModal.open({
-
-            //   templateUrl: 'myModalContent1.html',
-            //   controller: 'ModalUiCtrl',
-            //   scope : $scope,
-            //   size: 'lg',
-            //   backdrop: 'static',
-            //   resolve: {
-            //     items: function () {
-            //       return $scope.onecompany;
-            //       // $scope.list=qatranlist;
-            //       // console.log(qatranlist);
-            //     }
-            //   }
-            // });
-
-            // modalInstance.result.then(function (selectedItem) { 
-            //   $scope.selected = selectedItem;
-            // }, function () {
-            //   $log.info('Modal dismissed at: ' + new Date());
-            // });
-
-           
-            
-          }else{
-            
-          } 
-        }).catch(function(){
-              console.log("error adding company");
-        });
-
-
-    
-    
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedCompany", param)
+    .then(function(response) {
+      if(response.data.status=="success"){
+        $scope.showLoader = false;
+        $scope.showform = true;
+        console.log(response.data.data);
+        $scope.onecompany=response.data.data;
+      
+        $scope.short_name=$scope.onecompany[0].short_name;
+        $scope.full_name=$scope.onecompany[0].full_name;
+        $scope.address=$scope.onecompany[0].address;
+        // $scope.date=$scope.onecompany[0].date;
+        $scope.city=$scope.onecompany[0].city;
+        $scope.state=$scope.onecompany[0].state;
+        $scope.zip_code=$scope.onecompany[0].zip_code;
+        $scope.country=$scope.onecompany[0].country;
+        $scope.phone=$scope.onecompany[0].phone;
+        $scope.fax=$scope.onecompany[0].fax;
+        $scope.e_mail=$scope.onecompany[0].e_mail;
+        $scope.website=$scope.onecompany[0].web_address;
+        $scope.timezone=$scope.onecompany[0].time_zone;
+        $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
+      }else{
+              
+      } 
+    }).catch(function(){
+          console.log("error adding company");
+    });
   
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
+    var short_name=$scope.short_name;
+    var full_name=$scope.full_name;
+    var address=$scope.address;
+    var city=$scope.city;
+    var state=$scope.state;
+    var zip_code=$scope.zip_code;
+    var country=$scope.country;
+    var phone=$scope.phone;
+    var fax=$scope.fax;
+    var e_mail=$scope.e_mail;
+    var website=$scope.website;
+    var timezone=$scope.timezone;
+    var admin_person_name=$scope.admin_person_name;
+    var token=$localStorage.user_data.response.token;
+    var companyId=$scope.companyId;
+    // console.log($localStorage.user_data.response.token);  
+    var data= {"token":token,"companyid": companyId,"data":{
+      "short_name":short_name,
+      "full_name":full_name,
+      "address":address,
+      "city":city,
+      "state":state,
+      "zip_code":zip_code,
+      "country":country,
+      "phone":phone,
+      "fax":fax,
+      "e_mail":e_mail,
+      "website":website,
+      "timezone":timezone,
+      "admin_person_name":admin_person_name
+    }};
 
-    console.log("edit conpelete here");
+    console.log(data);
+    
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
