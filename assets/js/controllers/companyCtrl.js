@@ -66,17 +66,8 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 // .......LIST company controller Start ..............................///
 
 app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope,$timeout) {
-    // $scope.toaster = {
-    //       type: 'success',
-    //       title: 'Successful',
-    //       text: 'Company Edit Successfully'
-    //     };
-        
-    //      toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-
     if($rootScope.opentoast== "1"){
       $timeout(function () {
-      console.log("hello");
 
        $scope.toaster = {
           type: 'success',
