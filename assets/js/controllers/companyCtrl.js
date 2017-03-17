@@ -65,7 +65,7 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster) {
+app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope) {
     if($rootScope.opentoast== true){
        $scope.toaster = {
           type: 'success',
