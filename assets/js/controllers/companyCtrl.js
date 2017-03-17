@@ -73,9 +73,10 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
           title: 'Successful',
           text: 'Company Edit Successfully'
         };
-        $rootScope.opentoast== false;
+        
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
     };
+    $rootScope.opentoast== false;
     var static_data = [{
         "short_name": 'No data',
         "full_name": "No data",
