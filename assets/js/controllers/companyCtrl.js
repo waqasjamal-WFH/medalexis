@@ -323,6 +323,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
           title: 'Successful',
           text: 'Company Edit Successfully'
         };
+        $uibModalInstance.dismiss('cancel');
         $location.path('app/listcompany');
         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
       }else{
