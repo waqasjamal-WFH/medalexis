@@ -67,13 +67,14 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope) {
     if($rootScope.opentoast== true){
-       $scope.toaster = {
-          type: 'success',
-          title: 'Successful',
-          text: 'Company Edit Successfully'
-        };
-        $rootScope.opentoast== false;
-        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+      console.log("hello");
+       // $scope.toaster = {
+       //    type: 'success',
+       //    title: 'Successful',
+       //    text: 'Company Edit Successfully'
+       //  };
+       //  $rootScope.opentoast== false;
+       //  return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
     };
     var static_data = [{
         "short_name": 'No data',
@@ -333,7 +334,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         //   text: 'Company Edit Successfully'
         // };
         // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-  $uibModalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
         
         $state.go('app.listcompany', {}, { reload: true });
 
