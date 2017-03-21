@@ -62,8 +62,34 @@ app.controller('addadminCtrl', ["$scope","$location",function($scope,$location){
     ];
 
     $scope.submit= function(){
-        console.log("clicked");
-    }
+        var first_name=$scope.first_name;
+        var last_name=$scope.last_name;
+        var email=$scope.email;
+        var password=$scope.password;
+        var address=$scope.address;
+        var phone_number=$scope.phone_number;
+        var access_rights=$scope.access_rights;
+        var associate_company=$scope.associate_company;
+        var state=$scope.state;
+        var country=$scope.country;
+        var city=$scope.city;
+        var token=$localStorage.user_data.response.token;
+
+        var data= {"token":token ,"data":{
+          "first_name":first_name,
+          "last_name":last_name,
+          "email":email,
+          "password":password,
+          "address":address,
+          "phone_number":phone_number,
+          "access_rights":access_rights,
+          "associate_company":associate_company,
+          "state":state,
+          "country":country,
+          "city":city
+        }};
+        console.log(data);
+    }   
 
 }]);
 
