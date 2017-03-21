@@ -100,7 +100,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
         var token=$localStorage.user_data.response.token;
 
         var data= {"token":token ,"data":{
-          "first_name":first_name,
+          "username":first_name,
           "last_name":last_name,
           "email":email,
           "password":password,
