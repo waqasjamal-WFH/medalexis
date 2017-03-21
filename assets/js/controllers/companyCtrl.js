@@ -67,6 +67,8 @@ app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$loc
 
 app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope,$timeout) {
     if($rootScope.opentoast== "1"){
+      $scope.showLoader = true;
+      $scope.showlist = false;
       $timeout(function () {
 
        $scope.toaster = {
@@ -104,6 +106,8 @@ app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibMod
         .then(function(response) {
           // console.log(response.data);
           if(response.data.status=="success"){
+            $scope.showLoader = false;
+            $scope.showlist = true;
             
             var datas=response.data.data;
             // console.log(datas);
