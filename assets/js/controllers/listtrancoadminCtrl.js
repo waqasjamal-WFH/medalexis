@@ -99,7 +99,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
         var city=$scope.city;
         var token=$localStorage.user_data.response.token;
 
-        var data= {"token":token ,"data":{
+        var data= {"token":token ,
           "username":first_name,
           "last_name":last_name,
           "email":email,
@@ -112,7 +112,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
           "country":country,
           "city":city,
           "role_id":9
-        }};
+        };
         console.log(data);
     }   
 
