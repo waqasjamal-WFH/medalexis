@@ -21,13 +21,16 @@
                         
                         <div class="table-responsive">
                             <table ng-table="tableParams" class="table">
-                                <tbody ng-show="showLoaderr">
+                                <!-- <tbody ng-show="showLoaderr"> -->
                                     <!-- <div> -->
-                                        <img src="assets/images/default.gif" style=" margin: 0px 0px 0px 280px"> 
+                                        <!-- <img src="assets/images/default.gif" style=" margin: 0px 0px 0px 280px">  -->
                                     <!-- </div> -->
-                                </tbody>    
-                                <tbody ng-repeat="p in $data | filter:query" ng-show="showlist">
-                                    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                <!-- </tbody>     -->
+                                <tbody ng-repeat="p in $data | filter:query">
+                                    <tr ng-show="showLoaderr">
+                                        <img src="assets/images/default.gif" style=" margin: 0px 0px 0px 280px">
+                                    </tr>
+                                    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'" ng-show="showlist">
                                         <td class="rowTd" data-title="'Company Short Name'" sortable="'short_name'">{{p.short_name}}</td>
                                         <td class="rowTd" data-title="'Company Full Name'" sortable="'full_name'">{{p.full_name}}</td>
                                         <td class="rowTd" data-title="'Company Address'" sortable="'address'">{{p.address}}</td>
