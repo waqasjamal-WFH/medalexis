@@ -99,7 +99,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
         var city=$scope.city;
         var token=$localStorage.user_data.response.token;
 
-        var data= {"token":token ,
+        var param= {"token":token ,
           "username":first_name,
           "last_name":last_name,
           "email":email,
@@ -113,7 +113,30 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
           "city":city,
           "role_id":9
         };
-        console.log(data);
+
+
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtrancoadmin", param)
+        .then(function(response) {
+          // console.log(response.data);
+           if(response.data.status=="success"){
+                $scope.toaster = {
+                  type: 'success',
+                  title: 'Successful',
+                  text: 'Tranco Admin Added Successfully'
+                };
+                $location.path('app/listadmin');
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error adding Tranco Admin'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error adding Tranco Admin");
+        }); 
     }   
 
 }]);
