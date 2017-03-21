@@ -1,9 +1,24 @@
 'use strict';
 // .......add company controller start ..............................///
 app.controller('addadminCtrl', ["$scope","$location",function($scope,$location){
-	$scope.submit=function(){
-        console.log($scope.selectModel);
-    };
+    //................................http post request for getting company list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+           
+            var datas=response.data.data;
+            console.log(datas);
+            
+          }else{
+           
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        }); 
+      //.............................http post request for getting company list end here...............................
     
    $scope.access_right=[
     "Add Company",
@@ -86,7 +101,8 @@ app.controller('addadminCtrl', ["$scope","$location",function($scope,$location){
           "associate_company":associate_company,
           "state":state,
           "country":country,
-          "city":city
+          "city":city,
+          "role_id":9
         }};
         console.log(data);
     }   
