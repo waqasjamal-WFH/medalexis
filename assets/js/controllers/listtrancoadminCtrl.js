@@ -60,6 +60,11 @@ app.controller('addadminCtrl', ["$scope","$location",function($scope,$location){
             name: "Peaches"
         }
     ];
+
+    $scope.submit= function(){
+        console.log("clicked");
+    }
+
 }]);
 
 // .......add company controller end ..............................///
