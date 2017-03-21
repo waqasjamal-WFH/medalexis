@@ -56,7 +56,7 @@
                                         <div class="form-group">
                                             <multiselect
                                                 ng-model="access_rights"
-                                                options="c for c in access_right"    
+                                                options="c.name for c in access_right"    
                                                 data-multiple="true"                  
                                                 scroll-after-rows="5"                 
                                                 ms-header="Select Access Right"

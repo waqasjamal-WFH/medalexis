@@ -43,36 +43,68 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
     "List Patient"
     ];
 
-    // $scope.companies=[
-    // "Company 1",
-    // "Company 2",
-    // "Company 3",
-    // "Company 4",
-    // "Company 5",
-    // "Company 6",
-    // "Company 7",
-    // "Company 8",
-    // "Company 9",
-    // "Company 10",
-    // "Company 11",
-    // "Company 12",
-    
-    // "Company 13"
-    // ];
 
-
-    $scope.selectOptionsObjects = [
+    $scope.access_right=[
         {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
+            "name": "Add Company",
+            "status": 1
+        },{
+            "name": "List Company",
+            "status": 1
+        },{
+            "name": "Add Tranco Admin",
+            "status": 1
+        },{
+            "name": "List Tranco Admin",
+            "status": 1
+        },{
+            "name": "Add Transcriber",
+            "status": 1
+        },{
+            "name": "List Transcriber",
+            "status": 1
+        },{
+            "name": "Add QA",
+            "status": 1
+        },{
+            "name": "List QA",
+            "status": 1
+        },{
+            "name": "Add Doctor",
+            "status": 1
+        },{
+            "name": "List Doctor",
+            "status": 1
+        },{
+            "name": "Add Nurse",
+            "status": 1
+        },{
+            "name": "List Nurse",
+            "status": 1
+        },{
+            "name": "Add Practice Admin",
+            "status": 1
+        },{
+            "name": "List Practice Admin",
+            "status": 1
+        },{
+            "name": "Add Appoinment",
+            "status": 1
+        },{
+            "name": "List Appoinment",
+            "status": 1
+        },{
+            "name": "Add Receptionist",
+            "status": 1
+        },{
+            "name": "List Receptionist",
+            "status": 1
+        },{
+            "name": "Add Patient",
+            "status": 1
+        },{
+            "name": "List Patient",
+            "status": 1
         }
     ];
 
