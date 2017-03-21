@@ -9,8 +9,8 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
           // console.log(response.data);
           if(response.data.status=="success"){
            
-            var datas=response.data.data;
-            console.log(datas);
+            $scope.companies=response.data.data;
+            console.log($scope.companies);
             
           }else{
            
@@ -43,22 +43,22 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
     "List Patient"
     ];
 
-    $scope.companies=[
-    "Company 1",
-    "Company 2",
-    "Company 3",
-    "Company 4",
-    "Company 5",
-    "Company 6",
-    "Company 7",
-    "Company 8",
-    "Company 9",
-    "Company 10",
-    "Company 11",
-    "Company 12",
+    // $scope.companies=[
+    // "Company 1",
+    // "Company 2",
+    // "Company 3",
+    // "Company 4",
+    // "Company 5",
+    // "Company 6",
+    // "Company 7",
+    // "Company 8",
+    // "Company 9",
+    // "Company 10",
+    // "Company 11",
+    // "Company 12",
     
-    "Company 13"
-    ];
+    // "Company 13"
+    // ];
 
 
     $scope.selectOptionsObjects = [
