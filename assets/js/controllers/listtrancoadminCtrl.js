@@ -1,6 +1,6 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",function($scope,$location,$http,$localStorage){
+app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
     //................................http post request for getting company list start here........................
         // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};
