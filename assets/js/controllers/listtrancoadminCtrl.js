@@ -24,64 +24,104 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage",fun
     $scope.access_right=[
         {
             "name": "Add Company",
-            "status": 1
+            "status": 1,
+            "column_name":"add_company",
+            "parent_column_name": "company"
         },{
             "name": "List Company",
-            "status": 1
+            "status": 1,
+            "column_name":"list_company",
+            "parent_column_name": "company"
         },{
             "name": "Add Tranco Admin",
-            "status": 1
+            "status": 1,
+            "column_name":"add_trancoadmin",
+            "parent_column_name": "tranco_admin"
         },{
             "name": "List Tranco Admin",
-            "status": 1
+            "status": 1,
+            "column_name":"list_trancoadmin",
+            "parent_column_name": "tranco_admin"
         },{
             "name": "Add Transcriber",
-            "status": 1
+            "status": 1,
+            "column_name":"add_transcriber",
+            "parent_column_name": "transcriber"
         },{
             "name": "List Transcriber",
-            "status": 1
+            "status": 1,
+            "column_name":"list_transcriber",
+            "parent_column_name": "transcriber"
         },{
             "name": "Add QA",
-            "status": 1
+            "status": 1,
+            "column_name":"add_QA",
+            "parent_column_name": "quality_assurance"
         },{
             "name": "List QA",
-            "status": 1
+            "status": 1,
+            "column_name":"list_QA",
+            "parent_column_name": "quality_assurance"
         },{
             "name": "Add Doctor",
-            "status": 1
+            "status": 1,
+            "column_name":"add_doctor",
+            "parent_column_name": "doctor"
         },{
             "name": "List Doctor",
-            "status": 1
+            "status": 1,
+            "column_name":"list_doctor",
+            "parent_column_name": "doctor"
         },{
             "name": "Add Nurse",
-            "status": 1
+            "status": 1,
+            "column_name":"add_nurse",
+            "parent_column_name": "nurse"
         },{
             "name": "List Nurse",
-            "status": 1
+            "status": 1,
+            "column_name":"list_nurse",
+            "parent_column_name": "nurse"
         },{
             "name": "Add Practice Admin",
-            "status": 1
+            "status": 1,
+            "column_name":"add_practiceadmin",
+            "parent_column_name": "practice_admin"
         },{
             "name": "List Practice Admin",
-            "status": 1
+            "status": 1,
+            "column_name":"list_practiceadmin",
+            "parent_column_name": "practice_admin"
         },{
             "name": "Add Appoinment",
-            "status": 1
+            "status": 1,
+            "column_name":"add_appoinment",
+            "parent_column_name": "appoinment"
         },{
             "name": "List Appoinment",
-            "status": 1
+            "status": 1,
+            "column_name":"list_appoinment",
+            "parent_column_name": "appoinment"
         },{
             "name": "Add Receptionist",
-            "status": 1
+            "status": 1,
+            "column_name":"add_receptionist",
+            "parent_column_name": "receptionist"
         },{
             "name": "List Receptionist",
-            "status": 1
+            "status": 1,
+            "column_name":"list_receptionist",
+            "parent_column_name": "receptionist"
         },{
             "name": "Add Patient",
-            "status": 1
+            "status": 1,
+            "column_name":"add_patient",
+            "parent_column_name": "patient"
         },{
             "name": "List Patient",
-            "status": 1
+            "status": 1,
+            "column_name":"list_patient",
+            "parent_column_name": "patient"
         }
     ];
 
