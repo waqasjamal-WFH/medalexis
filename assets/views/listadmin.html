@@ -22,8 +22,8 @@
                             <table ng-table="tableParams" class="table">
                                 <tbody ng-repeat="p in $data | filter:query">
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                        <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.id}}</td>
-                                        <td class="rowTd" data-title="'Last Name'" sortable="'fn'">{{p.fn}}</td>
+                                        <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.username}}</td>
+                                        <td class="rowTd" data-title="'Last Name'" sortable="'fn'">{{p['user_details'].1.key_value}}</td>
                                         <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.ln}}</td>
                                         <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.dc}}</td>
                                         <td class="rowTd" data-title="'Phone Number'" sortable="'em'">{{p.em}}</td>
