@@ -24,11 +24,12 @@
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.username}}</td>
 
-                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" sortable="'fn'"><span ng-if="lastname.key_name == 'last_name'">{{lastname.key_value}}</span> <span ng-if="lastname.key_name !== 'last_name'">no data</span> </td>
+                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']"  ng-if="lastname.key_name == 'last_name'" sortable="'fn'"> {{lastname.key_value}}</td>
                                         
-                                        <!-- <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name !== 'last_name' || lastname.key_name !== 'Address' " sortable="'fn'">asd</td> -->
+                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name !== 'last_name' " sortable="'fn'">asd</td>
                                         
-                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" sortable="'fn'"><span ng-if="lastname.key_name == 'address'">{{lastname.key_value}}</span> <span ng-if="lastname.key_name !== 'address'">no data</span></td>
+                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" sortable="'fn'" ng-if="lastname.key_name == 'address'">{{lastname.key_value}}</td>
+                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" sortable="'fn'" ng-if="lastname.key_name !== 'address'">{{lastname.key_value}}</td>
                                         
                                         <!-- <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.username}}</td>
                                         <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.username}}</td>
