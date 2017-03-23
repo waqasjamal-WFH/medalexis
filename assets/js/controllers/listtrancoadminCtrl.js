@@ -185,7 +185,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage) {
+app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http) {
     
     
     // var data = [{
