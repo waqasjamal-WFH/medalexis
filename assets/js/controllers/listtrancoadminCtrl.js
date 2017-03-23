@@ -191,8 +191,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
     var data = [{
         "id": 1,
         "lm": 138661285100,
-        "ln": "Smith",
-        "fn": "John",
+    
         "dc": "CEO",
         "em": "j.smith@company.com",
         "ph": "617-321-4567",
