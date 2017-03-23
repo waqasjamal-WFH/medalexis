@@ -23,7 +23,7 @@
                                 <tbody ng-repeat="p in $data | filter:query">
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.username}}</td>
-                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name == last_name" sortable="'fn'">{{lastname.key_value}}</td>
+                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name == 'last_name'" sortable="'fn'">{{lastname.key_value}}</td>
                                         <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.ln}}</td>
                                         <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.dc}}</td>
                                         <td class="rowTd" data-title="'Phone Number'" sortable="'em'">{{p.em}}</td>
