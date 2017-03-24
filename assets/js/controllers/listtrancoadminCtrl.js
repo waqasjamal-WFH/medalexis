@@ -343,7 +343,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
                 if(datas.companies){
                     console.log(datas.companies);
                     var com= datas.companies.replace(/>>/g, " , ");
-                    data.companies=com;
+                    datas.companies=com;
                 };
                 
             });
