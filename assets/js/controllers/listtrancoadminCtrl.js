@@ -342,8 +342,8 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
             datas.forEach(function(datas){
                 if(datas.companies){
                     console.log(datas.companies);
-                // var com= data.companies.replace(/>>/g, " , ");
-                // data.companies=com;
+                    var com= datas.companies.replace(/>>/g, " , ");
+                    data.companies=com;
                 };
                 
             });
