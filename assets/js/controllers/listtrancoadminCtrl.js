@@ -339,10 +339,10 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
            
             var datas=response.data.data;
             // console.log(datas);
-            datas.forEach(function(data){
-                console.log(data.companies);
-                var com= data.companies.replace(/>>/g, " , ");
-                data.companies=com;
+            datas.forEach(function(datas){
+                console.log(datas.companies);
+                // var com= data.companies.replace(/>>/g, " , ");
+                // data.companies=com;
             });
             console.log(datas);
 
