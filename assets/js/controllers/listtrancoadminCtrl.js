@@ -329,78 +329,80 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         "dl": false
     }];
 
-    // //................................http post request for getting company list start here........................
-    //     // var datas=[];
-    //     var param={'token' :$localStorage.user_data.response.token};
-    //     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/gettrancoadmin", param)
-    //     .then(function(response) {
-    //       // console.log(response.data);
-    //       if(response.data.status=="success"){
+    //................................http post request for getting company list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/gettrancoadmin", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
            
-    //         var datas=response.data.data;
-    //         // console.log(datas);
-    //         $scope.tableParams = new ngTableParams({
-    //            page: 1, // show first page
-    //            count: 5, // count per page
-    //            sorting: {
-    //                title: 'desc' // initial sorting
-    //            },
-    //            filter: {
-    //                name: 'M' // initial filter
-    //            }
-    //         }, {
+            var datas=response.data.data;
+            // console.log(datas);
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
 
-    //            total: datas.length, // length of data
-    //             getData: function ($defer, params) {
-              
-    //               var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-    //               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    //             }
-    //         });
-    //       }else{
-    //         var datas=static_data;
-    //         // console.log(datas);
-    //         $scope.tableParams = new ngTableParams({
-    //            page: 1, // show first page
-    //            count: 5, // count per page
-    //            sorting: {
-    //                title: 'desc' // initial sorting
-    //            },
-    //            filter: {
-    //                name: 'M' // initial filter
-    //            }
-    //         }, {
-
-    //            total: datas.length, // length of data
-    //             getData: function ($defer, params) {
-              
-    //               var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-    //               $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    //             }
-    //         });
-    //       } 
-    //     }).catch(function(){
-    //           console.log("error adding company");
-    //     }); 
-    // //.............................http post request for getting company list end here...............................
-
-    $scope.tableParams = new ngTableParams({
-        page: 1, // show first page
-        count: 5, // count per page
-        sorting: {
-            title: 'desc' // initial sorting
-        },
-        filter: {
-            name: 'M' // initial filter
-        }
-        }, {
-                total: data.length, // length of data
+               total: datas.length, // length of data
                 getData: function ($defer, params) {
-                // use build-in angular filter
-                var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-                $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            }
-    });
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
+          }else{
+            var datas=static_data;
+            // console.log(datas);
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
+
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        }); 
+    //.............................http post request for getting company list end here...............................
+
+    // $scope.tableParams = new ngTableParams({
+    //     page: 1, // show first page
+    //     count: 5, // count per page
+    //     sorting: {
+    //         title: 'desc' // initial sorting
+    //     },
+    //     filter: {
+    //         name: 'M' // initial filter
+    //     }
+    //     }, {
+    //             total: data.length, // length of data
+    //             getData: function ($defer, params) {
+    //             // use build-in angular filter
+    //             var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
+    //             $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+    //         }
+    // });
+
+
     // $scope.tableParams = new ngTableParams({
     //     page: 1,
     //     count: 10
