@@ -338,11 +338,14 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
           if(response.data.status=="success"){
            
             var datas=response.data.data;
+            console.log(datas);
+            // datas.forEach(function(){
 
+            // })
 
            
             // var com= datas.companies.replace("//>>", " , ");
-             console.log(datas.companies);
+             // console.log(datas.companies);
             // $scope.tableParams = new ngTableParams({
             //    page: 1, // show first page
             //    count: 5, // count per page
