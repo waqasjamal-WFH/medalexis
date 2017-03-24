@@ -338,25 +338,27 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
           if(response.data.status=="success"){
            
             var datas=response.data.data;
-            // console.log(datas);
-            $scope.tableParams = new ngTableParams({
-               page: 1, // show first page
-               count: 5, // count per page
-               sorting: {
-                   title: 'desc' // initial sorting
-               },
-               filter: {
-                   name: 'M' // initial filter
-               }
-            }, {
 
-               total: datas.length, // length of data
-                getData: function ($defer, params) {
+            
+            console.log(datas);
+            // $scope.tableParams = new ngTableParams({
+            //    page: 1, // show first page
+            //    count: 5, // count per page
+            //    sorting: {
+            //        title: 'desc' // initial sorting
+            //    },
+            //    filter: {
+            //        name: 'M' // initial filter
+            //    }
+            // }, {
+
+            //    total: datas.length, // length of data
+            //     getData: function ($defer, params) {
               
-                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
+            //       var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+            //       $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            //     }
+            // });
           }else{
             var datas=static_data;
             // console.log(datas);
