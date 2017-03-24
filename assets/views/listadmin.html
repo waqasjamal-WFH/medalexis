@@ -21,38 +21,15 @@ start: INLINE EDIT EXAMPLE -->
                         <div class="table-responsive">
                             <table ng-table="tableParams" class="table">
                                 <tbody ng-repeat="p in $data | filter:query">
-                                    <!-- <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
-                                        <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
-                                        <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{p.fn}}</td>
-                                        <td class="rowTd" data-title="'Lastname'" sortable="'lna'">{{p.ln}}</td>
-                                        <td class="rowTd" data-title="'Description'" sortable="'dc'">{{p.dc}}</td>
-                                        <td class="rowTd" data-title="'Email'" sortable="'em'">{{p.em}}</td>
-                                        <td class="rowTd" data-title="'Phone'" sortable="'ph'">{{p.ph}}</td>
-                                        <td class="rowTd">
-                                            <div class="pull-right margin-right-10">
-                                                <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
-                                                       ng-click="setEditId(p.id)">
-                                            </div>
-                                        </td>
-                                    </tr> -->
-
+                                    
                                     <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'First Name'" sortable="'username'">{{p.username}}</td>
-
-                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']"  ng-if="lastname.key_name == 'last_name'" sortable="'last_name'"> {{lastname.key_value}}</td>
-                                        
-                                        <td class="rowTd" data-title="'Address'" ng-repeat="address in p['user_details']" sortable="'address'" ng-show="address.key_name == 'address'">{{address.key_value}}</td>
-                                        
-                                        <!-- <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-show="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td>
-                                        
-                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" ng-show="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td> -->
-                                        
-                                        
-                                        <!-- <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.username}}</td>
-                                        <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.username}}</td>
-                                        <td class="rowTd" data-title="'Phone Number'" sortable="'em'">{{p.username}}</td>
+                                        <td class="rowTd" data-title="'Last Name'" sortable="'username'">{{p.last_name}}</td> 
+                                        <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.email}}</td>
+                                        <td class="rowTd" data-title="'Address'" sortable="'dc'">{{p.address}}</td>
+                                        <td class="rowTd" data-title="'Phone Number'" sortable="'em'">{{p.phone_number}}</td>
                                         <td class="rowTd" data-title="'Access Rights'" sortable="'ph'">{{p.username}}</td>
-                                        <td class="rowTd" data-title="'Associate to a Company'" sortable="'ph'">{{p.username}}</td> -->
+                                        <td class="rowTd" data-title="'Associate to a Company'" sortable="'ph'">{{p.username}}</td>
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                                 <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
