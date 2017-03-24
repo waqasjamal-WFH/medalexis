@@ -341,35 +341,29 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
             // console.log(datas);
             datas.forEach(function(datas){
                 if(datas.companies){
-                    console.log(datas.companies);
                     var com= datas.companies.replace(/>>/g, " , ");
                     datas.companies=com;
                 };
-                
             });
-            console.log(datas);
-
            
-            // var com= datas.companies.replace("//>>", " , ");
-             // console.log(datas.companies);
-            // $scope.tableParams = new ngTableParams({
-            //    page: 1, // show first page
-            //    count: 5, // count per page
-            //    sorting: {
-            //        title: 'desc' // initial sorting
-            //    },
-            //    filter: {
-            //        name: 'M' // initial filter
-            //    }
-            // }, {
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
 
-            //    total: datas.length, // length of data
-            //     getData: function ($defer, params) {
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
               
-            //       var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-            //       $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            //     }
-            // });
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
           }else{
             var datas=static_data;
             // console.log(datas);
