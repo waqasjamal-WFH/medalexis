@@ -341,8 +341,8 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 
 
            
-            var com= datas.companies.replace("//>>", " , ");
-             console.log(datas);
+            // var com= datas.companies.replace("//>>", " , ");
+             console.log(datas.companies);
             // $scope.tableParams = new ngTableParams({
             //    page: 1, // show first page
             //    count: 5, // count per page
