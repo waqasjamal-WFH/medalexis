@@ -21,7 +21,7 @@
                         <div class="table-responsive">
                             <table ng-table="tableParams" class="table">
                                 <tbody ng-repeat="p in $data | filter:query">
-                                    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                    <!-- <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'ID'" sortable="'id'">{{p.id}}</td>
                                         <td class="rowTd" data-title="'Firstname'" sortable="'fn'">{{p.fn}}</td>
                                         <td class="rowTd" data-title="'Lastname'" sortable="'lna'">{{p.ln}}</td>
@@ -34,17 +34,18 @@
                                                        ng-click="setEditId(p.id)">
                                             </div>
                                         </td>
-                                    </tr>
-                                    <!-- <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
+                                    </tr> -->
+
+                                    <tr id="tr{{p.id}}" ng-class-odd="'odd'" ng-class-even="'even'">
                                         <td class="rowTd" data-title="'First Name'" sortable="'id'">{{p.username}}</td>
 
                                         <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']"  ng-if="lastname.key_name == 'last_name'" sortable="'fn'"> {{lastname.key_value}}</td>
                                         
-                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" sortable="'fn'" ng-if="lastname.key_name == 'address'">{{lastname.key_value}}</td>
+                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" sortable="'fn'" ng-show="lastname.key_name == 'address'">{{lastname.key_value}}</td>
                                         
-                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td>
+                                        <td class="rowTd" data-title="'Last Name'" ng-repeat="lastname in p['user_details']" ng-show="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td>
                                         
-                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" ng-if="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td>
+                                        <td class="rowTd" data-title="'Address'" ng-repeat="lastname in p['user_details']" ng-show="lastname.key_name !== 'last_name' || lastname.key_name !== 'address' || lastname.key_name !== 'phone_number' ||lastname.key_name !== 'access_rights'  || lastname.key_name !== 'associate_company' || lastname.key_name !== 'state' || lastname.key_name !== 'country' || lastname.key_name !== 'city'|| lastname.key_name !== 'role_id' " sortable="'fn'">sdsds</td>
                                         
                                         
                                         <td class="rowTd" data-title="'Email'" sortable="'ln'">{{p.username}}</td>
@@ -58,7 +59,7 @@
                                                        ng-click="openmodel()">
                                             </div>
                                         </td>
-                                    </tr> -->
+                                    </tr>
                                 </tbody>
                             </table>
 
