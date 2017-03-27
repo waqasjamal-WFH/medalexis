@@ -90,13 +90,13 @@ start: INLINE EDIT EXAMPLE -->
                                         </div>
                                         <div class="form-group">
                                             <multiselect
-                                                ng-model="selectModel"
-                                                options="c for c in companies"    
+                                                ng-model="edit_associate_company"
+                                                options="c.short_name for c in companies"    
                                                 data-multiple="true"                  
                                                 scroll-after-rows="5"                 
                                                 ms-header="Select Company"
                                                 width="273px">
-                                            </multiselect>
+                                           </multiselect>
                                         </div>    
                                         <div class="form-group">
                                             <button type="submit" data-ng-click="submit()" class="btn btn-wide btn-o btn-primary">
