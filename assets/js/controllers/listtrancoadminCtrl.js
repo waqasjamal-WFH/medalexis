@@ -345,7 +345,12 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
                     datas.companies=com;
                 };
             });
-           
+            datas.forEach(function(datas){
+                if(datas.permission){
+                    var per= datas.permission.replace(/>>>/g, " , ");
+                    datas.permission=per;
+                };
+            });
             $scope.tableParams = new ngTableParams({
                page: 1, // show first page
                count: 5, // count per page
