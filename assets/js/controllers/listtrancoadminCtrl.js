@@ -496,38 +496,56 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     "List Patient"
     ];
 
-    $scope.companies=[
-    "Company 1",
-    "Company 2",
-    "Company 3",
-    "Company 4",
-    "Company 5",
-    "Company 6",
-    "Company 7",
-    "Company 8",
-    "Company 9",
-    "Company 10",
-    "Company 11",
-    "Company 12",
+    // $scope.companies=[
+    // "Company 1",
+    // "Company 2",
+    // "Company 3",
+    // "Company 4",
+    // "Company 5",
+    // "Company 6",
+    // "Company 7",
+    // "Company 8",
+    // "Company 9",
+    // "Company 10",
+    // "Company 11",
+    // "Company 12",
     
-    "Company 13"
-    ];
+    // "Company 13"
+    // ];
 
+    //................................http post request for getting company list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+           
+            $scope.companies=response.data.data;
+            // console.log($scope.companies);
+            
+          }else{
+           
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        }); 
+      //.............................http post request for getting company list end here...............................
 
-    $scope.selectOptionsObjects = [
-        {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
-        }
-    ];
+    // $scope.selectOptionsObjects = [
+    //     {
+    //         id: 0,
+    //         name: "Apples"
+    //     },
+    //     {
+    //         id: 1,
+    //         name: "Bananas"
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Peaches"
+    //     }
+    // ];
 
 
 
