@@ -628,24 +628,20 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       if(response.data.status=="success"){
         $scope.showLoader = false;
         $scope.showform = true;
-        console.log(response.data);
+        console.log(response.data.data[0].address);
         
         // $scope.onecompany=response.data.data;
       
-        // $scope.short_name=$scope.onecompany[0].short_name;
-        // $scope.full_name=$scope.onecompany[0].full_name;
-        // $scope.address=$scope.onecompany[0].address;
-        // // $scope.date=$scope.onecompany[0].date;
-        // $scope.city=$scope.onecompany[0].city;
-        // $scope.state=$scope.onecompany[0].state;
-        // $scope.zip_code=$scope.onecompany[0].zip_code;
-        // $scope.country=$scope.onecompany[0].country;
-        // $scope.phone=$scope.onecompany[0].phone;
-        // $scope.fax=$scope.onecompany[0].fax;
-        // $scope.e_mail=$scope.onecompany[0].e_mail;
-        // $scope.website=$scope.onecompany[0].web_address;
-        // $scope.timezone=$scope.onecompany[0].time_zone;
-        // $scope.admin_person_name=$scope.onecompany[0].admin_person_name;
+        $scope.first_name=response.data.data[0].username;
+        $scope.last_name=response.data.data[0].last_name;
+        $scope.email=response.data.data[0].email;
+        // $scope.date=$scope.onecompany[0].date;
+        $scope.address=response.data.data[0].address;
+        $scope.phone_number=response.data.data[0].phone_number;
+        $scope.city=response.data.data[0].city;
+        $scope.state=response.data.data[0].state;
+        $scope.country=response.data.data[0].country;
+        
       }else{
               
       } 
