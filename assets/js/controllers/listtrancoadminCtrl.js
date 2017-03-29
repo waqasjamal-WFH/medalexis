@@ -626,6 +626,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedtrancoadmin", param)
     .then(function(response) {
       if(response.data.status=="success"){
+        var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
         console.log(response.data.data[0].address);
@@ -641,18 +642,32 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.city=response.data.data[0].city;
         $scope.state=response.data.data[0].state;
         $scope.country=response.data.data[0].country;
-        $scope.selected_access_right=[
-        {
-            "name": "Add Company",
-            "status": 1,
-            "column_name":"add_company",
-            "parent_column_name": "company"
-        },{
-            "name": "List Company",
-            "status": 1,
-            "column_name":"list_company",
-            "parent_column_name": "company"
-        }];
+
+        var selected_access=response.data.data[0]['permission'];
+        console.log(selected_access);
+        // var access_right_dataa= $scope.access_right;
+        // access_right_dataa.forEach(function(datas){
+        //     if(datas.companies){
+        //         var com= datas.companies.replace(/>>/g, " , ");
+        //         datas.companies=com;
+        //     };
+        // });
+
+
+
+
+        // $scope.selected_access_right=[
+        // {
+        //     "name": "Add Company",
+        //     "status": 1,
+        //     "column_name":"add_company",
+        //     "parent_column_name": "company"
+        // },{
+        //     "name": "List Company",
+        //     "status": 1,
+        //     "column_name":"list_company",
+        //     "parent_column_name": "company"
+        // }];
       }else{
               
       } 
