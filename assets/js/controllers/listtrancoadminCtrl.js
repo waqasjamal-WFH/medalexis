@@ -486,7 +486,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 
 
 app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
-  console.log("user id in model controller "+ $scope.userid);
+  // console.log("user id in model controller "+ $scope.userid);
     $scope.access_right=[
         {
             "name": "Add Company",
@@ -641,7 +641,18 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.city=response.data.data[0].city;
         $scope.state=response.data.data[0].state;
         $scope.country=response.data.data[0].country;
-        
+        $scope.access_right=[
+        {
+            "name": "Add Company",
+            "status": 1,
+            "column_name":"add_company",
+            "parent_column_name": "company"
+        },{
+            "name": "List Company",
+            "status": 1,
+            "column_name":"list_company",
+            "parent_column_name": "company"
+        }];
       }else{
               
       } 
