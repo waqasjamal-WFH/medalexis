@@ -641,7 +641,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.city=response.data.data[0].city;
         $scope.state=response.data.data[0].state;
         $scope.country=response.data.data[0].country;
-        $scope.access_right=[
+        $scope.selected_access_right=[
         {
             "name": "Add Company",
             "status": 1,
