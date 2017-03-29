@@ -486,7 +486,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 
 
 app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
-  
+  console.log("user id in model controller "+ $scope.userid);
     $scope.access_right=[
         {
             "name": "Add Company",
