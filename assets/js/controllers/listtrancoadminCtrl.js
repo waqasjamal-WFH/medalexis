@@ -642,9 +642,15 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.city=response.data.data[0].city;
         $scope.state=response.data.data[0].state;
         $scope.country=response.data.data[0].country;
-
-        var selected_access=response.data.data[0]['permission'];
+        var array=[];
+        var selected_access=response.data.data[0]['permission'][0];
         console.log(selected_access);
+
+        for (var property in selected_access) {
+            if (selected_access.property=="1") {
+                console.log(selected_access.property);
+            }
+        };
         // var access_right_dataa= $scope.access_right;
         // access_right_dataa.forEach(function(datas){
         //     if(datas.companies){
