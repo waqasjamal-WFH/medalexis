@@ -592,7 +592,6 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     ];
 
     //................................http post request for getting company list start here........................
-    $scope.companies="";
     // var datas=[];
     var param={'token' :$localStorage.user_data.response.token};
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
