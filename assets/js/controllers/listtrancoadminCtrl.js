@@ -682,8 +682,8 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
                 // delete valuess.company_short_name;
             };
         });
-        console.log(selected_associate_companies);
-        $scope.selected_associate_company=selected_associate_companies;
+        console.log(new_companies_selected_array);
+        $scope.selected_associate_company=new_companies_selected_array;
       }else{
               
       } 
