@@ -648,12 +648,20 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
         angular.forEach(selected_access, function(value, key) {
             if(value =="1"){
+                var access_right_dataa= $scope.access_right;
+                angular.forEach(access_right_dataa, function(value, key) {
+                // access_right_dataa.forEach(function(datas){
+                    if(value.column_name==key){
+                        this.push(value);
+                        
+                    };
+                }, array);
 
-                this.push({[key] :  value});
-                console.log(key + " value is " + value);
+                // this.push({[key] :  value});
+                // console.log(key + " value is " + value);
             }
             // console.log(key + " value is " + value);
-        }, array);
+        });
         console.log(array);
         // for each (var item in selected_access) {
         //   console.log(item. + "value is " + property.value);
@@ -664,14 +672,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         //         console.log(property + "value is " + property.value);
         //     // }
         // };
-        // var access_right_dataa= $scope.access_right;
-        // access_right_dataa.forEach(function(datas){
-        //     if(datas.companies){
-        //         var com= datas.companies.replace(/>>/g, " , ");
-        //         datas.companies=com;
-        //     };
-        // });
-
+        
 
 
 
