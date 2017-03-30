@@ -666,8 +666,8 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             // console.log(values)
         // access_right_dataa.forEach(function(datas){
             if(valuess.company_short_name){
-                valuess.company_short_name==valuess.short_name
-                
+                valuess.short_name=valuess.company_short_name;
+                delete valuess.company_short_name;
             };
         });
         console.log(selected_associate_company);
