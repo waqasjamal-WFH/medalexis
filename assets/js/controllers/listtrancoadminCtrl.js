@@ -672,19 +672,19 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
                 var all_companies= $scope.companies;
                 // console.log(all_companies);
                 angular.forEach(all_companies, function(valu, ke) {
-                    console.log(valu.id);
-                    console.log(valuess.company_id);
-                    // if(valu.id==valuess.company_id){
-                    //     this.push(valu);
+                    // console.log(valu.id);
+                    // console.log(valuess.company_id);
+                    if(valu.id==valuess.company_id){
+                        this.push(valu);
                         
-                    // };
+                    };
                 }, new_companies_selected_array);
                 // valuess.short_name=valuess.company_short_name;
                 // delete valuess.company_short_name;
             };
         });
-        // console.log(new_companies_selected_array);
-        // $scope.selected_associate_company=new_companies_selected_array;
+        console.log(new_companies_selected_array);
+        $scope.selected_associate_company=new_companies_selected_array;
       }else{
               
       } 
