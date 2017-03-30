@@ -644,7 +644,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.country=response.data.data[0].country;
         var array=[];
         var selected_access=response.data.data[0]['permission'][0];
-        console.log(selected_access);
+        // console.log(selected_access);
 
         for (var property in selected_access) {
             // if (selected_access.property=="1") {
