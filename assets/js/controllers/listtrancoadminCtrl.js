@@ -600,7 +600,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       if(response.data.status=="success"){
        
         $scope.companies=response.data.data;
-        var all_companies=response.data.data;
+        
         // console.log($scope.companies);
         
       }else{
@@ -665,10 +665,11 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         
         var selected_associate_companies=response.data.data[0]['comapanies'];
         var new_companies_selected_array=[];
-        
+
         angular.forEach(selected_associate_companies, function(valuess, keyss) {
             
             if(valuess.company_short_name){
+                var all_companies=response.data.data;
                 angular.forEach(all_companies, function(valu, ke) {
                     // console.log(values)
                 // access_right_dataa.forEach(function(datas){
