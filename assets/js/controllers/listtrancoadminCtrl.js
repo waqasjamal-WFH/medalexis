@@ -669,7 +669,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         angular.forEach(selected_associate_companies, function(valuess, keyss) {
             
             if(valuess.company_short_name){
-                var all_companies=response.data.data;
+                var all_companies= $scope.companies
                 console.log(all_companies);
                 // angular.forEach(all_companies, function(valu, ke) {
                 //     console.log(valu.short_name);
