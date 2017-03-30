@@ -650,12 +650,12 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             if(value =="1"){
                 var access_right_dataa= $scope.access_right;
                 angular.forEach(access_right_dataa, function(values, keys) {
-                    console.log(values)
+                    // console.log(values)
                 // access_right_dataa.forEach(function(datas){
-                    // if(value.column_name==key){
-                    //     this.push(value);
+                    if(values.column_name==key){
+                        this.push(values);
                         
-                    // };
+                    };
                 }, array);
 
                 // this.push({[key] :  value});
