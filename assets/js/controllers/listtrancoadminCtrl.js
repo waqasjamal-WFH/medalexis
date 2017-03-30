@@ -649,12 +649,13 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         angular.forEach(selected_access, function(value, key) {
             if(value =="1"){
                 var access_right_dataa= $scope.access_right;
-                angular.forEach(access_right_dataa, function(value, key) {
+                angular.forEach(access_right_dataa, function(values, keys) {
+                    console.log(values)
                 // access_right_dataa.forEach(function(datas){
-                    if(value.column_name==key){
-                        this.push(value);
+                    // if(value.column_name==key){
+                    //     this.push(value);
                         
-                    };
+                    // };
                 }, array);
 
                 // this.push({[key] :  value});
