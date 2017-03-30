@@ -642,9 +642,9 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.city=response.data.data[0].city;
         $scope.state=response.data.data[0].state;
         $scope.country=response.data.data[0].country;
-        var array=[];
+        
+        var selected_rights_array=[];
         var selected_access=response.data.data[0]['permission'][0];
-        console.log(selected_access);
 
         angular.forEach(selected_access, function(value, key) {
             if(value =="1"){
@@ -656,39 +656,11 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
                         this.push(values);
                         
                     };
-                }, array);
-
-                // this.push({[key] :  value});
-                // console.log(key + " value is " + value);
+                }, selected_rights_array);
             }
-            // console.log(key + " value is " + value);
         });
-        console.log(array);
-        // for each (var item in selected_access) {
-        //   console.log(item. + "value is " + property.value);
-        // }
-
-        // for (var property in selected_access) {
-        //     // if (selected_access.property=="1") {
-        //         console.log(property + "value is " + property.value);
-        //     // }
-        // };
-        
-
-
-
-        // $scope.selected_access_right=[
-        // {
-        //     "name": "Add Company",
-        //     "status": 1,
-        //     "column_name":"add_company",
-        //     "parent_column_name": "company"
-        // },{
-        //     "name": "List Company",
-        //     "status": 1,
-        //     "column_name":"list_company",
-        //     "parent_column_name": "company"
-        // }];
+        // console.log(selected_rights_array);
+        $scope.selected_access_right=selected_rights_array;
       }else{
               
       } 
