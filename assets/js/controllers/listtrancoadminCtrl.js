@@ -448,7 +448,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
     // ...............model open function for assigning qa and transcriber start here..............//
     $scope.openmodel = function (uid) {
       // $scope.taskid=taskId
-      console.log(uid);
+      // console.log(uid);
      $scope.userid= uid;
       var modalInstance = $uibModal.open({
 
@@ -671,8 +671,8 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             if(valuess.company_short_name){
                 var all_companies=response.data.data;
                 angular.forEach(all_companies, function(valu, ke) {
-                    console.log(valu.id);
-                    console.log(valuess.company_id);
+                    console.log(valu.short_name);
+                    console.log(valuess.company_short_name);
                 // access_right_dataa.forEach(function(datas){
                     // if(valu.id==valuess.company_id){
                     //     this.push(valu);
