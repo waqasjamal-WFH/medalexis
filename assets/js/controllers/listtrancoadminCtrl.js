@@ -644,8 +644,11 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.country=response.data.data[0].country;
         var array=[];
         var selected_access=response.data.data[0]['permission'][0];
-        console.log(selected_access);
+        // console.log(selected_access);
 
+        angular.forEach(selected_access, function(value, key) {
+            console.log(key. + " value is " + value);
+        });
         // for each (var item in selected_access) {
         //   console.log(item. + "value is " + property.value);
         // }
