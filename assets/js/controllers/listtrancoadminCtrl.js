@@ -648,7 +648,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
         angular.forEach(selected_access, function(value, key) {
             if(key =="1"){
-                this.push({key  ': ' value});
+                this.push({key :  value});
             }
             // console.log(key + " value is " + value);
         }, array);
