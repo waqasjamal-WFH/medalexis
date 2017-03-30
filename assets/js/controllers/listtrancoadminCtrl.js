@@ -662,6 +662,15 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         // console.log(selected_rights_array);
         $scope.selected_access_right=selected_rights_array;
         $scope.selected_associate_company=response.data.data[0]['comapanies'];
+        angular.forEach(selected_associate_company, function(valuess, keyss) {
+            // console.log(values)
+        // access_right_dataa.forEach(function(datas){
+            if(valuess.company_short_name){
+                valuess.company_short_name==valuess.short_name
+                
+            };
+        });
+        console.log(selected_associate_company);
       }else{
               
       } 
