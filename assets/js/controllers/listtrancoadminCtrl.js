@@ -671,12 +671,13 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             if(valuess.company_short_name){
                 var all_companies=response.data.data;
                 angular.forEach(all_companies, function(valu, ke) {
-                    // console.log(values)
+                    console.log(valu.id);
+                    console.log(valuess.company_id);
                 // access_right_dataa.forEach(function(datas){
-                    if(valu.id==valuess.company_id){
-                        this.push(valu);
+                    // if(valu.id==valuess.company_id){
+                    //     this.push(valu);
                         
-                    };
+                    // };
                 }, new_companies_selected_array);
                 // valuess.short_name=valuess.company_short_name;
                 // delete valuess.company_short_name;
