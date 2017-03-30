@@ -620,6 +620,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   };
 
   //................................http call for get selected user data start here..................................
+  setInterval(
   var param={
             'token' :$localStorage.user_data.response.token,
             'uid': $scope.userid
@@ -690,7 +691,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       }else{
               
       } 
-    });
+    }), 3000);;
 
   //................................http call for get selected user data start here..................................
 
