@@ -644,13 +644,13 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.country=response.data.data[0].country;
         var array=[];
         var selected_access=response.data.data[0]['permission'][0];
-        console.log(selected_access);
+        // console.log(selected_access);
 
-        // for (var property in selected_access) {
-        //     // if (selected_access.property=="1") {
-        //         console.log(property.);
-        //     // }
-        // };
+        for (var property in selected_access) {
+            // if (selected_access.property=="1") {
+                console.log(property + "value is " + property.value);
+            // }
+        };
         // var access_right_dataa= $scope.access_right;
         // access_right_dataa.forEach(function(datas){
         //     if(datas.companies){
