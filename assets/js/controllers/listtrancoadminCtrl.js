@@ -661,6 +661,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         });
         // console.log(selected_rights_array);
         $scope.selected_access_right=selected_rights_array;
+        $scope.selected_associate_company=response.data.data[0]['comapanies'];
       }else{
               
       } 
