@@ -601,7 +601,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
        
         $scope.companies=response.data.data;
         
-        // console.log($scope.companies);
+        console.log($scope.companies);
         
       }else{
        
@@ -630,7 +630,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        console.log(response.data.data[0].address);
+        // console.log(response.data.data[0].address);
         
         // $scope.onecompany=response.data.data;
       
@@ -671,7 +671,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             if(valuess.company_short_name){
 
                 var all_companies= $scope.companies;
-                console.log(all_companies);
+                // console.log(all_companies);
                 angular.forEach(all_companies, function(valu, ke) {
                     // console.log(valu.id);
                     // console.log(valuess.company_id);
