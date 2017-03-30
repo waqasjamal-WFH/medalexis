@@ -600,6 +600,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       if(response.data.status=="success"){
        
         $scope.companies=response.data.data;
+        var all_companies=response.data.data;
         // console.log($scope.companies);
         
       }else{
@@ -661,14 +662,23 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         });
         // console.log(selected_rights_array);
         $scope.selected_access_right=selected_rights_array;
+        
         var selected_associate_companies=response.data.data[0]['comapanies'];
+        var new_companies_selected_array=[];
         
         angular.forEach(selected_associate_companies, function(valuess, keyss) {
-            // console.log(values)
-        // access_right_dataa.forEach(function(datas){
+            
             if(valuess.company_short_name){
-                valuess.short_name=valuess.company_short_name;
-                delete valuess.company_short_name;
+                angular.forEach(all_companies, function(valu, ke) {
+                    // console.log(values)
+                // access_right_dataa.forEach(function(datas){
+                    if(valu.id==valuess.company_id){
+                        this.push(valu);
+                        
+                    };
+                }, new_companies_selected_array);
+                // valuess.short_name=valuess.company_short_name;
+                // delete valuess.company_short_name;
             };
         });
         console.log(selected_associate_companies);
