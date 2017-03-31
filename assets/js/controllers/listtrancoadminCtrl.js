@@ -691,7 +691,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       }else{
               
       } 
-    }) }, 3000);
+    }) }, 1000);
 
   //................................http call for get selected user data start here..................................
 
