@@ -485,7 +485,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster) {
   // console.log("user id in model controller "+ $scope.userid);
     $scope.access_right=[
         {
@@ -709,6 +709,29 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       "selected_access_right":$scope.selected_access_right
     }};
     console.log(data);
+
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtrancoadmin", data)
+    .then(function(response) {
+      console.log(response.data);
+       // if(response.data.status=="success"){
+       //      $scope.toaster = {
+       //        type: 'success',
+       //        title: 'Successful',
+       //        text: 'Tranco Admin Added Successfully'
+       //      };
+       //      $location.path('app/listadmin');
+       //      return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+       //  }else{
+       //      $scope.toaster = {
+       //        type: 'error',
+       //        title: 'Unsuccessful',
+       //        text: 'Error adding Tranco Admin'
+       //      };
+       //      return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+       //  }
+    }).catch(function(){
+          console.log("Error Editing Tranco Admin");
+    }); 
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
