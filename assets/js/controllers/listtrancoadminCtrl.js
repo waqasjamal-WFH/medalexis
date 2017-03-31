@@ -696,7 +696,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
-    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid , "data":{
+    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid ,
       "first_name":$scope.first_name,
       "last_name":$scope.last_name,
       "email":$scope.email,
@@ -707,7 +707,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
       "country":$scope.country,
       "selected_associate_company":$scope.selected_associate_company,
       "selected_access_right":$scope.selected_access_right
-    }};
+    };
     console.log(data);
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtrancoadmin", data)
