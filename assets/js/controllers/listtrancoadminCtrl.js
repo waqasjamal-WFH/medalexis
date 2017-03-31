@@ -686,7 +686,6 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
                 // delete valuess.company_short_name;
             };
         });
-        console.log(new_companies_selected_array);
         $scope.selected_associate_company=new_companies_selected_array;
       }else{
               
@@ -697,8 +696,19 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
-
-    
+    var data= {"token":token,"companyid": companyId,"data":{
+      "first_name":$scope.first_name,
+      "last_name":$scope.last_name,
+      "email":$scope.email,
+      "address":$scope.address,
+      "phone_number":$scope.phone_number,
+      "city":$scope.city,
+      "state":$scope.state,
+      "country":$scope.country,
+      "selected_associate_company":$scope.selected_associate_company,
+      "selected_access_right":$scope.selected_access_right
+    }};
+    console.log(data);
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
