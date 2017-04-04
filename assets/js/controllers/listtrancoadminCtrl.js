@@ -726,7 +726,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtrancoadmin", data)
     .then(function(response) {
-      console.log(response.data);
+      console.log(response.data.status);
        if(response.data.status=="success"){
             $rootScope.opentoasttranco= "1";
         
