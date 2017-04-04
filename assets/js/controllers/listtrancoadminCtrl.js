@@ -185,7 +185,21 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http) {
+app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
+    if($rootScope.opentoast== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Company Edit Successfully'
+        };
+        
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoast== "";
+       }, 1000);   
+    };
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
@@ -485,7 +499,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster) {
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
   // console.log("user id in model controller "+ $scope.userid);
     $scope.access_right=[
         {
@@ -713,22 +727,20 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtrancoadmin", data)
     .then(function(response) {
       console.log(response.data);
-       // if(response.data.status=="success"){
-       //      $scope.toaster = {
-       //        type: 'success',
-       //        title: 'Successful',
-       //        text: 'Tranco Admin Added Successfully'
-       //      };
-       //      $location.path('app/listadmin');
-       //      return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-       //  }else{
-       //      $scope.toaster = {
-       //        type: 'error',
-       //        title: 'Unsuccessful',
-       //        text: 'Error adding Tranco Admin'
-       //      };
-       //      return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-       //  }
+       if(response.data.status=="success"){
+            $rootScope.opentoast= "1";
+        
+            $uibModalInstance.dismiss('cancel');
+        
+            state.go('app.listcompany', {}, { reload: true });
+        }else{
+            $scope.toaster = {
+              type: 'error',
+              title: 'Unsuccessful',
+              text: 'Error editing Tranco Admin'
+            };
+            return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        }
     }).catch(function(){
           console.log("Error Editing Tranco Admin");
     }); 
