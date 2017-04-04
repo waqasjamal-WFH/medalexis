@@ -733,7 +733,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         
             $uibModalInstance.dismiss('cancel');
         
-            state.go('app.listtrancoadmin', {}, { reload: true });
+            $state.go('app.listtrancoadmin', {}, { reload: true });
         }else{
             $scope.toaster = {
               type: 'error',
