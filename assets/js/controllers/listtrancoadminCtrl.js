@@ -186,18 +186,18 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 // .......LIST company controller Start ..............................///
 
 app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
-    if($rootScope.opentoast== "1"){
+    if($rootScope.opentoasttranco== "1"){
       
       $timeout(function () {
 
        $scope.toaster = {
           type: 'success',
           title: 'Successful',
-          text: 'Company Edit Successfully'
+          text: 'Tranco Admin Edit Successfully'
         };
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoast== "";
+         $rootScope.opentoasttranco== "";
        }, 1000);   
     };
     var static_data = [{
@@ -728,11 +728,11 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     .then(function(response) {
       console.log(response.data);
        if(response.data.status=="success"){
-            $rootScope.opentoast= "1";
+            $rootScope.opentoasttranco= "1";
         
             $uibModalInstance.dismiss('cancel');
         
-            state.go('app.listcompany', {}, { reload: true });
+            state.go('app.listtrancoadmin', {}, { reload: true });
         }else{
             $scope.toaster = {
               type: 'error',
