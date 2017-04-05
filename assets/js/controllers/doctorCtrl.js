@@ -317,8 +317,6 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
           "npi":$scope.npi
         };
 
-        console.log(data);
-
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselecteddoctor", data)
         .then(function(response) {
 
