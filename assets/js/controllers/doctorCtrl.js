@@ -1,62 +1,104 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('adddocCtrl', ["$scope","$location",function($scope,$location){
-	$scope.name="hello Doctor";
-    $scope.access_right=[
-    "Add Company",
-    "List Company",
-    "Add Tranco Admin",
-    "List Tranco Admin",
-    "Add Transcriber",
-    "List Transcriber",
-    "Add QA",
-    "List QA",
-    "Add Doctor",
-    "List Doctor",
-    "Add Nurse",
-    "List Nurse",
-    "Add Practice Admin",
-    "List Practice Admin",
-    "Add Appoinment",
-    "List Appoinment",
-    "Add Receptionist",
-    "List Receptionist",
-    "Add Patient",
-    "List Patient"
-    ];
+app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
+	// $scope.name="hello Doctor";
+ //    $scope.access_right=[
+ //    "Add Company",
+ //    "List Company",
+ //    "Add Tranco Admin",
+ //    "List Tranco Admin",
+ //    "Add Transcriber",
+ //    "List Transcriber",
+ //    "Add QA",
+ //    "List QA",
+ //    "Add Doctor",
+ //    "List Doctor",
+ //    "Add Nurse",
+ //    "List Nurse",
+ //    "Add Practice Admin",
+ //    "List Practice Admin",
+ //    "Add Appoinment",
+ //    "List Appoinment",
+ //    "Add Receptionist",
+ //    "List Receptionist",
+ //    "Add Patient",
+ //    "List Patient"
+ //    ];
 
-    $scope.companies=[
-    "Company 1",
-    "Company 2",
-    "Company 3",
-    "Company 4",
-    "Company 5",
-    "Company 6",
-    "Company 7",
-    "Company 8",
-    "Company 9",
-    "Company 10",
-    "Company 11",
-    "Company 12",
+ //    $scope.companies=[
+ //    "Company 1",
+ //    "Company 2",
+ //    "Company 3",
+ //    "Company 4",
+ //    "Company 5",
+ //    "Company 6",
+ //    "Company 7",
+ //    "Company 8",
+ //    "Company 9",
+ //    "Company 10",
+ //    "Company 11",
+ //    "Company 12",
     
-    "Company 13"
-    ];
+ //    "Company 13"
+ //    ];
 
 
-    $scope.selectOptionsObjects = [
-        {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
-        }
-    ];
+    $scope.submit= function(){
+        var first_name=$scope.first_name;
+        var last_name=$scope.last_name;
+        var email=$scope.email;
+        var password=$scope.password;
+        var address=$scope.address;
+        var phone_number=$scope.phone_number;
+        // var access_rights=$scope.access_rights;
+        // var associate_company=$scope.associate_company;
+        var state=$scope.state;
+        var country=$scope.country;
+        var city=$scope.city;
+        var npi=$scope.npi;
+        var token=$localStorage.user_data.response.token;
+
+        var param= {"token":token ,
+          "username":first_name,
+          "last_name":last_name,
+          "email":email,
+          "password":password,
+          "address":address,
+          "phone_number":phone_number,
+          // "access_rights":access_rights,
+          // "associate_company":associate_company,
+          "state":state,
+          "country":country,
+          "city":city,
+          "npi":npi,
+          "role_id":3
+        };
+
+        console.log(param);
+
+        // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/adddoctor", param)
+        // .then(function(response) {
+        //   console.log(response.data);
+        //    if(response.data.status=="success"){
+        //         // $scope.toaster = {
+        //         //   type: 'success',
+        //         //   title: 'Successful',
+        //         //   text: 'Tranco Admin Added Successfully'
+        //         // };
+        //         // $location.path('app/listadmin');
+        //         // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        //     }else{
+        //         $scope.toaster = {
+        //           type: 'error',
+        //           title: 'Unsuccessful',
+        //           text: 'Error adding Tranco Admin'
+        //         };
+        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        //     }
+        // }).catch(function(){
+        //       console.log("Error adding Tranco Admin");
+        // }); 
+    }
 }]);
 
 // .......add company controller end ..............................///
