@@ -327,7 +327,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             
                 $uibModalInstance.dismiss('cancel');
             
-                $state.go('app.listdoctor', {}, { reload: true });
+                $state.go('app.listdoc', {}, { reload: true });
             }else{
                 $scope.toaster = {
                   type: 'error',
