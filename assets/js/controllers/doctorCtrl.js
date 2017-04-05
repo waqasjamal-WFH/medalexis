@@ -105,6 +105,20 @@ app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toas
 
 app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log" ,"$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
     
+    if($rootScope.opentoasttranco== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Tranco Admin Edit Successfully'
+        };
+        
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoasttranco== "";
+       }, 1000);   
+    };
 
     var static_data = [{
         "username": 'No data',
@@ -304,6 +318,27 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         };
 
         console.log(data);
+
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselecteddoctor", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoasttranco= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listtrancoadmin', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error editing Tranco Admin'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error Editing Tranco Admin");
+        }); 
     };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
