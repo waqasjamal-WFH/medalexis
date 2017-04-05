@@ -80,18 +80,18 @@ app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toas
         .then(function(response) {
           console.log(response.data);
            if(response.data.status=="success"){
-                // $scope.toaster = {
-                //   type: 'success',
-                //   title: 'Successful',
-                //   text: 'Tranco Admin Added Successfully'
-                // };
-                // $location.path('app/listadmin');
-                // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+                $scope.toaster = {
+                  type: 'success',
+                  title: 'Successful',
+                  text: 'Doctor Added Successfully'
+                };
+                $location.path('app/listdoctor');
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }else{
                 $scope.toaster = {
                   type: 'error',
                   title: 'Unsuccessful',
-                  text: 'Error adding Tranco Admin'
+                  text: 'Error adding Doctor'
                 };
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }
