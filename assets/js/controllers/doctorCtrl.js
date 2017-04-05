@@ -206,10 +206,10 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
     };
 
      // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function () {
+    $scope.openmodel = function (uid) {
       // $scope.taskid=taskId
-      // console.log(taskId);
-    
+      // console.log(uid);
+     $scope.userid= uid;
       var modalInstance = $uibModal.open({
 
         templateUrl: 'myModalContent1.html',
@@ -219,7 +219,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
         backdrop: 'static',
         resolve: {
           items: function () {
-            // return $scope.taskid;
+            return $scope.userid;
             // $scope.list=qatranlist;
             // console.log(qatranlist);
           }
@@ -231,6 +231,8 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      $scope.showLoader = true;
+      $scope.showform = false;
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
@@ -241,109 +243,90 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
+app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
   
-    $scope.access_right=[
-    "Add Company",
-    "List Company",
-    "Add Tranco Admin",
-    "List Tranco Admin",
-    "Add Transcriber",
-    "List Transcriber",
-    "Add QA",
-    "List QA",
-    "Add Doctor",
-    "List Doctor",
-    "Add Nurse",
-    "List Nurse",
-    "Add Practice Admin",
-    "List Practice Admin",
-    "Add Appoinment",
-    "List Appoinment",
-    "Add Receptionist",
-    "List Receptionist",
-    "Add Patient",
-    "List Patient"
-    ];
-
-    $scope.companies=[
-    "Company 1",
-    "Company 2",
-    "Company 3",
-    "Company 4",
-    "Company 5",
-    "Company 6",
-    "Company 7",
-    "Company 8",
-    "Company 9",
-    "Company 10",
-    "Company 11",
-    "Company 12",
     
-    "Company 13"
-    ];
+  
+    //................................http call for get selected doctor data start here..................................
+  var param={
+            'token' :$localStorage.user_data.response.token,
+            'uid': $scope.userid
+    };
 
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselecteddoctor", param)
+    .then(function(response) {
+      if(response.data.status=="success"){
+        var selected_access=[];
+        $scope.showLoader = false;
+        $scope.showform = true;
+        // console.log(response.data.data[0].address);
+        
+        // $scope.onecompany=response.data.data;
+      
+        $scope.first_name=response.data.data[0].username;
+        $scope.last_name=response.data.data[0].last_name;
+        $scope.email=response.data.data[0].email;
+        // $scope.date=$scope.onecompany[0].date;
+        $scope.address=response.data.data[0].address;
+        $scope.phone_number=response.data.data[0].phone_number;
+        $scope.city=response.data.data[0].city;
+        $scope.state=response.data.data[0].state;
+        $scope.country=response.data.data[0].country;
+        $scope.npi=response.data.data[0].npi;
+        
+        // var selected_rights_array=[];
+        // var selected_access=response.data.data[0]['permission'][0];
 
-    $scope.selectOptionsObjects = [
-        {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
-        }
-    ];
+        // angular.forEach(selected_access, function(value, key) {
+        //     if(value =="1"){
+        //         var access_right_dataa= $scope.access_right;
+        //         angular.forEach(access_right_dataa, function(values, keys) {
+        //             // console.log(values)
+        //         // access_right_dataa.forEach(function(datas){
+        //             if(values.column_name==key){
+        //                 this.push(values);
+                        
+        //             };
+        //         }, selected_rights_array);
+        //     }
+        // });
+        // // console.log(selected_rights_array);
+        // $scope.selected_access_right=selected_rights_array;
+        
+        // var selected_associate_companies=response.data.data[0]['comapanies'];
+        // var new_companies_selected_array=[];
 
+        // angular.forEach(selected_associate_companies, function(valuess, keyss) {
+            
+        //     if(valuess.company_short_name){
 
+        //         var all_companies= $scope.newcompanies;
+        //         // console.log(all_companies);
+        //         angular.forEach(all_companies, function(valu, ke) {
+        //             // console.log(valu.id);
+        //             // console.log(valuess.company_id);
+        //             if(valu.id==valuess.company_id){
+        //                 this.push(valu);
+                        
+        //             };
+        //         }, new_companies_selected_array);
+        //         // valuess.short_name=valuess.company_short_name;
+        //         // delete valuess.company_short_name;
+        //     };
+        // });
+        // $scope.selected_associate_company=new_companies_selected_array;
+      }else{
+              
+      } 
+    });
 
+  //................................http call for get selected doctor data start here..................................
 
-
- // ...............http call for list of transcriber and qa start here....................//
-    // var qatranlist;
-  //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
-  //   .then(function(response,data) {
-
-  //     //console.log(response);
-  //     if(response.data.result=="success"){
-  //       console.log(response.data.data);
-  //       $scope.list=response.data.data
-  //        // qatranlist=response.data.data
-  //     }else{
-  //      $scope.list=response.data.data
-  //     }
-  //   }).catch(function(){
-  //   // console.log(userdata);
-  // });  
-
-    // ...............http call for list of transcriber and qa end here....................//
   $scope.items = items;
   $scope.selected = {
     item: $scope.list
   };
-//.........................get selected transcriber and qa for a selected task START here.....................//
-   // $http.get(
-   //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
-   //  {params:{"task_ID":$scope.taskid}})
-   //  .then(function(response,data) {
-   //    console.log(response.data);
-   //    $scope.assignedQA=response.data.result[1].username;
-   //    $scope.assignedtrans=response.data.result[0].username;
 
-   //    $scope.assignedQAID=response.data.result[1].id;
-   //    $scope.assignedtransID=response.data.result[0].id;
-   //    console.log( "hello "+$scope.assignedQAID);
-   //    console.log( "hello "+$scope.assignedtransID);
-   //    $scope.qa=response.data.result[1].id;
-   //    $scope.transcriber=response.data.result[0].id;
-   //  })
-
-  //.........................get selected transcriber and qa for a selected task END here.....................//
-  
   
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
