@@ -274,47 +274,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         $scope.country=response.data.data[0].country;
         $scope.npi=response.data.data[0].npi;
         
-        // var selected_rights_array=[];
-        // var selected_access=response.data.data[0]['permission'][0];
-
-        // angular.forEach(selected_access, function(value, key) {
-        //     if(value =="1"){
-        //         var access_right_dataa= $scope.access_right;
-        //         angular.forEach(access_right_dataa, function(values, keys) {
-        //             // console.log(values)
-        //         // access_right_dataa.forEach(function(datas){
-        //             if(values.column_name==key){
-        //                 this.push(values);
-                        
-        //             };
-        //         }, selected_rights_array);
-        //     }
-        // });
-        // // console.log(selected_rights_array);
-        // $scope.selected_access_right=selected_rights_array;
-        
-        // var selected_associate_companies=response.data.data[0]['comapanies'];
-        // var new_companies_selected_array=[];
-
-        // angular.forEach(selected_associate_companies, function(valuess, keyss) {
-            
-        //     if(valuess.company_short_name){
-
-        //         var all_companies= $scope.newcompanies;
-        //         // console.log(all_companies);
-        //         angular.forEach(all_companies, function(valu, ke) {
-        //             // console.log(valu.id);
-        //             // console.log(valuess.company_id);
-        //             if(valu.id==valuess.company_id){
-        //                 this.push(valu);
-                        
-        //             };
-        //         }, new_companies_selected_array);
-        //         // valuess.short_name=valuess.company_short_name;
-        //         // delete valuess.company_short_name;
-        //     };
-        // });
-        // $scope.selected_associate_company=new_companies_selected_array;
+       
       }else{
               
       } 
@@ -330,10 +290,21 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
-  $scope.ok = function () {
+    $scope.ok = function () {
+        var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid ,
+          "first_name":$scope.first_name,
+          "last_name":$scope.last_name,
+          "email":$scope.email,
+          "address":$scope.address,
+          "phone_number":$scope.phone_number,
+          "city":$scope.city,
+          "state":$scope.state,
+          "country":$scope.country,
+          "npi":$scope.npi
+        };
 
-    
-  };
+        console.log(data);
+    };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
 
