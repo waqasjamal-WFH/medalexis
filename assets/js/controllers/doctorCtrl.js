@@ -112,7 +112,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
        $scope.toaster = {
           type: 'success',
           title: 'Successful',
-          text: 'Tranco Admin Edit Successfully'
+          text: 'Doctor Edit Successfully'
         };
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
@@ -327,17 +327,17 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             
                 $uibModalInstance.dismiss('cancel');
             
-                $state.go('app.listtrancoadmin', {}, { reload: true });
+                $state.go('app.listdoctor', {}, { reload: true });
             }else{
                 $scope.toaster = {
                   type: 'error',
                   title: 'Unsuccessful',
-                  text: 'Error editing Tranco Admin'
+                  text: 'Error editing Doctor'
                 };
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }
         }).catch(function(){
-              console.log("Error Editing Tranco Admin");
+              console.log("Error Editing doctor");
         }); 
     };
 
