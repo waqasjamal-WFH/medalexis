@@ -277,31 +277,32 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     };
 
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function () {
+    $scope.openmodel = function (uid) {
       // $scope.taskid=taskId
       // console.log(taskId);
-    
-      var modalInstance = $uibModal.open({
+       $scope.userid= uid;
+       console.log($scope.userid);
+      // var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
-        scope : $scope,
-        size: 'lg',
-        backdrop: 'static',
-        resolve: {
-          items: function () {
-            // return $scope.taskid;
-            // $scope.list=qatranlist;
-            // console.log(qatranlist);
-          }
-        }
-      });
+      //   templateUrl: 'myModalContent1.html',
+      //   controller: 'ModalUiCtrl',
+      //   scope : $scope,
+      //   size: 'lg',
+      //   backdrop: 'static',
+      //   resolve: {
+      //     items: function () {
+      //       // return $scope.taskid;
+      //       // $scope.list=qatranlist;
+      //       // console.log(qatranlist);
+      //     }
+      //   }
+      // });
 
-      modalInstance.result.then(function (selectedItem) { 
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
+      // modalInstance.result.then(function (selectedItem) { 
+      //   $scope.selected = selectedItem;
+      // }, function () {
+      //   $log.info('Modal dismissed at: ' + new Date());
+      // });
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
