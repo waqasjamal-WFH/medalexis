@@ -126,38 +126,60 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
         }
     ];
 
-    // $scope.doctors=[
-    // "Doctor 1",
-    // "Doctor 2",
-    // "Doctor 3",
-    // "Doctor 4",
-    // "Doctor 5",
-    // "Doctor 6",
-    // "Doctor 7",
-    // "Doctor 8",
-    // "Doctor 9",
-    // "Doctor 10",
-    // "Doctor 11",
-    // "Doctor 12",
-    
-    // "Doctor 13"
-    // ];
+    $scope.submit= function(){
+        var first_name=$scope.first_name;
+        var last_name=$scope.last_name;
+        var email=$scope.email;
+        var password=$scope.password;
+        var address=$scope.address;
+        var phone_number=$scope.phone_number;
+        var access_rights=$scope.access_rights;
+        var associate_company=$scope.associate_company;
+        var state=$scope.state;
+        var country=$scope.country;
+        var city=$scope.city;
+        var token=$localStorage.user_data.response.token;
+
+        var param= {"token":token ,
+          "username":first_name,
+          "last_name":last_name,
+          "email":email,
+          "password":password,
+          "address":address,
+          "phone_number":phone_number,
+          "access_rights":access_rights,
+          "associate_company":associate_company,
+          "state":state,
+          "country":country,
+          "city":city,
+          "role_id":2
+        };
 
 
-    // $scope.selectOptionsObjects = [
-    //     {
-    //         id: 0,
-    //         name: "Apples"
-    //     },
-    //     {
-    //         id: 1,
-    //         name: "Bananas"
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Peaches"
-    //     }
-    // ];
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtranscriber", param)
+        .then(function(response) {
+          console.log(response.data);
+           if(response.data.status=="success"){
+                // $scope.toaster = {
+                //   type: 'success',
+                //   title: 'Successful',
+                //   text: 'Transcriber Added Successfully'
+                // };
+                // $location.path('app/listadmin');
+                // return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error adding Transcriber'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error adding Transcriber");
+        }); 
+    }   
+  
 }]);
 
 // .......add company controller end ..............................///
