@@ -134,7 +134,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
         var address=$scope.address;
         var phone_number=$scope.phone_number;
         var access_rights=$scope.access_rights;
-        var associate_company=$scope.associate_company;
+        var associate_doctors=$scope.associate_doctors;
         var state=$scope.state;
         var country=$scope.country;
         var city=$scope.city;
@@ -148,7 +148,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
           "address":address,
           "phone_number":phone_number,
           "access_rights":access_rights,
-          "associate_company":associate_company,
+          "associate_doctors":associate_doctors,
           "state":state,
           "country":country,
           "city":city,
