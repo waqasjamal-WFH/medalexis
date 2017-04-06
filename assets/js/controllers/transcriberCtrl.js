@@ -158,7 +158,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
 
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtranscriber", param)
         .then(function(response) {
-          console.log(response.data);
+          // console.log(response.data);
            if(response.data.status=="success"){
                 $scope.toaster = {
                   type: 'success',
@@ -280,7 +280,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     $scope.openmodel = function (uid) {
      
        $scope.userid= uid;
-       console.log($scope.userid);
+       // console.log($scope.userid);
       var modalInstance = $uibModal.open({
 
         templateUrl: 'myModalContent1.html',
@@ -327,7 +327,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
            
             $scope.doctors=response.data.data;
             $scope.newcompanies=response.data.data;
-            console.log($scope.doctors);
+            // console.log($scope.doctors);
             
           }else{
            
@@ -462,7 +462,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        console.log(response.data.data);
+        // console.log(response.data.data);
         
         // $scope.onecompany=response.data.data;
       
