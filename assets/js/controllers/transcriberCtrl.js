@@ -461,7 +461,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        // console.log(response.data.data[0].address);
+        console.log(response.data.data);
         
         // $scope.onecompany=response.data.data;
       
