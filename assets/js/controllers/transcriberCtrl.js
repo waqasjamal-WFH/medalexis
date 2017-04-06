@@ -165,7 +165,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
                   title: 'Successful',
                   text: 'Transcriber Added Successfully'
                 };
-                $location.path('app/addtranscriber');
+                $location.path('app/listtranscriber');
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }else{
                 $scope.toaster = {
