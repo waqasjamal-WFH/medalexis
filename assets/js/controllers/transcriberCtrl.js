@@ -187,6 +187,21 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
 // .......LIST company controller Start ..............................///
 
 app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout ) {
+    if($rootScope.opentoasttranco== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Transcriber Edit Successfully'
+        };
+        
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoasttranco== "";
+       }, 1000);   
+    };
+
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
@@ -552,12 +567,12 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
             
                 $uibModalInstance.dismiss('cancel');
             
-                $state.go('app.listtrancoadmin', {}, { reload: true });
+                $state.go('app.listtranscriber', {}, { reload: true });
             }else{
                 $scope.toaster = {
                   type: 'error',
                   title: 'Unsuccessful',
-                  text: 'Error editing Tranco Admin'
+                  text: 'Error editing Transcriber'
                 };
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }
