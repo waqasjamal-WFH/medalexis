@@ -294,7 +294,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     // ...............model open function for assigning qa and transcriber start here..............//
     $scope.openmodel = function (uid) {
      
-       $scope.userid= uid;
+       $scope.tranuserid= uid;
        // console.log($scope.userid);
       var modalInstance = $uibModal.open({
 
@@ -305,7 +305,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
         backdrop: 'static',
         resolve: {
           items: function () {
-            return $scope.userid;
+            return $scope.tranuserid;
             // $scope.list=qatranlist;
             // console.log(qatranlist);
           }
@@ -468,7 +468,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   setTimeout(function(){
   var param={
             'token' :$localStorage.user_data.response.token,
-            'uid': $scope.userid
+            'uid': $scope.tranuserid
     };
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedtranscriber", param)
@@ -544,7 +544,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
     $scope.ok = function () {
 
-        var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid ,
+        var data= {"token":$localStorage.user_data.response.token , "userID":$scope.tranuserid ,
           "first_name":$scope.first_name,
           "last_name":$scope.last_name,
           "email":$scope.email,
