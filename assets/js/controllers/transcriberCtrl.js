@@ -543,29 +543,28 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         };
 
         console.log(data);
+    
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtranscriber", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoasttranco= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listtrancoadmin', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error editing Tranco Admin'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error Editing Tranco Admin");
+        }); 
     };
-
-    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtranscriber", data)
-    .then(function(response) {
-
-       if(response.data.status=="success"){
-            $rootScope.opentoasttranco= "1";
-        
-            $uibModalInstance.dismiss('cancel');
-        
-            $state.go('app.listtrancoadmin', {}, { reload: true });
-        }else{
-            $scope.toaster = {
-              type: 'error',
-              title: 'Unsuccessful',
-              text: 'Error editing Tranco Admin'
-            };
-            return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        }
-    }).catch(function(){
-          console.log("Error Editing Tranco Admin");
-    }); 
-  };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
 
