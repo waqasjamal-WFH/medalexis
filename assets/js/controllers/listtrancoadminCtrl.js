@@ -197,7 +197,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         };
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoasttranco== "";
+         $rootScope.opentoasttranco= "";
        }, 1000);   
     };
     var static_data = [{
@@ -435,7 +435,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
     $scope.openmodel = function (uid) {
       // $scope.taskid=taskId
       // console.log(uid);
-     $scope.userid= uid;
+     $scope.trancouserid= uid;
       var modalInstance = $uibModal.open({
 
         templateUrl: 'myModalContent1.html',
@@ -445,7 +445,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         backdrop: 'static',
         resolve: {
           items: function () {
-            return $scope.userid;
+            return $scope.trancouserid;
             // $scope.list=qatranlist;
             // console.log(qatranlist);
           }
@@ -609,7 +609,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
   setTimeout(function(){
   var param={
             'token' :$localStorage.user_data.response.token,
-            'uid': $scope.userid
+            'uid': $scope.trancouserid
     };
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectedtrancoadmin", param)
@@ -682,7 +682,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
-    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid ,
+    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.trancouserid ,
       "first_name":$scope.first_name,
       "last_name":$scope.last_name,
       "email":$scope.email,
