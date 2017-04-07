@@ -223,7 +223,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
     $scope.openmodel = function (uid) {
       // $scope.taskid=taskId
       // console.log(uid);
-     $scope.userid= uid;
+     $scope.docuserid= uid;
       var modalInstance = $uibModal.open({
 
         templateUrl: 'myModalContent1.html',
@@ -233,7 +233,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
         backdrop: 'static',
         resolve: {
           items: function () {
-            return $scope.userid;
+            return $scope.docuserid;
             // $scope.list=qatranlist;
             // console.log(qatranlist);
           }
@@ -264,7 +264,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
     //................................http call for get selected doctor data start here..................................
   var param={
             'token' :$localStorage.user_data.response.token,
-            'uid': $scope.userid
+            'uid': $scope.docuserid
     };
 
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselecteddoctor", param)
@@ -273,7 +273,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        // console.log(response.data.data[0].address);
+        // console.log(response.data.data);
         
         // $scope.onecompany=response.data.data;
       
