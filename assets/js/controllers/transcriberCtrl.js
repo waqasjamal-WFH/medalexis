@@ -292,14 +292,14 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     };
 
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function (uid) {
+    $scope.openmodeltrans = function (uid) {
      
        $scope.tranuserid= uid;
        // console.log($scope.userid);
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
+        templateUrl: 'myModalContent2.html',
+        controller: 'ModalUiCtrltran',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
@@ -330,7 +330,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage" ,"toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage , toaster, $state , $stateParams) {
+app.controller('ModalUiCtrltran', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage" ,"toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage , toaster, $state , $stateParams) {
     
     //................................http post request for getting doctor list start here........................
         // var datas=[];
