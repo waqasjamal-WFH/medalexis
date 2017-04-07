@@ -90,7 +90,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
             label: 'Elements'
         },
         resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'transcriberCtrl')
-    }).state('app.listqa', {
+    }).state('app.listqaa', {
         url: '/listqualityassurance',
         templateUrl: "assets/views/listqualityassurance.html",
         title: 'ngTable',
