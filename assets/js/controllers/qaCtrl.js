@@ -166,6 +166,7 @@ app.controller('addqaCtrl', ["$scope","$location","$http","$localStorage","toast
                   title: 'Successful',
                   text: 'Quality Assurance Added Successfully'
                 };
+
                 $location.path('app/listqa');
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }else{
@@ -276,14 +277,14 @@ app.controller('listqaCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", 
     };
 
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function () {
+    $scope.openmodelqa = function () {
       // $scope.taskid=taskId
       // console.log(taskId);
     
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
+        templateUrl: 'myModalContentqa.html',
+        controller: 'ModalUiCtrlqa',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
@@ -311,7 +312,7 @@ app.controller('listqaCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", 
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
+app.controller('ModalUiCtrlqa', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
   
     $scope.access_right=[
     "Add Company",
