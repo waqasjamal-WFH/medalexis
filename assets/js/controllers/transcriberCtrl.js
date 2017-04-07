@@ -18,7 +18,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
            
           } 
         }).catch(function(){
-              console.log("error adding company");
+              console.log("error adding doctor");
         }); 
       //.............................http post request for getting doctor list end here...............................
 
@@ -187,7 +187,7 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
 // .......LIST company controller Start ..............................///
 
 app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout ) {
-    if($rootScope.opentoasttranco== "1"){
+    if($rootScope.opentoasttranscriber== "1"){
       
       $timeout(function () {
 
@@ -198,7 +198,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
         };
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoasttranco== "";
+         $rootScope.opentoasttranscriber== "";
        }, 1000);   
     };
 
@@ -563,7 +563,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         .then(function(response) {
 
            if(response.data.status=="success"){
-                $rootScope.opentoasttranco= "1";
+                $rootScope.opentoasttranscriber= "1";
             
                 $uibModalInstance.dismiss('cancel');
             
