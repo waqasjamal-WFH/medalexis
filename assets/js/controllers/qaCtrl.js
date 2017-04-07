@@ -188,6 +188,22 @@ app.controller('addqaCtrl', ["$scope","$location","$http","$localStorage","toast
 // .......LIST company controller Start ..............................///
 
 app.controller('listqaCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout ) {
+    
+    if($rootScope.opentoastqa== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Quality Assurance Edit Successfully'
+        };
+         
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoastqa= "";
+       }, 1000);   
+    };
+
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
@@ -526,6 +542,39 @@ app.controller('ModalUiCtrlqa', ["$scope", "$rootScope", "$uibModalInstance", "i
   
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
+    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.tranuserid ,
+          "first_name":$scope.first_name,
+          "last_name":$scope.last_name,
+          "email":$scope.email,
+          "address":$scope.address,
+          "phone_number":$scope.phone_number,
+          "city":$scope.city,
+          "state":$scope.state,
+          "country":$scope.country,
+          "selected_associate_doctors":$scope.selected_associate_doctors,
+          "selected_access_right":$scope.selected_access_right
+    };
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedqa", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoastqa= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listqa', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error editing qa'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error Editing qa");
+        });
+
 
     
   };
