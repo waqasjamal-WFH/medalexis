@@ -201,7 +201,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
          $rootScope.opentoasttranscriber== "";
        }, 1000);   
     };
-
+    console.log("root " + $rootScope.opentoasttranscriber);
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
