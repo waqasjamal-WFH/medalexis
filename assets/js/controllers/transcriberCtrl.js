@@ -201,7 +201,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
          $rootScope.opentoasttranscriber= "";
        }, 1000);   
     };
-    console.log("root " + $rootScope.opentoasttranscriber);
+    // console.log("root " + $rootScope.opentoasttranscriber);
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
@@ -213,11 +213,10 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
         "phone_number": "No data",
         "permission": "No data",
         "doctor": "No data"
-       
     }];
 
 
-     //................................http post request for getting company list start here........................
+    //................................http post request for getting company list start here........................
         // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/gettranscriber", param)
