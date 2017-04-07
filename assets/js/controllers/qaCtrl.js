@@ -167,7 +167,7 @@ app.controller('addqaCtrl', ["$scope","$location","$http","$localStorage","toast
                   text: 'Quality Assurance Added Successfully'
                 };
 
-                $location.path('app/listqaa');
+                $location.path('app/listqualityassurance');
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }else{
                 $scope.toaster = {
