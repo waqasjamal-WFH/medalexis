@@ -154,28 +154,30 @@ app.controller('addqaCtrl', ["$scope","$location","$http","$localStorage","toast
           "role_id":5
         };
 
+        console.log(param);
 
-        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtranscriber", param)
+
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addqa", param)
         .then(function(response) {
           // console.log(response.data);
            if(response.data.status=="success"){
                 $scope.toaster = {
                   type: 'success',
                   title: 'Successful',
-                  text: 'Transcriber Added Successfully'
+                  text: 'Quality Assurance Added Successfully'
                 };
-                $location.path('app/listtranscriber');
+                $location.path('app/listqa');
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }else{
                 $scope.toaster = {
                   type: 'error',
                   title: 'Unsuccessful',
-                  text: 'Error adding Transcriber'
+                  text: 'Error adding Quality Assurance'
                 };
                 return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
             }
         }).catch(function(){
-              console.log("Error adding Transcriber");
+              console.log("Error adding Quality Assurance");
         }); 
     } 
 }]);
