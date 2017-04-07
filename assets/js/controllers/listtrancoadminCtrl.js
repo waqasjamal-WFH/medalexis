@@ -432,14 +432,14 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 
 
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function (uid) {
+    $scope.openmodeltranco = function (uid) {
       // $scope.taskid=taskId
       // console.log(uid);
      $scope.trancouserid= uid;
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
+        templateUrl: 'myModalContenttrancoadmin.html',
+        controller: 'ModalUiCtrltrancoadmin',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
@@ -471,7 +471,7 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
+app.controller('ModalUiCtrltrancoadmin', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
   // console.log("user id in model controller "+ $scope.userid);
     $scope.access_right=[
         {
