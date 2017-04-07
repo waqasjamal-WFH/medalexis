@@ -196,9 +196,9 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
           title: 'Successful',
           text: 'Transcriber Edit Successfully'
         };
-         $rootScope.opentoasttranscriber== "";
-         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
          
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoasttranscriber= "";
        }, 1000);   
     };
     console.log("root " + $rootScope.opentoasttranscriber);

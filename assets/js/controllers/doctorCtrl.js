@@ -105,7 +105,7 @@ app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toas
 
 app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log" ,"$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
     
-    if($rootScope.opentoasttranco== "1"){
+    if($rootScope.opentoastdoc== "1"){
       
       $timeout(function () {
 
@@ -116,7 +116,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
         };
         
          toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoasttranco== "";
+         $rootScope.opentoastdoc= "";
        }, 1000);   
     };
 
@@ -220,14 +220,14 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
     };
 
      // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function (uid) {
+    $scope.openmodeldoc = function (uid) {
       // $scope.taskid=taskId
       // console.log(uid);
      $scope.docuserid= uid;
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
+        templateUrl: 'myModalContentdoc.html',
+        controller: 'ModalUiCtrldoc',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
@@ -257,7 +257,7 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
+app.controller('ModalUiCtrldoc', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
   
     
   
@@ -305,7 +305,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
     $scope.ok = function () {
-        var data= {"token":$localStorage.user_data.response.token , "userID":$scope.userid ,
+        var data= {"token":$localStorage.user_data.response.token , "userID":$scope.docuserid ,
           "first_name":$scope.first_name,
           "last_name":$scope.last_name,
           "email":$scope.email,
@@ -321,7 +321,7 @@ app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "ite
         .then(function(response) {
 
            if(response.data.status=="success"){
-                $rootScope.opentoasttranco= "1";
+                $rootScope.opentoastdoc= "1";
             
                 $uibModalInstance.dismiss('cancel');
             
