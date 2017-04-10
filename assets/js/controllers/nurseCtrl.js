@@ -274,20 +274,21 @@ app.controller('listnurseCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         $scope.editId = pid;
     };
     // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodelqa = function (uid) {
+    $scope.openmodelnurse = function (uid) {
+        $scope.nurseuserid= uid;
       // $scope.taskid=taskId
       // console.log(taskId);
     
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
+        templateUrl: 'myModalContentnurse.html',
+        controller: 'ModalUiCtrlnurse',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
         resolve: {
           items: function () {
-            // return $scope.taskid;
+            return $scope.nurseuserid;
             // $scope.list=qatranlist;
             // console.log(qatranlist);
           }
@@ -299,6 +300,8 @@ app.controller('listnurseCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
+      $scope.showLoader = true;
+      $scope.showform = false;
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
@@ -309,108 +312,218 @@ app.controller('listnurseCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
 // EDIT model controller start here.............................////
 
 
-app.controller('ModalUiCtrl', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage) {
-  
-    $scope.access_right=[
-    "Add Company",
-    "List Company",
-    "Add Tranco Admin",
-    "List Tranco Admin",
-    "Add Transcriber",
-    "List Transcriber",
-    "Add QA",
-    "List QA",
-    "Add Doctor",
-    "List Doctor",
-    "Add Nurse",
-    "List Nurse",
-    "Add Practice Admin",
-    "List Practice Admin",
-    "Add Appoinment",
-    "List Appoinment",
-    "Add Receptionist",
-    "List Receptionist",
-    "Add Patient",
-    "List Patient"
-    ];
-
-    $scope.doctors=[
-    "Doctor 1",
-    "Doctor 2",
-    "Doctor 3",
-    "Doctor 4",
-    "Doctor 5",
-    "Doctor 6",
-    "Doctor 7",
-    "Doctor 8",
-    "Doctor 9",
-    "Doctor 10",
-    "Doctor 11",
-    "Doctor 12",
+app.controller('ModalUiCtrlnurse', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
     
-    "Doctor 13"
-    ];
+    //................................http post request for getting doctor list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getdoctor", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+           
+            $scope.doctors=response.data.data;
+            $scope.newcompanies=response.data.data;
+            // console.log($scope.doctors);
+            
+          }else{
+           
+          } 
+        }).catch(function(){
+              console.log("error getting doctor");
+        }); 
+    //.............................http post request for getting doctor list end here...............................
 
-
-    $scope.selectOptionsObjects = [
+    $scope.access_right=[
         {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
+            "name": "Add Company",
+            "status": 1,
+            "column_name":"add_company",
+            "parent_column_name": "company"
+        },{
+            "name": "List Company",
+            "status": 1,
+            "column_name":"list_company",
+            "parent_column_name": "company"
+        },{
+            "name": "Add Tranco Admin",
+            "status": 1,
+            "column_name":"add_trancoadmin",
+            "parent_column_name": "tranco_admin"
+        },{
+            "name": "List Tranco Admin",
+            "status": 1,
+            "column_name":"list_trancoadmin",
+            "parent_column_name": "tranco_admin"
+        },{
+            "name": "Add Transcriber",
+            "status": 1,
+            "column_name":"add_transcriber",
+            "parent_column_name": "transcriber"
+        },{
+            "name": "List Transcriber",
+            "status": 1,
+            "column_name":"list_transcriber",
+            "parent_column_name": "transcriber"
+        },{
+            "name": "Add QA",
+            "status": 1,
+            "column_name":"add_QA",
+            "parent_column_name": "quality_assurance"
+        },{
+            "name": "List QA",
+            "status": 1,
+            "column_name":"list_QA",
+            "parent_column_name": "quality_assurance"
+        },{
+            "name": "Add Doctor",
+            "status": 1,
+            "column_name":"add_doctor",
+            "parent_column_name": "doctor"
+        },{
+            "name": "List Doctor",
+            "status": 1,
+            "column_name":"list_doctor",
+            "parent_column_name": "doctor"
+        },{
+            "name": "Add Nurse",
+            "status": 1,
+            "column_name":"add_nurse",
+            "parent_column_name": "nurse"
+        },{
+            "name": "List Nurse",
+            "status": 1,
+            "column_name":"list_nurse",
+            "parent_column_name": "nurse"
+        },{
+            "name": "Add Practice Admin",
+            "status": 1,
+            "column_name":"add_practiceadmin",
+            "parent_column_name": "practice_admin"
+        },{
+            "name": "List Practice Admin",
+            "status": 1,
+            "column_name":"list_practiceadmin",
+            "parent_column_name": "practice_admin"
+        },{
+            "name": "Add Appoinment",
+            "status": 1,
+            "column_name":"add_appoinment",
+            "parent_column_name": "appoinment"
+        },{
+            "name": "List Appoinment",
+            "status": 1,
+            "column_name":"list_appoinment",
+            "parent_column_name": "appoinment"
+        },{
+            "name": "Add Receptionist",
+            "status": 1,
+            "column_name":"add_receptionist",
+            "parent_column_name": "receptionist"
+        },{
+            "name": "List Receptionist",
+            "status": 1,
+            "column_name":"list_receptionist",
+            "parent_column_name": "receptionist"
+        },{
+            "name": "Add Patient",
+            "status": 1,
+            "column_name":"add_patient",
+            "parent_column_name": "patient"
+        },{
+            "name": "List Patient",
+            "status": 1,
+            "column_name":"list_patient",
+            "parent_column_name": "patient"
         }
     ];
 
 
+    //................................http call for get selected user data start here..................................
+  setTimeout(function(){
+  var param={
+            'token' :$localStorage.user_data.response.token,
+            'uid': $scope.nurseuserid
+    };
+
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getselectednurse", param)
+    .then(function(response) {
+      if(response.data.status=="success"){
+        var selected_access=[];
+        $scope.showLoader = false;
+        $scope.showform = true;
+        // console.log(response.data.data);
+        
+        // $scope.onecompany=response.data.data;
+      
+        $scope.first_name=response.data.data[0].username;
+        $scope.last_name=response.data.data[0].last_name;
+        $scope.email=response.data.data[0].email;
+        // $scope.date=$scope.onecompany[0].date;
+        $scope.address=response.data.data[0].address;
+        $scope.phone_number=response.data.data[0].phone_number;
+        $scope.city=response.data.data[0].city;
+        $scope.state=response.data.data[0].state;
+        $scope.country=response.data.data[0].country;
+        
+        var selected_rights_array=[];
+        var selected_access=response.data.data[0]['permission'][0];
+
+        angular.forEach(selected_access, function(value, key) {
+            if(value =="1"){
+                var access_right_dataa= $scope.access_right;
+                angular.forEach(access_right_dataa, function(values, keys) {
+                    // console.log(values)
+                // access_right_dataa.forEach(function(datas){
+                    if(values.column_name==key){
+                        this.push(values);
+                        
+                    };
+                }, selected_rights_array);
+            }
+        });
+        // console.log(selected_rights_array);
+        $scope.selected_access_right=selected_rights_array;
+        
+        var selected_associate_companies=response.data.data[0]['doctor'];
+        var new_companies_selected_array=[];
+
+        angular.forEach(selected_associate_companies, function(valuess, keyss) {
+            
+            if(valuess.doctor_name){
+
+                var all_companies= $scope.newcompanies;
+                // console.log(all_companies);
+                angular.forEach(all_companies, function(valu, ke) {
+                    // console.log(valu.id);
+                    // console.log(valuess.company_id);
+                    if(valu.id==valuess.doctor_id){
+                        this.push(valu);
+                        
+                    };
+                }, new_companies_selected_array);
+                // valuess.short_name=valuess.company_short_name;
+                // delete valuess.company_short_name;
+            };
+        });
+        $scope.selected_associate_doctors=new_companies_selected_array;
+      }else{
+              
+      } 
+    }) }, 2000);
+
+  //................................http call for get selected user data start here..................................
 
 
 
- // ...............http call for list of transcriber and qa start here....................//
-    // var qatranlist;
-  //   $http.post($location.protocol()+"://"+$location.host()+"/muapp-new/muapp/qatranlist")
-  //   .then(function(response,data) {
 
-  //     //console.log(response);
-  //     if(response.data.result=="success"){
-  //       console.log(response.data.data);
-  //       $scope.list=response.data.data
-  //        // qatranlist=response.data.data
-  //     }else{
-  //      $scope.list=response.data.data
-  //     }
-  //   }).catch(function(){
-  //   // console.log(userdata);
-  // });  
+ 
 
-    // ...............http call for list of transcriber and qa end here....................//
   $scope.items = items;
   $scope.selected = {
     item: $scope.list
   };
-//.........................get selected transcriber and qa for a selected task START here.....................//
-   // $http.get(
-   //  $location.protocol()+"://"+$location.host()+"/muapp-new/muapp/gettask",
-   //  {params:{"task_ID":$scope.taskid}})
-   //  .then(function(response,data) {
-   //    console.log(response.data);
-   //    $scope.assignedQA=response.data.result[1].username;
-   //    $scope.assignedtrans=response.data.result[0].username;
 
-   //    $scope.assignedQAID=response.data.result[1].id;
-   //    $scope.assignedtransID=response.data.result[0].id;
-   //    console.log( "hello "+$scope.assignedQAID);
-   //    console.log( "hello "+$scope.assignedtransID);
-   //    $scope.qa=response.data.result[1].id;
-   //    $scope.transcriber=response.data.result[0].id;
-   //  })
-
-  //.........................get selected transcriber and qa for a selected task END here.....................//
   
   
 
