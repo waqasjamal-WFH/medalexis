@@ -150,7 +150,7 @@ app.controller('addnurseCtrl', ["$scope","$location","$http","$localStorage","to
           "state":state,
           "country":country,
           "city":city,
-          "role_id":5
+          "role_id":6
         };
 
         console.log(param);
