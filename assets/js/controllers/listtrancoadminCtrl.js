@@ -18,7 +18,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
         }).catch(function(){
               console.log("error adding company");
         }); 
-      //.............................http post request for getting company list end here...............................
+    //.............................http post request for getting company list end here...............................
     
 
     $scope.access_right=[
