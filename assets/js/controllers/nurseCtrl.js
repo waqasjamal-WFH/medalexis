@@ -158,7 +158,7 @@ app.controller('addnurseCtrl', ["$scope","$location","$http","$localStorage","to
 
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addnurse", param)
         .then(function(response) {
-          // console.log(response.data);
+          console.log(response.data);
            if(response.data.status=="success"){
                 $scope.toaster = {
                   type: 'success',
