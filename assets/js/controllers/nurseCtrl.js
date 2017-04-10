@@ -156,29 +156,29 @@ app.controller('addnurseCtrl', ["$scope","$location","$http","$localStorage","to
         console.log(param);
 
 
-        // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addqa", param)
-        // .then(function(response) {
-        //   // console.log(response.data);
-        //    if(response.data.status=="success"){
-        //         $scope.toaster = {
-        //           type: 'success',
-        //           title: 'Successful',
-        //           text: 'Quality Assurance Added Successfully'
-        //         };
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addnurse", param)
+        .then(function(response) {
+          // console.log(response.data);
+           if(response.data.status=="success"){
+                $scope.toaster = {
+                  type: 'success',
+                  title: 'Successful',
+                  text: 'Nurse Added Successfully'
+                };
 
-        //         $location.path('app/listqualityassurance');
-        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        //     }else{
-        //         $scope.toaster = {
-        //           type: 'error',
-        //           title: 'Unsuccessful',
-        //           text: 'Error adding Quality Assurance'
-        //         };
-        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        //     }
-        // }).catch(function(){
-        //       console.log("Error adding Quality Assurance");
-        // }); 
+                $location.path('app/listnurse');
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error adding Nurse'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error adding Nurse");
+        }); 
     }
 
     
