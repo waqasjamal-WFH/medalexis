@@ -186,6 +186,20 @@ app.controller('addpracticeCtrl', ["$scope","$location","$http","$localStorage",
 
 app.controller('listpracticeCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
     
+    if($rootScope.opentoastprac== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Practice Admin Edit Successfully'
+        };
+        
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoastprac= "";
+       }, 1000);   
+    };
     var static_data = [{
         "username": 'No data',
         "last_name": "No data",
@@ -525,7 +539,39 @@ app.controller('ModalUiCtrltrancoadmin', ["$scope", "$rootScope", "$uibModalInst
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
+    var data= {"token":$localStorage.user_data.response.token , "userID":$scope.practiceuserid ,
+      "first_name":$scope.first_name,
+      "last_name":$scope.last_name,
+      "email":$scope.email,
+      "address":$scope.address,
+      "phone_number":$scope.phone_number,
+      "city":$scope.city,
+      "state":$scope.state,
+      "country":$scope.country,
+      "selected_associate_company":$scope.selected_associate_company,
+      "selected_access_right":$scope.selected_access_right
+    };
 
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedpracticeadmin", data)
+    .then(function(response) {
+
+       if(response.data.status=="success"){
+            $rootScope.opentoastprac= "1";
+        
+            $uibModalInstance.dismiss('cancel');
+        
+            $state.go('app.listpracticeadmin', {}, { reload: true });
+        }else{
+            $scope.toaster = {
+              type: 'error',
+              title: 'Unsuccessful',
+              text: 'Error editing Practice Admin'
+            };
+            return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        }
+    }).catch(function(){
+          console.log("Error Editing Practice Admin");
+    }); 
     
   };
 
