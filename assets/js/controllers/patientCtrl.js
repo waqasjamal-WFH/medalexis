@@ -1,62 +1,74 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addpatientCtrl', ["$scope","$location",function($scope,$location){
-	// $scope.name="hello waqas";
-    $scope.access_right=[
-    "Add Company",
-    "List Company",
-    "Add Tranco Admin",
-    "List Tranco Admin",
-    "Add Transcriber",
-    "List Transcriber",
-    "Add QA",
-    "List QA",
-    "Add Doctor",
-    "List Doctor",
-    "Add Nurse",
-    "List Nurse",
-    "Add Practice Admin",
-    "List Practice Admin",
-    "Add Appoinment",
-    "List Appoinment",
-    "Add Receptionist",
-    "List Receptionist",
-    "Add Patient",
-    "List Patient"
-    ];
+app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
+    //................................http post request for getting doctor list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getdoctor", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+           
+            $scope.doctors=response.data.data;
+            console.log($scope.doctors);
+            
+          }else{
+           
+          } 
+        }).catch(function(){
+              console.log("error adding doctor");
+        }); 
+    //.............................http post request for getting doctor list end here...............................
 
-    $scope.doctors=[
-    "Doctor 1",
-    "Doctor 2",
-    "Doctor 3",
-    "Doctor 4",
-    "Doctor 5",
-    "Doctor 6",
-    "Doctor 7",
-    "Doctor 8",
-    "Doctor 9",
-    "Doctor 10",
-    "Doctor 11",
-    "Doctor 12",
-    
-    "Doctor 13"
-    ];
+    $scope.submit= function(){
+        var first_name=$scope.first_name;
+        var last_name=$scope.last_name;
+        
+        var address=$scope.address;
+        var phone_number=$scope.phone_number;
+        var associate_doctors=$scope.associate_doctors;
+        var state=$scope.state;
+        var country=$scope.country;
+        var city=$scope.city;
+        var token=$localStorage.user_data.response.token;
 
+        var param= {"token":token ,
+          "username":first_name,
+          "last_name":last_name,
+          
+          "address":address,
+          "phone_number":phone_number,
+          "associate_doctors":associate_doctors,
+          "state":state,
+          "country":country,
+          "city":city,
+          "role_id":10
+        };
+        console.log(param);
 
-    $scope.selectOptionsObjects = [
-        {
-            id: 0,
-            name: "Apples"
-        },
-        {
-            id: 1,
-            name: "Bananas"
-        },
-        {
-            id: 2,
-            name: "Peaches"
-        }
-    ];
+        // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addpatient", param)
+        // .then(function(response) {
+        //   // console.log(response.data);
+        //    if(response.data.status=="success"){
+        //         $scope.toaster = {
+        //           type: 'success',
+        //           title: 'Successful',
+        //           text: 'Patient Added Successfully'
+        //         };
+        //         $location.path('app/listpatient');
+        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        //     }else{
+        //         $scope.toaster = {
+        //           type: 'error',
+        //           title: 'Unsuccessful',
+        //           text: 'Error adding Patient'
+        //         };
+        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        //     }
+        // }).catch(function(){
+        //       console.log("Error adding Patient");
+        // }); 
+    }
 }]);
 
 // .......add company controller end ..............................///
