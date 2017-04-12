@@ -539,6 +539,7 @@ app.controller('ModalUiCtrltrancoadmin', ["$scope", "$rootScope", "$uibModalInst
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
+    
     var data= {"token":$localStorage.user_data.response.token , "userID":$scope.practiceuserid ,
       "first_name":$scope.first_name,
       "last_name":$scope.last_name,
