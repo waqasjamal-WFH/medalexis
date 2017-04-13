@@ -227,18 +227,18 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        // console.log(response.data.data);
+        console.log(response.data);
         
         // $scope.onecompany=response.data.data;
       
         $scope.first_name=response.data.data[0].first_name;
         $scope.last_name=response.data.data[0].last_name;
         $scope.dob=$scope.onecompany[0].date_of_birth;
-        $scope.address=response.data.data[0].address;
-        $scope.phone_number=response.data.data[0].phone;
-        $scope.city=response.data.data[0].city;
-        $scope.state=response.data.data[0].state;
-        $scope.country=response.data.data[0].country;
+        $scope.addresss=response.data.data[0].address;
+        $scope.phone__number=response.data.data[0].phone;
+        $scope.ci_ty=response.data.data[0].city;
+        $scope.st_ate=response.data.data[0].state;
+        $scope.co_untry=response.data.data[0].country;
         
         
         
