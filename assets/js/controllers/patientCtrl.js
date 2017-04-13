@@ -243,7 +243,7 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
       
         $scope.first_name=response.data.data[0].first_name;
         $scope.last_name=response.data.data[0].last_name;
-        $scope.dob=$scope.onecompany[0].date_of_birth;
+        // $scope.dob=$scope.onecompany[0].date_of_birth;
         $scope.addresss=response.data.data[0].address;
         $scope.phone__number=response.data.data[0].phone;
         $scope.ci_ty=response.data.data[0].city;
