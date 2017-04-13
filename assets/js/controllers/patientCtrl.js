@@ -244,9 +244,11 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
 
         curr_year = curr_year.toString().substr(2,2);
 
-        var newdate= curr_date+"-"+curr_month+"-"+curr_year;
+        var newdate= curr_month+"/"+curr_date+"/"+curr_year;
+
+
         console.log(newdate);
-        $scope.dob=response.data.data[0].date_of_birth;
+        $scope.dob=newdate;
         $scope.addresss=response.data.data[0].address;
         $scope.phone__number=response.data.data[0].phone;
         $scope.ci_ty=response.data.data[0].city;
