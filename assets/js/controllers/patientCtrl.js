@@ -75,182 +75,79 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log", function ($scope, $filter, ngTableParams, $uibModal, $log) {
-    var data = [{
-        "id": 1,
-        "lm": 138661285100,
-        "ln": "Smith",
-        "fn": "John",
-        "dc": "CEO",
-        "em": "j.smith@company.com",
-        "ph": "617-321-4567",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 2,
-        "lm": 138661285200,
-        "ln": "Taylor",
-        "fn": "Lisa",
-        "dc": "VP of Marketing",
-        "em": "l.taylor@company.com",
-        "ph": "617-522-5588",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 3,
-        "lm": 138661285300,
-        "ln": "Jones",
-        "fn": "James",
-        "dc": "VP of Sales",
-        "em": "j.jones@company.com",
-        "ph": "617-589-9977",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 4,
-        "lm": 138661285400,
-        "ln": "Wong",
-        "fn": "Paul",
-        "dc": "VP of Engineering",
-        "em": "p.wong@company.com",
-        "ph": "617-245-9785",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 5,
-        "lm": 138661285500,
-        "ln": "King",
-        "fn": "Alice",
-        "dc": "Architect",
-        "em": "a.king@company.com",
-        "ph": "617-244-1177",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 6,
-        "lm": 138661285600,
-        "ln": "Brown",
-        "fn": "Jan",
-        "dc": "Software Engineer",
-        "em": "j.brown@company.com",
-        "ph": "617-568-9863",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 7,
-        "lm": 138661285700,
-        "ln": "Garcia",
-        "fn": "Ami",
-        "dc": "Software Engineer",
-        "em": "a.garcia@company.com",
-        "ph": "617-327-9966",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 8,
-        "lm": 138661285800,
-        "ln": "Green",
-        "fn": "Jack",
-        "dc": "Software Engineer",
-        "em": "j.green@company.com",
-        "ph": "617-565-9966",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 9,
-        "lm": 138661285900,
-        "ln": "Liesen",
-        "fn": "Abraham",
-        "dc": "Plumber",
-        "em": "a.liesen@company.com",
-        "ph": "617-523-4468",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 10,
-        "lm": 138661286000,
-        "ln": "Bower",
-        "fn": "Angela",
-        "dc": "Product Manager",
-        "em": "a.bower@company.com",
-        "ph": "617-877-3434",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 11,
-        "lm": 138661286100,
-        "ln": "Davidoff",
-        "fn": "Fjodor",
-        "dc": "Database Admin",
-        "em": "f.davidoff@company.com",
-        "ph": "617-446-9999",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 12,
-        "lm": 138661286200,
-        "ln": "Vitrovic",
-        "fn": "Biljana",
-        "dc": "Director of Communications",
-        "em": "b.vitrovic@company.com",
-        "ph": "617-111-1111",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 13,
-        "lm": 138661286300,
-        "ln": "Valet",
-        "fn": "Guillaume",
-        "dc": "Software Engineer",
-        "em": "g.valet@company.com",
-        "ph": "617-565-4412",
-        "ac": true,
-        "dl": false
-    }, {
-        "id": 14,
-        "lm": 138661286400,
-        "ln": "Tran",
-        "fn": "Min",
-        "dc": "Gui Designer",
-        "em": "m.tran@company.com",
-        "ph": "617-866-2554",
-        "ac": true,
-        "dl": false
+app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log" , "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
+    var static_data = [{
+        "first_name": 'No data',
+        "last_name": "No data",
+        "address": "No data",
+        "city": "No data",
+        "state": "No data",
+        "country": "No data",
+        "phone_number": "No data",
+        "doctor": "No data"
     }];
 
-         $scope.tableParams = new ngTableParams({
-                 page: 1, // show first page
-                 count: 5, // count per page
-                 sorting: {
-                     title: 'desc' // initial sorting
-                 },
-                 filter: {
-                     name: 'M' // initial filter
-                 }
-             }, {
-                 total: data.length, // length of data
-                 getData: function ($defer, params) {
-                     // use build-in angular filter
-                     var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-                     $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                 }
-             });
+    //................................http post request for getting company list start here........................
+        // var datas=[];
+        var param={'token' :$localStorage.user_data.response.token};
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getpatient", param)
+        .then(function(response) {
+          // console.log(response.data);
+          if(response.data.status=="success"){
+           
+            var datas=response.data.data;
+            // console.log(datas);
+            datas.forEach(function(datas){
+                if(datas.doctors){
+                    var com= datas.doctors.replace(/>>/g, " , ");
+                    datas.doctor=com;
+                };
+            });
+            
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
 
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
+          }else{
+            var datas=static_data;
+            // console.log(datas);
+            $scope.tableParams = new ngTableParams({
+               page: 1, // show first page
+               count: 5, // count per page
+               sorting: {
+                   title: 'desc' // initial sorting
+               },
+               filter: {
+                   name: 'M' // initial filter
+               }
+            }, {
 
-
-
-
-    
-    // $scope.tableParams = new ngTableParams({
-    //     page: 1,
-    //     count: 10
-    // }, {
-    //     total: data.length,
-    //     getData: function ($defer, params) {
-    //         var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-    //         $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-    //     }
-    // });
+               total: datas.length, // length of data
+                getData: function ($defer, params) {
+              
+                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                }
+            });
+          } 
+        }).catch(function(){
+              console.log("error adding company");
+        }); 
+    //.............................http post request for getting company list end here...............................
 
     $scope.editId = -1;
 
