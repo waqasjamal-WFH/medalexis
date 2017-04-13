@@ -45,30 +45,29 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
           "city":city,
           "role_id":10
         };
-        console.log(param);
 
-        // $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addpatient", param)
-        // .then(function(response) {
-        //   // console.log(response.data);
-        //    if(response.data.status=="success"){
-        //         $scope.toaster = {
-        //           type: 'success',
-        //           title: 'Successful',
-        //           text: 'Patient Added Successfully'
-        //         };
-        //         $location.path('app/listpatient');
-        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        //     }else{
-        //         $scope.toaster = {
-        //           type: 'error',
-        //           title: 'Unsuccessful',
-        //           text: 'Error adding Patient'
-        //         };
-        //         return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-        //     }
-        // }).catch(function(){
-        //       console.log("Error adding Patient");
-        // }); 
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addpatient", param)
+        .then(function(response) {
+          // console.log(response.data);
+           if(response.data.status=="success"){
+                $scope.toaster = {
+                  type: 'success',
+                  title: 'Successful',
+                  text: 'Patient Added Successfully'
+                };
+                $location.path('app/listpatient');
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error adding Patient'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error adding Patient");
+        }); 
     }
 }]);
 
