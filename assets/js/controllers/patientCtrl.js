@@ -23,7 +23,7 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
     $scope.submit= function(){
         var first_name=$scope.first_name;
         var last_name=$scope.last_name;
-        
+        var dob=$scope.dob;
         var address=$scope.address;
         var phone_number=$scope.phone_number;
         var associate_doctors=$scope.associate_doctors;
@@ -35,6 +35,7 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
         var param= {"token":token ,
           "username":first_name,
           "last_name":last_name,
+          "dob":dob,
           
           "address":address,
           "phone_number":phone_number,
