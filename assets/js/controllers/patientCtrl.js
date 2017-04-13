@@ -227,16 +227,7 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
         var selected_access=[];
         $scope.showLoader = false;
         $scope.showform = true;
-        console.log(response.data.data[0].first_name);
-                console.log(response.data.data[0].last_name);
-
-        console.log(response.data.data[0].date_of_birth);
-
-        console.log(response.data.data[0].address);
-        console.log(response.data.data[0].phone);
-        console.log(response.data.data[0].city);
-        console.log(response.data.data[0].state);
-        console.log(response.data.data[0].country);
+        
 
         
         // $scope.onecompany=response.data.data;
@@ -254,7 +245,8 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
         curr_year = curr_year.toString().substr(2,2);
 
         var newdate= curr_date+"-"+curr_month+"-"+curr_year;
-        $scope.dob=newdate;
+        console.log(newdate);
+        // $scope.dob=newdate;
         $scope.addresss=response.data.data[0].address;
         $scope.phone__number=response.data.data[0].phone;
         $scope.ci_ty=response.data.data[0].city;
