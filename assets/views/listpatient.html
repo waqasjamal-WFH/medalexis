@@ -37,59 +37,63 @@
                                         <td class="rowTd">
                                             <div class="pull-right margin-right-10">
                                                 <input type=button class="btn btn-primary btn-o btn-sm" id="editRowBtn{{p.id}}" value="edit"
-                                                       ng-click="openmodel()">
+                                                       ng-click="openmodelpatient(p.id)">
                                             </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            <script type="text/ng-template" id="myModalContent1.html" data-backdrop="static">
+                            <script type="text/ng-template" id="myModalContentpatient.html" data-backdrop="static">
                                 <div class="modal-header">
                                     <h3>Edit Patient</h3>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" ng-show="showLoader">
+                                    <img src="assets/images/default.gif" style=" margin: 0px 0px 0px 280px"> 
+                                </div>
+                                <div class="modal-body" ng-show="showform">
                                     <form role="form" autocomplete="false">
                                         
                                         <div class="form-group">
-                                            <input type="text" placeholder="First Name" class="form-control underline input-lg" value="{{name}}">
-                                        </div>
-                                            </multiselect>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Last Name" class="form-control underline">
+                                            <input type="text" placeholder="First Name" class="form-control underline input-lg" ng-model="first_name">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" placeholder="Email" class="form-control underline input-sm" >
+                                            <input type="text" placeholder="Last Name" class="form-control underline" ng-model="last_name">
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="password" placeholder="Password" class="form-control underline input-sm">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Address" class="form-control underline input-sm">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Phone Number" class="form-control underline input-sm">
+                                            <input type="date" placeholder="Date of Birth" class="form-control underline" ng-model="dob">
                                         </div>
                                         
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Address" class="form-control underline input-sm" ng-model="address">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Phone Number" class="form-control underline input-sm" ng-model="phone_number">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="city" class="form-control underline input-sm" ng-model="city">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="State" class="form-control underline input-sm" ng-model="state">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Country" class="form-control underline input-sm" ng-model="country">
+                                        </div>
+
                                         <div class="panel-heading">
                                             <h5 class="panel-title">Associate to a Doctor</h5>
                                         </div>
                                         <div class="form-group">
                                             <multiselect
-                                                ng-model="selectModel"
-                                                options="c for c in doctors"    
+                                                ng-model="associate_doctors"
+                                                options="c.username for c in doctors"    
                                                 data-multiple="true"                  
                                                 scroll-after-rows="5"                 
                                                 ms-header="Select Doctor"
                                                 width="273px">
                                            </multiselect>
-                                        </div>    
-                                        
-                                        <div class="form-group">
-                                            <button type="submit" data-ng-click="submit()" class="btn btn-wide btn-o btn-primary">
-                                                Submit
-                                            </button>
-                                        </div>    
+                                        </div>        
                                     </form>
                                 </div>
                                     
