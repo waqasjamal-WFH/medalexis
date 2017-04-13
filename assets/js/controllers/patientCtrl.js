@@ -248,7 +248,7 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
 
 
         console.log(newdate);
-        $scope.dob=newdate;
+        $scope.dob=new Date(response.data.data[0].date_of_birth);
         $scope.addresss=response.data.data[0].address;
         $scope.phone__number=response.data.data[0].phone;
         $scope.ci_ty=response.data.data[0].city;
