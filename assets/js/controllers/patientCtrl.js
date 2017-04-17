@@ -76,6 +76,21 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
 // .......LIST company controller Start ..............................///
 
 app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log" , "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
+    
+    if($rootScope.opentoastpatient== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Patient Edit Successfully'
+        };
+         
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoastpatient= "";
+       }, 1000);   
+    };
     var static_data = [{
         "first_name": 'No data',
         "last_name": "No data",
@@ -287,15 +302,36 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
       "token":$localStorage.user_data.response.token , "userID":$scope.patientid ,
       "first_name":$scope.first_name,
       "last_name":$scope.last_name,
-      "dob":$scope.dob,
-      "address":$scope.address,
-      "phone_number":$scope.phone_number,
-      "city":$scope.city,
-      "state":$scope.state,
-      "country":$scope.country,
+      "dob":$scope.do_b,
+      "address":$scope.ad_dresss,
+      "phone_number":$scope.phone__number,
+      "city":$scope.ci_ty,
+      "state":$scope.st_ate,
+      "country":$scope.co_untry,
       "selected_associate_doctors":$scope.selected_associate_doctors
     };
     console.log(data);
+    
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedpatient", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoastpatient= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listpatient', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error editing patient'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error Editing patient");
+        });
     
   };
 

@@ -556,7 +556,6 @@ app.controller('ModalUiCtrltran', ["$scope", "$rootScope", "$uibModalInstance", 
           "selected_access_right":$scope.selected_access_right
         };
 
-        console.log(data);
     
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedtranscriber", data)
         .then(function(response) {
