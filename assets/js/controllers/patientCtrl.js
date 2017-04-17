@@ -40,7 +40,7 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
           "address":address,
           "phone_number":phone_number,
           "associate_doctors":associate_doctors,
-          "state":state,
+          "statee":state,
           "country":country,
           "city":city,
           "role_id":10
@@ -234,20 +234,7 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
       
         $scope.first_name=response.data.data[0].first_name;
         $scope.last_name=response.data.data[0].last_name;
-        var d = new Date(response.data.data[0].date_of_birth);
-
-        var curr_date = d.getDate();
-
-        var curr_month = d.getMonth();
-
-        var curr_year = d.getFullYear();
-
-        curr_year = curr_year.toString().substr(2,2);
-
-        var newdate= curr_month+"/"+curr_date+"/"+curr_year;
-
-
-        console.log(newdate);
+        
         $scope.dob=new Date(response.data.data[0].date_of_birth);
         $scope.addresss=response.data.data[0].address;
         $scope.phone__number=response.data.data[0].phone;
@@ -296,7 +283,19 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
-
+    var data= {
+      "token":$localStorage.user_data.response.token , "userID":$scope.patientid ,
+      "first_name":$scope.first_name,
+      "last_name":$scope.last_name,
+      "dob":$scope.dob,
+      "address":$scope.address,
+      "phone_number":$scope.phone_number,
+      "city":$scope.city,
+      "state":$scope.state,
+      "country":$scope.country,
+      "selected_associate_doctors":$scope.selected_associate_doctors
+    };
+    console.log(data);
     
   };
 
