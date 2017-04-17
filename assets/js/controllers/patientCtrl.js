@@ -310,7 +310,6 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
       "country":$scope.co_untry,
       "selected_associate_doctors":$scope.selected_associate_doctors
     };
-    console.log(data);
     
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/editselectedpatient", data)
         .then(function(response) {
