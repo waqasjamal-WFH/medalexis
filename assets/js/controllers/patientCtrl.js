@@ -302,12 +302,12 @@ app.controller('ModalUiCtrlpatient', ["$scope", "$rootScope", "$uibModalInstance
       "token":$localStorage.user_data.response.token , "userID":$scope.patientid ,
       "first_name":$scope.first_name,
       "last_name":$scope.last_name,
-      "dob":$scope.dob,
-      "address":$scope.address,
-      "phone_number":$scope.phone_number,
-      "city":$scope.city,
-      "state":$scope.state,
-      "country":$scope.country,
+      "dob":$scope.do_b,
+      "address":$scope.ad_dresss,
+      "phone_number":$scope.phone__number,
+      "city":$scope.ci_ty,
+      "state":$scope.st_ate,
+      "country":$scope.co_untry,
       "selected_associate_doctors":$scope.selected_associate_doctors
     };
     console.log(data);
