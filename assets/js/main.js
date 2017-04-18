@@ -221,14 +221,17 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 
 
 
-app.factory('routeTemplateMonitor', ['$localStorage',
-  function($localStorage) {
-    return {
-      startMonitoring: function() {
-        console.log($localStorage.user_data['user_permission'][0]);
-      }
-    };
-  }]);
+app.directive('signinBeginFoo', function($localStorage) {
+   return {
+       scope: true,
+       link: function($scope) {
+           $scope.$on('signinBegin', function() {
+            console.log("asdasdasdasdasdasdadsd");
+               $scope.preloader = true;
+           });
+       }
+   }
+});
 
 
 // app.factory('permission', function($localStorage) {
