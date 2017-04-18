@@ -221,11 +221,11 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 
 
 
-app.factory('routeTemplateMonitor', [$localStorage,
+app.factory('routeTemplateMonitor', ['$localStorage',
   function($localStorage) {
     return {
       startMonitoring: function() {
-        console.log("asdasdasdasdadasd");
+        console.log($localStorage.user_data['user_permission'][0]);
       }
     };
   }]);
