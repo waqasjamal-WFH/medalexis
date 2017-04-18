@@ -187,7 +187,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
                     $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
                     $localStorage.user_data=response.data;
                     // console.log(response.data['user_permission']);
-                    console.log($localStorage.user_data['user_permission'].add_company);
+                    console.log($localStorage.user_data['user_permission']);
                 }else{
                     $scope.toaster = {
                         type: 'error',
