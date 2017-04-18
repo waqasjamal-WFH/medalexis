@@ -221,14 +221,14 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 
 
 
-app.directive('signinBeginFoo', function($localStorage) {
+app.directive('signinBeginFoo', function() {
    return {
        scope: true,
        link: function($scope) {
-           $scope.$on('signinBegin', function() {
+           // $scope.$on('signinBegin', function() {
             console.log("asdasdasdasdasdasdadsd");
-               $scope.preloader = true;
-           });
+               // $scope.preloader = true;
+           // });
        }
    }
 });
