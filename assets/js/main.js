@@ -218,19 +218,21 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
     }
 
 });
-// app.directive('permission', function() {
-//    return {
-//        scope: true,
-//        link: function($scope) {
-//            $scope.$on('per', function() {
-//                 for(key in $scope.data) {
-//                     var obj = $scope.data[key];
-//                     if( obj['id'] == id ) {
-//                         return obj['name'];
-//                     }
-//                 }
-//                // $scope.preloader = true;
-//            });
-//        }
-//    }
-// });
+app.factory('permission', function($localStorage) {
+   return {
+       scope: true,
+       link: function($scope) {
+           $scope.$on('per', function() {
+                var data=($localStorage.user_data['user_permission'][0];
+                for(key in data) {
+                    var obj = data[key];
+                    console.log(obj);
+                    // if( obj['id'] == id ) {
+                    //     return obj['name'];
+                    // }
+                }
+               // $scope.preloader = true;
+           });
+       }
+   }
+});
