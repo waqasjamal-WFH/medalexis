@@ -168,7 +168,7 @@ app.run(["$templateCache", function ($templateCache) {
 app.factory('userdataSession',function($http,$window,$location,toaster,$localStorage){
     var userdata={};
     //adding user data on login
-    // console.log($localStorage.user_data['user_permission'].add_company);
+    console.log($localStorage.user_data['user_permission'].add_company);
 
     var addUser= function(data,$scope){
         // console.log(data);
