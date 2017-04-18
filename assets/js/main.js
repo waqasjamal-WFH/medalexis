@@ -215,3 +215,20 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
     }
 
 });
+console.log($localStorage.user_data['user_permission'].add_company);
+// app.directive('permission', function() {
+//    return {
+//        scope: true,
+//        link: function($scope) {
+//            $scope.$on('per', function() {
+//                 for(key in $scope.data) {
+//                     var obj = $scope.data[key];
+//                     if( obj['id'] == id ) {
+//                         return obj['name'];
+//                     }
+//                 }
+//                // $scope.preloader = true;
+//            });
+//        }
+//    }
+// });
