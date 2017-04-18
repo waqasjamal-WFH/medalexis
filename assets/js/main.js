@@ -168,6 +168,8 @@ app.run(["$templateCache", function ($templateCache) {
 app.factory('userdataSession',function($http,$window,$location,toaster,$localStorage){
     var userdata={};
     //adding user data on login
+    console.log($localStorage.user_data['user_permission'].add_company);
+
     var addUser= function(data,$scope){
         // console.log(data);
         if(data.email===undefined || data.password===undefined || data.email==="" || data.password===""){
@@ -215,7 +217,6 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
     }
 
 });
-console.log($localStorage.user_data['user_permission'].add_company);
 // app.directive('permission', function() {
 //    return {
 //        scope: true,
