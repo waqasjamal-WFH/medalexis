@@ -168,7 +168,7 @@ app.run(["$templateCache", function ($templateCache) {
 app.factory('userdataSession',function($http,$window,$location,toaster,$localStorage){
     var userdata={};
     //adding user data on login
-    console.log($localStorage.user_data['user_permission'].add_company);
+
 
     var addUser= function(data,$scope){
         // console.log(data);
@@ -186,7 +186,8 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
                 if(response.data.status=="success"){
                     $window.location.href=$location.protocol()+"://"+$location.host()+"/medalexis/#/app/dashboard";
                     $localStorage.user_data=response.data;
-                    console.log(response.data['user_permission']);
+                    // console.log(response.data['user_permission']);
+                    console.log($localStorage.user_data['user_permission'].add_company);
                 }else{
                     $scope.toaster = {
                         type: 'error',
