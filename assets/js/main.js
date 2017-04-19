@@ -233,7 +233,7 @@ app.directive('signinBeginFoo', function($localStorage,$parse) {
                 var obj = per[key];
                 // console.log(key);
                 var model = $parse(key);
-                model.assign($scope, per[key]);
+                model.assign($scope, obj);
 
                 // $scope.key=per[key];
                 console.log($scope.list_trancoadmin);
