@@ -221,7 +221,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 
 
 
-app.directive('signinBeginFoo', function($localStorage) {
+app.directive('signinBeginFoo', function($localStorage,$parse) {
    return {
        scope: true,
        restrict: 'E',
@@ -232,7 +232,10 @@ app.directive('signinBeginFoo', function($localStorage) {
             for(key in per) {
                 var obj = per[key];
                 // console.log(key);
-                $scope.key=per[key];
+                var model = $parse(key);
+                model.assign($scope, per[key]);
+
+                // $scope.key=per[key];
                 console.log($scope.list_trancoadmin);
                 // if( obj['id'] == id ) {
                 //     return obj['name'];
