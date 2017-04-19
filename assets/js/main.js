@@ -224,24 +224,23 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 app.directive('signinBeginFoo', function($localStorage,$parse) {
    return {
        scope: true,
-       restrict: 'E',
         link:function($scope) {
            // $scope.$on('signinBegin', function() {
-            console.log("assadasdasdasda");
+            // console.log("assadasdasdasda");
             var per =$localStorage.user_data['user_permission'][0];
-            // for(key in per) {
-            //     var obj = per[key];
-            //     // console.log(key);
-            //     var model = $parse(key);
-            //     model.assign($scope, obj);
+            for(key in per) {
+                var obj = per[key];
+                // console.log(key);
+                var model = $parse(key);
+                model.assign($scope, obj);
 
-            //     // $scope.key=per[key];
+                // $scope.key=per[key];
                 
-            //     // if( obj['id'] == id ) {
-            //     //     return obj['name'];
-            //     // }
-            // };
-            // console.log($scope.list_trancoadmin);
+                // if( obj['id'] == id ) {
+                //     return obj['name'];
+                // }
+            };
+            console.log($scope.list_trancoadmin);
                // $scope.preloader = true;
            // });
        }
