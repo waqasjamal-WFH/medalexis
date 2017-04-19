@@ -236,11 +236,12 @@ app.directive('signinBeginFoo', function($localStorage,$parse) {
                 model.assign($scope, obj);
 
                 // $scope.key=per[key];
-                console.log($scope.list_trancoadmin);
+                
                 // if( obj['id'] == id ) {
                 //     return obj['name'];
                 // }
-            }
+            };
+            console.log($scope.list_trancoadmin);
                // $scope.preloader = true;
            // });
        }
