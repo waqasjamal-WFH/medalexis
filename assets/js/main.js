@@ -231,8 +231,9 @@ app.directive('signinBeginFoo', function($localStorage) {
             var per =$localStorage.user_data['user_permission'][0];
             for(key in per) {
                 var obj = per[key];
-                console.log(key);
+                // console.log(key);
                 $scope.key=per[key];
+                console.log($scope.list_trancoadmin);
                 // if( obj['id'] == id ) {
                 //     return obj['name'];
                 // }
