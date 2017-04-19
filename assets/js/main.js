@@ -227,15 +227,16 @@ app.directive('signinBeginFoo', function($localStorage) {
        restrict: 'E',
         link:function($scope) {
            // $scope.$on('signinBegin', function() {
-            console.log("assadasdasdasda");
-            // var per =$localStorage.user_data['user_permission'][0];
-            // for(key in per) {
-            //     var obj = per[key];
-            //     console.log(key);
-            //     // if( obj['id'] == id ) {
-            //     //     return obj['name'];
-            //     // }
-            // }
+            // console.log("assadasdasdasda");
+            var per =$localStorage.user_data['user_permission'][0];
+            for(key in per) {
+                var obj = per[key];
+                console.log(key);
+                $scope.key=per[key];
+                // if( obj['id'] == id ) {
+                //     return obj['name'];
+                // }
+            }
                // $scope.preloader = true;
            // });
        }
