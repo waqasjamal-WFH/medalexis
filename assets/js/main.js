@@ -226,7 +226,7 @@ app.directive('signinBeginFoo', function() {
        scope: true,
        link: function($scope) {
            // $scope.$on('signinBegin', function() {
-            console.log("asdasdasdasdasdasdadsd");
+            console.log($localStorage.user_data['user_permission'][0]);
                // $scope.preloader = true;
            // });
        }
