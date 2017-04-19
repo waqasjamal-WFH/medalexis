@@ -16,10 +16,10 @@
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="list_trancoadmin==1 || add_trancoadmin==1">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="list_trancoadmin=='1' || add_trancoadmin=='1'">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Tranco Admin</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active" ng-show="list_trancoadmin==1">
+					<li ui-sref-active="active" ng-show="list_trancoadmin=='1'">
 						<a ui-sref="app.listtrancoadmin"> <letter-icon data="{{ 'L T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Tranco Admin </span> </a>
 					</li>
 					<li ui-sref-active="active" ng-show="add_trancoadmin=='1'">
