@@ -438,8 +438,8 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
      $scope.trancouserid= uid;
       var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContentpracticeadmin.html',
-        controller: 'ModalUiCtrlpracticeadmin',
+        templateUrl: 'myModalContenttrancoadmin.html',
+        controller: 'ModalUiCtrltrancoadmin',
         scope : $scope,
         size: 'lg',
         backdrop: 'static',
