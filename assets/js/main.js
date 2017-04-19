@@ -230,7 +230,7 @@ app.directive('signinBeginFoo', function($localStorage) {
             var per =$localStorage.user_data['user_permission'][0];
             for(key in per) {
                     var obj = per[key];
-                    console.log(obj);
+                    console.log(key);
                     // if( obj['id'] == id ) {
                     //     return obj['name'];
                     // }
