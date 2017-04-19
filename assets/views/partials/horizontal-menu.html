@@ -17,7 +17,7 @@
 				</ul>
 			</li>
 			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" >
-				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span>{{list_trancoadmin}} Tranco Admin</span> <span class="caret"></span></a>
+				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span>{{list_trancoadmin}}</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
 					<li ui-sref-active="active" ng-show="list_trancoadmin=='1'">
 						<a ui-sref="app.listtrancoadmin"> <letter-icon data="{{ 'L T A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Tranco Admin </span> </a>
