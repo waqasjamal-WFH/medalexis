@@ -225,17 +225,17 @@ app.directive('signinBeginFoo', function($localStorage) {
    return {
        scope: true,
        restrict: 'E',
-        function($scope) {
+        link:function($scope) {
            // $scope.$on('signinBegin', function() {
-            // console.log($localStorage.user_data['user_permission'][0]);
-            var per =$localStorage.user_data['user_permission'][0];
-            for(key in per) {
-                var obj = per[key];
-                console.log(key);
-                // if( obj['id'] == id ) {
-                //     return obj['name'];
-                // }
-            }
+            console.log("assadasdasdasda");
+            // var per =$localStorage.user_data['user_permission'][0];
+            // for(key in per) {
+            //     var obj = per[key];
+            //     console.log(key);
+            //     // if( obj['id'] == id ) {
+            //     //     return obj['name'];
+            //     // }
+            // }
                // $scope.preloader = true;
            // });
        }
