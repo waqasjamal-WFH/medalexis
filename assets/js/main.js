@@ -221,7 +221,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 
 
 
-app.directive('signinBeginFoo', function() {
+app.directive('signinBeginFoo', function($localStorage) {
    return {
        scope: true,
        link: function($scope) {
