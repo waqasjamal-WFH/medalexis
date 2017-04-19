@@ -6,13 +6,13 @@
 			<li ui-sref-active="active">
 				<a ui-sref="app.dashboard"> <letter-icon data="{{ 'sidebar.nav.dashboard.MAIN' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span translate="sidebar.nav.dashboard.MAIN"> Dashboards </span> </a>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_company=='1' || list_company=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Company</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_company=='1'">
 						<a ui-sref="app.listcompany"> <letter-icon data="{{ 'L C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Company </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_company=='1'">
 						<a ui-sref="app.addcompany"> <letter-icon data="{{ 'A C' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Company </span> </a>
 					</li>
 				</ul>
@@ -28,57 +28,57 @@
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="list_transcriber=='1' || add_transcriber=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'T' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Transcribers</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_transcriber=='1'">
 						<a ui-sref="app.listtranscriber"> <letter-icon data="{{ 'T R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Transcribers </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_transcriber=='1'">
 						<a ui-sref="app.addtranscriber"> <letter-icon data="{{ 'A T ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Transcribers</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="list_QA=='1' || add_QA=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'Q A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Quality Assurance</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_QA=='1'">
 						<a ui-sref="app.listqa"> <letter-icon data="{{ 'L Q' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Quality Assurance </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_QA=='1'">
 						<a ui-sref="app.addqa"> <letter-icon data="{{ 'A Q ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Quality Assurance</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="list_doctor=='1' || add_doctor=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'DR' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Doctor</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_doctor=='1'">
 						<a ui-sref="app.listdoc"> <letter-icon data="{{ 'L D' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Doctor </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_doctor=='1'">
 						<a ui-sref="app.adddoc"> <letter-icon data="{{ 'A D ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Doctor</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_nurse=='1' || list_nurse=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'NU' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Nurse</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_nurse=='1'">
 						<a ui-sref="app.listnurse"> <letter-icon data="{{ 'L N' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Nurse </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_nurse=='1'">
 						<a ui-sref="app.addnurse"> <letter-icon data="{{ 'A N ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Nurse</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_practiceadmin=='1' || list_practiceadmin=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'PA' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Practice Admin</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_practiceadmin=='1'">
 						<a ui-sref="app.listpracticeadmin"> <letter-icon data="{{ 'L P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Practice Admin </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_practiceadmin=='1'">
 						<a ui-sref="app.addpracticeadmin"> <letter-icon data="{{ 'A P ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Practice Admin</span> </a>
 					</li>
 				</ul>
@@ -107,35 +107,35 @@
 <div class="horizontal-menu-wrapper">
 	<div class="horizontal-nav-container" ct-fullheight="window" data-ct-fullheight-exclusion="header" data-ct-fullheight-if="isSmallDevice">
 		<ul class="nav navbar-nav no-border">
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_appoinment=='1' || list_appoinment=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'AP' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Appointment</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_appoinment=='1'">
 						<a ui-sref="app.listappoinment"> <letter-icon data="{{ 'L A' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Appointment </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_appoinment=='1'">
 						<a ui-sref="app.addappoinment"> <letter-icon data="{{ 'A A ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Appointment</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_receptionist=='1' || list_receptionist=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Receptionist</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_receptionist=='1'">
 						<a ui-sref="app.listreceptionist"> <letter-icon data="{{ 'L R' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Receptionist </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_receptionist=='1'">
 						<a ui-sref="app.addreceptionist"> <letter-icon data="{{ 'A R ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Receptionist</span> </a>
 					</li>
 				</ul>
 			</li>
-			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick">
+			<li ng-class="{'active':$state.includes('app.ui')}" uib-dropdown auto-close="outsideClick" ng-show="add_patient=='1' || list_patient=='1' ">
 				<a href="javascript:void(0)" uib-dropdown-toggle> <letter-icon data="{{ 'P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Patients</span> <span class="caret"></span></a>
 				<ul uib-dropdown-menu>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="list_patient=='1'">
 						<a ui-sref="app.listpatient"> <letter-icon data="{{ 'L P' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> List Patients </span> </a>
 					</li>
-					<li ui-sref-active="active">
+					<li ui-sref-active="active" ng-show="add_patient=='1'">
 						<a ui-sref="app.addpatient"> <letter-icon data="{{ 'A P ' | translate }}" color="auto" char-count="2" size="sm"></letter-icon> <span> Add Patients</span> </a>
 					</li>
 				</ul>
