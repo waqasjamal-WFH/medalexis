@@ -224,6 +224,7 @@ app.factory('userdataSession',function($http,$window,$location,toaster,$localSto
 app.directive('signinBeginFoo', function($localStorage) {
    return {
        scope: true,
+       restrict: 'E',
        link: function($scope) {
            // $scope.$on('signinBegin', function() {
             // console.log($localStorage.user_data['user_permission'][0]);
