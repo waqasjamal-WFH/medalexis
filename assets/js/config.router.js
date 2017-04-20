@@ -3,8 +3,8 @@
 /**
  * Config for the router
  */
-app.config(['$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'JS_REQUIRES',
-function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, jsRequires) {
+app.config(['$localStorage','$stateProvider', '$urlRouterProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', '$ocLazyLoadProvider', 'JS_REQUIRES',
+function ($localStorage, $stateProvider, $urlRouterProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, $ocLazyLoadProvider, jsRequires) {
 
     app.controller = $controllerProvider.register;
     app.directive = $compileProvider.directive;
@@ -83,13 +83,18 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         },
         resolve: loadSequence('ngTable', 'transcriberCtrl')
     }).state('app.addtranscriber', {
-        url: '/addtranscriber',
-        templateUrl: "assets/views/addtranscriber.html",
-        title: 'Add Transcriber',
-        ncyBreadcrumb: {
-            label: 'Elements'
-        },
-        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'transcriberCtrl')
+        if($localStorage.user_data['user_permission'][0].add_transcriber == 1){
+            url: '/addtranscriber',
+            templateUrl: "assets/views/addtranscriber.html",
+            title: 'Add Transcriber',
+            ncyBreadcrumb: {
+                label: 'Elements'
+            },
+            resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'transcriberCtrl')
+        }else{
+            $urlRouterProvider.otherwise("login/signin");
+        };
+            
     }).state('app.listqa', {
         url: '/listqualityassurance',
         templateUrl: "assets/views/listqualityassurance.html",
