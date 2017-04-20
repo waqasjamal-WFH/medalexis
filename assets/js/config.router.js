@@ -83,19 +83,14 @@ function ($localStorage, $stateProvider, $urlRouterProvider, $controllerProvider
         },
         resolve: loadSequence('ngTable', 'transcriberCtrl')
     }).state('app.addtranscriber', {
-        if("1"=="1"){
-            console.log("aaaaaaa");
-            url: '/addtranscriber',
-            templateUrl: "assets/views/addtranscriber.html",
-            title: 'Add Transcriber',
-            ncyBreadcrumb: {
-                label: 'Elements'
-            },
-            resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'transcriberCtrl')
-        }else{
-            $urlRouterProvider.otherwise("login/signin");
-        };
-            
+        url: '/addtranscriber',
+        templateUrl: "assets/views/addtranscriber.html",
+        title: 'Add Transcriber',
+        ncyBreadcrumb: {
+            label: 'Elements'
+        },
+        resolve: loadSequence('monospaced.elastic', 'ui.mask', 'touchspin-plugin', 'transcriberCtrl')
+       
     }).state('app.listqa', {
         url: '/listqualityassurance',
         templateUrl: "assets/views/listqualityassurance.html",
