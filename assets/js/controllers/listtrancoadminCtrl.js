@@ -1,14 +1,7 @@
 'use strict';
 // .......add company controller start ..............................///
 app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","toaster","$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster,$state,$stateParams){
-    if($localStorage.user_data['user_permission'][0].add_company== 1){
-        console.log("access granted");
-    }else{
-        console.log("access rejected");
-    };
-
-
-
+    
     //................................http post request for getting company list start here........................
         // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};

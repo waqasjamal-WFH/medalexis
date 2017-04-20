@@ -1,6 +1,16 @@
 'use strict';
 // .......add company controller start ..............................///
 app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$localStorage",function($scope,$location,$http, toaster ,$localStorage){
+  
+  if($localStorage.user_data['user_permission'][0].add_company== 1){
+        console.log("access granted");
+    }else{
+        console.log("access rejected");
+    };
+
+
+
+
   $scope.submit= function (){
     var short_name=$scope.short_name;
     var full_name=$scope.full_name;
