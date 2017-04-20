@@ -83,7 +83,8 @@ function ($localStorage, $stateProvider, $urlRouterProvider, $controllerProvider
         },
         resolve: loadSequence('ngTable', 'transcriberCtrl')
     }).state('app.addtranscriber', {
-        if($localStorage.user_data['user_permission'][0].add_transcriber == 1){
+        if($localStorage.user_data['user_permission']){
+            console.log("aaaaaaa");
             url: '/addtranscriber',
             templateUrl: "assets/views/addtranscriber.html",
             title: 'Add Transcriber',
