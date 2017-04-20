@@ -1,207 +1,206 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$localStorage",function($scope,$location,$http, toaster ,$localStorage){
+app.controller('addcompanyCtrl', ["$scope","$location", "$http", "toaster","$localStorage" ,"$state", "$stateParams",function($scope,$location,$http, toaster ,$localStorage, $state, $stateParams){
   
   if($localStorage.user_data['user_permission'][0].add_company== 1){
-        console.log("access granted");
-    }else{
-        console.log("access rejected");
-    };
+    $scope.submit= function (){
+      var short_name=$scope.short_name;
+      var full_name=$scope.full_name;
+      var address=$scope.address;
+      var city=$scope.city;
+      var state=$scope.state;
+      var zip_code=$scope.zip_code;
+      var country=$scope.country;
+      var phone=$scope.phone;
+      var fax=$scope.fax;
+      var e_mail=$scope.e_mail;
+      var website=$scope.website;
+      var timezone=$scope.timezone;
+      var admin_person_name=$scope.admin_person_name;
+      var token=$localStorage.user_data.response.token;
 
+      // console.log($localStorage.user_data.response.token);  
+      var data= {"token":token ,"data":{
+        "short_name":short_name,
+        "full_name":full_name,
+        "address":address,
+        "city":city,
+        "state":state,
+        "zip_code":zip_code,
+        "country":country,
+        "phone":phone,
+        "fax":fax,
+        "e_mail":e_mail,
+        "website":website,
+        "timezone":timezone,
+        "admin_person_name":admin_person_name
+      }};
 
+      $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
+      .then(function(response) {
+        // console.log(response.data);
+        if(response.data.status=="success"){
+          $scope.toaster = {
+            type: 'success',
+            title: 'Successful',
+            text: 'Company Added Successfully'
+          };
+          $location.path('app/listcompany');
+          return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
 
-
-  $scope.submit= function (){
-    var short_name=$scope.short_name;
-    var full_name=$scope.full_name;
-    var address=$scope.address;
-    var city=$scope.city;
-    var state=$scope.state;
-    var zip_code=$scope.zip_code;
-    var country=$scope.country;
-    var phone=$scope.phone;
-    var fax=$scope.fax;
-    var e_mail=$scope.e_mail;
-    var website=$scope.website;
-    var timezone=$scope.timezone;
-    var admin_person_name=$scope.admin_person_name;
-    var token=$localStorage.user_data.response.token;
-
-    // console.log($localStorage.user_data.response.token);  
-    var data= {"token":token ,"data":{
-      "short_name":short_name,
-      "full_name":full_name,
-      "address":address,
-      "city":city,
-      "state":state,
-      "zip_code":zip_code,
-      "country":country,
-      "phone":phone,
-      "fax":fax,
-      "e_mail":e_mail,
-      "website":website,
-      "timezone":timezone,
-      "admin_person_name":admin_person_name
-    }};
-
-    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addCompany", data)
-    .then(function(response) {
-      // console.log(response.data);
-      if(response.data.status=="success"){
-        $scope.toaster = {
-          type: 'success',
-          title: 'Successful',
-          text: 'Company Added Successfully'
-        };
-        $location.path('app/listcompany');
-        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-
-       
-      }else{
-        $scope.toaster = {
-          type: 'error',
-          title: 'Unsuccessful',
-          text: 'Error adding Company'
-        };
-        return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-      } 
-    }).catch(function(){
-          console.log("erroe adding company");
-    });
-  }
+         
+        }else{
+          $scope.toaster = {
+            type: 'error',
+            title: 'Unsuccessful',
+            text: 'Error adding Company'
+          };
+          return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        } 
+      }).catch(function(){
+            console.log("erroe adding company");
+      });
+    } 
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope,$timeout) {
-    if($rootScope.opentoast== "1"){
-      
-      $timeout(function () {
-
-       $scope.toaster = {
-          type: 'success',
-          title: 'Successful',
-          text: 'Company Edit Successfully'
-        };
+app.controller('listcompanyCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$http","$localStorage","$location","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams,$uibModal,$log,$http, $localStorage,$location,toaster,$rootScope,$timeout,$state, $stateParams) {
+  if($localStorage.user_data['user_permission'][0].list_company== 1){    
+      if($rootScope.opentoast== "1"){
         
-         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoast== "";
-       }, 1000);   
-    };
-    
-    var static_data = [{
-        "short_name": 'No data',
-        "full_name": "No data",
-        "address": "No data",
-        "date": "No data",
-        "city": "No data",
-        "state": "No data",
-        "zip_code": "No data",
-        "country": "No data",
-        "phone": "No data",
-        "fax": "No data",
-        "e_mail": "No data",
-        "web_address": "No data",
-        "time_zone": "No data",
-        "admin_person_name": "No data"
-    }];
+        $timeout(function () {
 
-    //................................http post request for getting company list start here........................
-        // var datas=[];
-        var param={'token' :$localStorage.user_data.response.token};
-        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-        .then(function(response) {
-          // console.log(response.data);
-          if(response.data.status=="success"){
-           
-            var datas=response.data.data;
-            // console.log(datas);
-            $scope.tableParams = new ngTableParams({
-               page: 1, // show first page
-               count: 5, // count per page
-               sorting: {
-                   title: 'desc' // initial sorting
-               },
-               filter: {
-                   name: 'M' // initial filter
-               }
-            }, {
-
-               total: datas.length, // length of data
-                getData: function ($defer, params) {
-              
-                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
-          }else{
-            var datas=static_data;
-            // console.log(datas);
-            $scope.tableParams = new ngTableParams({
-               page: 1, // show first page
-               count: 5, // count per page
-               sorting: {
-                   title: 'desc' // initial sorting
-               },
-               filter: {
-                   name: 'M' // initial filter
-               }
-            }, {
-
-               total: datas.length, // length of data
-                getData: function ($defer, params) {
-              
-                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
-          } 
-        }).catch(function(){
-              console.log("error adding company");
-        }); 
-      //.............................http post request for getting company list end here...............................
-
-    $scope.editId = -1;
-
-    $scope.setEditId = function (pid) {
-        $scope.editId = pid;
-    };
-
-    // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodel = function (companyId) {
-
-      // $scope.taskid=taskId
-      // console.log(companyId);
+         $scope.toaster = {
+            type: 'success',
+            title: 'Successful',
+            text: 'Company Edit Successfully'
+          };
+          
+           toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+           $rootScope.opentoast== "";
+         }, 1000);   
+      };
       
-      $scope.companyId= companyId;
-      var modalInstance = $uibModal.open({
+      var static_data = [{
+          "short_name": 'No data',
+          "full_name": "No data",
+          "address": "No data",
+          "date": "No data",
+          "city": "No data",
+          "state": "No data",
+          "zip_code": "No data",
+          "country": "No data",
+          "phone": "No data",
+          "fax": "No data",
+          "e_mail": "No data",
+          "web_address": "No data",
+          "time_zone": "No data",
+          "admin_person_name": "No data"
+      }];
 
-        templateUrl: 'myModalContent1.html',
-        controller: 'ModalUiCtrl',
-        scope : $scope,
-        size: 'lg',
-        backdrop: 'static',
-        resolve: {
-          items: function () {
-            return $scope.companyId;
-            // $scope.list=qatranlist;
-            // console.log(qatranlist);
+      //................................http post request for getting company list start here........................
+          // var datas=[];
+          var param={'token' :$localStorage.user_data.response.token};
+          $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+          .then(function(response) {
+            // console.log(response.data);
+            if(response.data.status=="success"){
+             
+              var datas=response.data.data;
+              // console.log(datas);
+              $scope.tableParams = new ngTableParams({
+                 page: 1, // show first page
+                 count: 5, // count per page
+                 sorting: {
+                     title: 'desc' // initial sorting
+                 },
+                 filter: {
+                     name: 'M' // initial filter
+                 }
+              }, {
+
+                 total: datas.length, // length of data
+                  getData: function ($defer, params) {
+                
+                    var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                  }
+              });
+            }else{
+              var datas=static_data;
+              // console.log(datas);
+              $scope.tableParams = new ngTableParams({
+                 page: 1, // show first page
+                 count: 5, // count per page
+                 sorting: {
+                     title: 'desc' // initial sorting
+                 },
+                 filter: {
+                     name: 'M' // initial filter
+                 }
+              }, {
+
+                 total: datas.length, // length of data
+                  getData: function ($defer, params) {
+                
+                    var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                    $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                  }
+              });
+            } 
+          }).catch(function(){
+                console.log("error adding company");
+          }); 
+        //.............................http post request for getting company list end here...............................
+
+      $scope.editId = -1;
+
+      $scope.setEditId = function (pid) {
+          $scope.editId = pid;
+      };
+
+      // ...............model open function for assigning qa and transcriber start here..............//
+      $scope.openmodel = function (companyId) {
+
+        // $scope.taskid=taskId
+        // console.log(companyId);
+        
+        $scope.companyId= companyId;
+        var modalInstance = $uibModal.open({
+
+          templateUrl: 'myModalContent1.html',
+          controller: 'ModalUiCtrl',
+          scope : $scope,
+          size: 'lg',
+          backdrop: 'static',
+          resolve: {
+            items: function () {
+              return $scope.companyId;
+              // $scope.list=qatranlist;
+              // console.log(qatranlist);
+            }
           }
-        }
-      });
+        });
 
-      modalInstance.result.then(function (selectedItem) { 
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-      $scope.showLoader = true;
-      $scope.showform = false;
-    };
+        modalInstance.result.then(function (selectedItem) { 
+          $scope.selected = selectedItem;
+        }, function () {
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+        $scope.showLoader = true;
+        $scope.showform = false;
+      };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  }
 }]);
 
 // .......LIST company controller end ..............................//
