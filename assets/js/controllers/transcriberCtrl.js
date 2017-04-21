@@ -1,7 +1,7 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
-	
+app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorage","toaster" ,"$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster,$state,$stateParams){
+	if($localStorage.user_data['user_permission'][0].add_transcriber== 1){
 
     //................................http post request for getting doctor list start here........................
         // var datas=[];
@@ -179,14 +179,17 @@ app.controller('addtranscriberCtrl', ["$scope","$location","$http","$localStorag
               console.log("Error adding Transcriber");
         }); 
     }   
-  
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout ) {
+app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log", "$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams ) {
+  if($localStorage.user_data['user_permission'][0].list_transcriber== 1){  
     if($rootScope.opentoasttranscriber== "1"){
       
       $timeout(function () {
@@ -321,6 +324,9 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  }  
 }]);
 
 // .......LIST company controller end ..............................///

@@ -1,49 +1,8 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
-	// $scope.name="hello Doctor";
- //    $scope.access_right=[
- //    "Add Company",
- //    "List Company",
- //    "Add Tranco Admin",
- //    "List Tranco Admin",
- //    "Add Transcriber",
- //    "List Transcriber",
- //    "Add QA",
- //    "List QA",
- //    "Add Doctor",
- //    "List Doctor",
- //    "Add Nurse",
- //    "List Nurse",
- //    "Add Practice Admin",
- //    "List Practice Admin",
- //    "Add Appoinment",
- //    "List Appoinment",
- //    "Add Receptionist",
- //    "List Receptionist",
- //    "Add Patient",
- //    "List Patient"
- //    ];
-
- //    $scope.companies=[
- //    "Company 1",
- //    "Company 2",
- //    "Company 3",
- //    "Company 4",
- //    "Company 5",
- //    "Company 6",
- //    "Company 7",
- //    "Company 8",
- //    "Company 9",
- //    "Company 10",
- //    "Company 11",
- //    "Company 12",
-    
- //    "Company 13"
- //    ];
-
-
-    $scope.submit= function(){
+app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toaster" ,"$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster, $state,$stateParams ){
+	if($localStorage.user_data['user_permission'][0].add_doctor== 1){
+      $scope.submit= function(){
         var first_name=$scope.first_name;
         var last_name=$scope.last_name;
         var email=$scope.email;
@@ -97,14 +56,17 @@ app.controller('adddocCtrl', ["$scope","$location","$http","$localStorage","toas
               console.log("Error adding Tranco Admin");
         }); 
     }
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };  
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log" ,"$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal,$log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
-    
+app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log" ,"$localStorage","$location","$http","toaster","$rootScope","$timeout","$state", "$stateParams", function ($scope, $filter, ngTableParams,$uibModal,$log, $localStorage, $location ,$http, toaster, $rootScope, $timeout,$state, $stateParams) {
+  if($localStorage.user_data['user_permission'][0].list_doctor== 1){  
     if($rootScope.opentoastdoc== "1"){
       
       $timeout(function () {
@@ -250,6 +212,9 @@ app.controller('listdocCtrl', ["$scope", "$filter", "ngTableParams","$uibModal",
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };  
 }]);
 
 // .......LIST company controller end ..............................///

@@ -1,468 +1,335 @@
 'use strict';
 // .......add company controller start ..............................///
 app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","toaster","$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster,$state,$stateParams){
-    
-    //................................http post request for getting company list start here........................
-        // var datas=[];
-        var param={'token' :$localStorage.user_data.response.token};
-        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
-        .then(function(response) {
-          // console.log(response.data);
-          if(response.data.status=="success"){
-           
-            $scope.companies=response.data.data;
-            console.log($scope.companies);
-            
-          }else{
-           
-          } 
-        }).catch(function(){
-              console.log("error adding company");
-        }); 
-    //.............................http post request for getting company list end here...............................
-    
+    if($localStorage.user_data['user_permission'][0].add_trancoadmin== 1){
+        //................................http post request for getting company list start here........................
+            // var datas=[];
+            var param={'token' :$localStorage.user_data.response.token};
+            $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
+            .then(function(response) {
+              // console.log(response.data);
+              if(response.data.status=="success"){
+               
+                $scope.companies=response.data.data;
+                console.log($scope.companies);
+                
+              }else{
+               
+              } 
+            }).catch(function(){
+                  console.log("error adding company");
+            }); 
+        //.............................http post request for getting company list end here...............................
+        
 
-    $scope.access_right=[
-        {
-            "name": "Add Company",
-            "status": 1,
-            "column_name":"add_company",
-            "parent_column_name": "company"
-        },{
-            "name": "List Company",
-            "status": 1,
-            "column_name":"list_company",
-            "parent_column_name": "company"
-        },{
-            "name": "Add Tranco Admin",
-            "status": 1,
-            "column_name":"add_trancoadmin",
-            "parent_column_name": "tranco_admin"
-        },{
-            "name": "List Tranco Admin",
-            "status": 1,
-            "column_name":"list_trancoadmin",
-            "parent_column_name": "tranco_admin"
-        },{
-            "name": "Add Transcriber",
-            "status": 1,
-            "column_name":"add_transcriber",
-            "parent_column_name": "transcriber"
-        },{
-            "name": "List Transcriber",
-            "status": 1,
-            "column_name":"list_transcriber",
-            "parent_column_name": "transcriber"
-        },{
-            "name": "Add QA",
-            "status": 1,
-            "column_name":"add_QA",
-            "parent_column_name": "quality_assurance"
-        },{
-            "name": "List QA",
-            "status": 1,
-            "column_name":"list_QA",
-            "parent_column_name": "quality_assurance"
-        },{
-            "name": "Add Doctor",
-            "status": 1,
-            "column_name":"add_doctor",
-            "parent_column_name": "doctor"
-        },{
-            "name": "List Doctor",
-            "status": 1,
-            "column_name":"list_doctor",
-            "parent_column_name": "doctor"
-        },{
-            "name": "Add Nurse",
-            "status": 1,
-            "column_name":"add_nurse",
-            "parent_column_name": "nurse"
-        },{
-            "name": "List Nurse",
-            "status": 1,
-            "column_name":"list_nurse",
-            "parent_column_name": "nurse"
-        },{
-            "name": "Add Practice Admin",
-            "status": 1,
-            "column_name":"add_practiceadmin",
-            "parent_column_name": "practice_admin"
-        },{
-            "name": "List Practice Admin",
-            "status": 1,
-            "column_name":"list_practiceadmin",
-            "parent_column_name": "practice_admin"
-        },{
-            "name": "Add Appoinment",
-            "status": 1,
-            "column_name":"add_appoinment",
-            "parent_column_name": "appoinment"
-        },{
-            "name": "List Appoinment",
-            "status": 1,
-            "column_name":"list_appoinment",
-            "parent_column_name": "appoinment"
-        },{
-            "name": "Add Receptionist",
-            "status": 1,
-            "column_name":"add_receptionist",
-            "parent_column_name": "receptionist"
-        },{
-            "name": "List Receptionist",
-            "status": 1,
-            "column_name":"list_receptionist",
-            "parent_column_name": "receptionist"
-        },{
-            "name": "Add Patient",
-            "status": 1,
-            "column_name":"add_patient",
-            "parent_column_name": "patient"
-        },{
-            "name": "List Patient",
-            "status": 1,
-            "column_name":"list_patient",
-            "parent_column_name": "patient"
-        }
-    ];
-
-    $scope.submit= function(){
-        var first_name=$scope.first_name;
-        var last_name=$scope.last_name;
-        var email=$scope.email;
-        var password=$scope.password;
-        var address=$scope.address;
-        var phone_number=$scope.phone_number;
-        var access_rights=$scope.access_rights;
-        var associate_company=$scope.associate_company;
-        var state=$scope.state;
-        var country=$scope.country;
-        var city=$scope.city;
-        var token=$localStorage.user_data.response.token;
-
-        var param= {"token":token ,
-          "username":first_name,
-          "last_name":last_name,
-          "email":email,
-          "password":password,
-          "address":address,
-          "phone_number":phone_number,
-          "access_rights":access_rights,
-          "associate_company":associate_company,
-          "state":state,
-          "country":country,
-          "city":city,
-          "role_id":9
-        };
-
-
-        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtrancoadmin", param)
-        .then(function(response) {
-          // console.log(response.data);
-           if(response.data.status=="success"){
-                $scope.toaster = {
-                  type: 'success',
-                  title: 'Successful',
-                  text: 'Tranco Admin Added Successfully'
-                };
-                $location.path('app/listadmin');
-                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-            }else{
-                $scope.toaster = {
-                  type: 'error',
-                  title: 'Unsuccessful',
-                  text: 'Error adding Tranco Admin'
-                };
-                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        $scope.access_right=[
+            {
+                "name": "Add Company",
+                "status": 1,
+                "column_name":"add_company",
+                "parent_column_name": "company"
+            },{
+                "name": "List Company",
+                "status": 1,
+                "column_name":"list_company",
+                "parent_column_name": "company"
+            },{
+                "name": "Add Tranco Admin",
+                "status": 1,
+                "column_name":"add_trancoadmin",
+                "parent_column_name": "tranco_admin"
+            },{
+                "name": "List Tranco Admin",
+                "status": 1,
+                "column_name":"list_trancoadmin",
+                "parent_column_name": "tranco_admin"
+            },{
+                "name": "Add Transcriber",
+                "status": 1,
+                "column_name":"add_transcriber",
+                "parent_column_name": "transcriber"
+            },{
+                "name": "List Transcriber",
+                "status": 1,
+                "column_name":"list_transcriber",
+                "parent_column_name": "transcriber"
+            },{
+                "name": "Add QA",
+                "status": 1,
+                "column_name":"add_QA",
+                "parent_column_name": "quality_assurance"
+            },{
+                "name": "List QA",
+                "status": 1,
+                "column_name":"list_QA",
+                "parent_column_name": "quality_assurance"
+            },{
+                "name": "Add Doctor",
+                "status": 1,
+                "column_name":"add_doctor",
+                "parent_column_name": "doctor"
+            },{
+                "name": "List Doctor",
+                "status": 1,
+                "column_name":"list_doctor",
+                "parent_column_name": "doctor"
+            },{
+                "name": "Add Nurse",
+                "status": 1,
+                "column_name":"add_nurse",
+                "parent_column_name": "nurse"
+            },{
+                "name": "List Nurse",
+                "status": 1,
+                "column_name":"list_nurse",
+                "parent_column_name": "nurse"
+            },{
+                "name": "Add Practice Admin",
+                "status": 1,
+                "column_name":"add_practiceadmin",
+                "parent_column_name": "practice_admin"
+            },{
+                "name": "List Practice Admin",
+                "status": 1,
+                "column_name":"list_practiceadmin",
+                "parent_column_name": "practice_admin"
+            },{
+                "name": "Add Appoinment",
+                "status": 1,
+                "column_name":"add_appoinment",
+                "parent_column_name": "appoinment"
+            },{
+                "name": "List Appoinment",
+                "status": 1,
+                "column_name":"list_appoinment",
+                "parent_column_name": "appoinment"
+            },{
+                "name": "Add Receptionist",
+                "status": 1,
+                "column_name":"add_receptionist",
+                "parent_column_name": "receptionist"
+            },{
+                "name": "List Receptionist",
+                "status": 1,
+                "column_name":"list_receptionist",
+                "parent_column_name": "receptionist"
+            },{
+                "name": "Add Patient",
+                "status": 1,
+                "column_name":"add_patient",
+                "parent_column_name": "patient"
+            },{
+                "name": "List Patient",
+                "status": 1,
+                "column_name":"list_patient",
+                "parent_column_name": "patient"
             }
-        }).catch(function(){
-              console.log("Error adding Tranco Admin");
-        }); 
-    }   
+        ];
 
+        $scope.submit= function(){
+            var first_name=$scope.first_name;
+            var last_name=$scope.last_name;
+            var email=$scope.email;
+            var password=$scope.password;
+            var address=$scope.address;
+            var phone_number=$scope.phone_number;
+            var access_rights=$scope.access_rights;
+            var associate_company=$scope.associate_company;
+            var state=$scope.state;
+            var country=$scope.country;
+            var city=$scope.city;
+            var token=$localStorage.user_data.response.token;
+
+            var param= {"token":token ,
+              "username":first_name,
+              "last_name":last_name,
+              "email":email,
+              "password":password,
+              "address":address,
+              "phone_number":phone_number,
+              "access_rights":access_rights,
+              "associate_company":associate_company,
+              "state":state,
+              "country":country,
+              "city":city,
+              "role_id":9
+            };
+
+
+            $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/addtrancoadmin", param)
+            .then(function(response) {
+              // console.log(response.data);
+               if(response.data.status=="success"){
+                    $scope.toaster = {
+                      type: 'success',
+                      title: 'Successful',
+                      text: 'Tranco Admin Added Successfully'
+                    };
+                    $location.path('app/listadmin');
+                    return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+                }else{
+                    $scope.toaster = {
+                      type: 'error',
+                      title: 'Unsuccessful',
+                      text: 'Error adding Tranco Admin'
+                    };
+                    return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+                }
+            }).catch(function(){
+                  console.log("Error adding Tranco Admin");
+            }); 
+        }   
+    }else{
+    $state.go('app.dashboard', {}, { reload: true });
+    };
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
-    if($rootScope.opentoasttranco== "1"){
-      
-      $timeout(function () {
+app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams) {
+    if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){    
+        if($rootScope.opentoasttranco== "1"){
+          
+          $timeout(function () {
 
-       $scope.toaster = {
-          type: 'success',
-          title: 'Successful',
-          text: 'Tranco Admin Edit Successfully'
+           $scope.toaster = {
+              type: 'success',
+              title: 'Successful',
+              text: 'Tranco Admin Edit Successfully'
+            };
+            
+             toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+             $rootScope.opentoasttranco= "";
+           }, 1000);   
         };
-        
-         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
-         $rootScope.opentoasttranco= "";
-       }, 1000);   
-    };
-    var static_data = [{
-        "username": 'No data',
-        "last_name": "No data",
-        "email": "No data",
-        "address": "No data",
-        "city": "No data",
-        "state": "No data",
-        "country": "No data",
-        "phone_number": "No data",
-        "permission": "No data",
-        "companies": "No data"
-       
-    }];
-    
-    // var data = [{
-    //     "id": 1,
-    //     "lm": 138661285100,
-    
-    //     "dc": "CEO",
-    //     "em": "j.smith@company.com",
-    //     "ph": "617-321-4567",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 2,
-    //     "lm": 138661285200,
-    //     "ln": "Taylor",
-    //     "fn": "Lisa",
-    //     "dc": "VP of Marketing",
-    //     "em": "l.taylor@company.com",
-    //     "ph": "617-522-5588",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 3,
-    //     "lm": 138661285300,
-    //     "ln": "Jones",
-    //     "fn": "James",
-    //     "dc": "VP of Sales",
-    //     "em": "j.jones@company.com",
-    //     "ph": "617-589-9977",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 4,
-    //     "lm": 138661285400,
-    //     "ln": "Wong",
-    //     "fn": "Paul",
-    //     "dc": "VP of Engineering",
-    //     "em": "p.wong@company.com",
-    //     "ph": "617-245-9785",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 5,
-    //     "lm": 138661285500,
-    //     "ln": "King",
-    //     "fn": "Alice",
-    //     "dc": "Architect",
-    //     "em": "a.king@company.com",
-    //     "ph": "617-244-1177",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 6,
-    //     "lm": 138661285600,
-    //     "ln": "Brown",
-    //     "fn": "Jan",
-    //     "dc": "Software Engineer",
-    //     "em": "j.brown@company.com",
-    //     "ph": "617-568-9863",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 7,
-    //     "lm": 138661285700,
-    //     "ln": "Garcia",
-    //     "fn": "Ami",
-    //     "dc": "Software Engineer",
-    //     "em": "a.garcia@company.com",
-    //     "ph": "617-327-9966",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 8,
-    //     "lm": 138661285800,
-    //     "ln": "Green",
-    //     "fn": "Jack",
-    //     "dc": "Software Engineer",
-    //     "em": "j.green@company.com",
-    //     "ph": "617-565-9966",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 9,
-    //     "lm": 138661285900,
-    //     "ln": "Liesen",
-    //     "fn": "Abraham",
-    //     "dc": "Plumber",
-    //     "em": "a.liesen@company.com",
-    //     "ph": "617-523-4468",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 10,
-    //     "lm": 138661286000,
-    //     "ln": "Bower",
-    //     "fn": "Angela",
-    //     "dc": "Product Manager",
-    //     "em": "a.bower@company.com",
-    //     "ph": "617-877-3434",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 11,
-    //     "lm": 138661286100,
-    //     "ln": "Davidoff",
-    //     "fn": "Fjodor",
-    //     "dc": "Database Admin",
-    //     "em": "f.davidoff@company.com",
-    //     "ph": "617-446-9999",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 12,
-    //     "lm": 138661286200,
-    //     "ln": "Vitrovic",
-    //     "fn": "Biljana",
-    //     "dc": "Director of Communications",
-    //     "em": "b.vitrovic@company.com",
-    //     "ph": "617-111-1111",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 13,
-    //     "lm": 138661286300,
-    //     "ln": "Valet",
-    //     "fn": "Guillaume",
-    //     "dc": "Software Engineer",
-    //     "em": "g.valet@company.com",
-    //     "ph": "617-565-4412",
-    //     "ac": true,
-    //     "dl": false
-    // }, {
-    //     "id": 14,
-    //     "lm": 138661286400,
-    //     "ln": "Tran",
-    //     "fn": "Min",
-    //     "dc": "Gui Designer",
-    //     "em": "m.tran@company.com",
-    //     "ph": "617-866-2554",
-    //     "ac": true,
-    //     "dl": false
-    // }];
-
-    //................................http post request for getting company list start here........................
-        // var datas=[];
-        var param={'token' :$localStorage.user_data.response.token};
-        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/gettrancoadmin", param)
-        .then(function(response) {
-          // console.log(response.data);
-          if(response.data.status=="success"){
+        var static_data = [{
+            "username": 'No data',
+            "last_name": "No data",
+            "email": "No data",
+            "address": "No data",
+            "city": "No data",
+            "state": "No data",
+            "country": "No data",
+            "phone_number": "No data",
+            "permission": "No data",
+            "companies": "No data"
            
-            var datas=response.data.data;
-            // console.log(datas);
-            datas.forEach(function(datas){
-                if(datas.companies){
-                    var com= datas.companies.replace(/>>/g, " , ");
-                    datas.companies=com;
-                };
-            });
-            datas.forEach(function(datas){
-                if(datas.permission){
-                    var per= datas.permission.replace(/>>>/g, " , ");
-                    datas.permission=per;
-                };
-            });
-            $scope.tableParams = new ngTableParams({
-               page: 1, // show first page
-               count: 5, // count per page
-               sorting: {
-                   title: 'desc' // initial sorting
-               },
-               filter: {
-                   name: 'M' // initial filter
-               }
-            }, {
+        }];
+        
+        
 
-               total: datas.length, // length of data
-                getData: function ($defer, params) {
-              
-                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
-          }else{
-            var datas=static_data;
-            // console.log(datas);
-            $scope.tableParams = new ngTableParams({
-               page: 1, // show first page
-               count: 5, // count per page
-               sorting: {
-                   title: 'desc' // initial sorting
-               },
-               filter: {
-                   name: 'M' // initial filter
-               }
-            }, {
+        //................................http post request for getting company list start here........................
+            // var datas=[];
+            var param={'token' :$localStorage.user_data.response.token};
+            $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/gettrancoadmin", param)
+            .then(function(response) {
+              // console.log(response.data);
+              if(response.data.status=="success"){
+               
+                var datas=response.data.data;
+                // console.log(datas);
+                datas.forEach(function(datas){
+                    if(datas.companies){
+                        var com= datas.companies.replace(/>>/g, " , ");
+                        datas.companies=com;
+                    };
+                });
+                datas.forEach(function(datas){
+                    if(datas.permission){
+                        var per= datas.permission.replace(/>>>/g, " , ");
+                        datas.permission=per;
+                    };
+                });
+                $scope.tableParams = new ngTableParams({
+                   page: 1, // show first page
+                   count: 5, // count per page
+                   sorting: {
+                       title: 'desc' // initial sorting
+                   },
+                   filter: {
+                       name: 'M' // initial filter
+                   }
+                }, {
 
-               total: datas.length, // length of data
-                getData: function ($defer, params) {
-              
-                  var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
-                  $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-                }
-            });
-          } 
-        }).catch(function(){
-              console.log("error adding company");
-        }); 
-    //.............................http post request for getting company list end here...............................
+                   total: datas.length, // length of data
+                    getData: function ($defer, params) {
+                  
+                      var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                      $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }
+                });
+              }else{
+                var datas=static_data;
+                // console.log(datas);
+                $scope.tableParams = new ngTableParams({
+                   page: 1, // show first page
+                   count: 5, // count per page
+                   sorting: {
+                       title: 'desc' // initial sorting
+                   },
+                   filter: {
+                       name: 'M' // initial filter
+                   }
+                }, {
 
-    
+                   total: datas.length, // length of data
+                    getData: function ($defer, params) {
+                  
+                      var orderedData = params.sorting() ? $filter('orderBy')(datas, params.orderBy()) : datas;
+                      $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                    }
+                });
+              } 
+            }).catch(function(){
+                  console.log("error adding company");
+            }); 
+        //.............................http post request for getting company list end here...............................
 
-    $scope.editId = -1;
+        
 
-    $scope.setEditId = function (pid) {
-        $scope.editId = pid;
-    };
+        $scope.editId = -1;
+
+        $scope.setEditId = function (pid) {
+            $scope.editId = pid;
+        };
 
 
-    // ...............model open function for assigning qa and transcriber start here..............//
-    $scope.openmodeltranco = function (uid) {
-      // $scope.taskid=taskId
-      // console.log(uid);
-     $scope.trancouserid= uid;
-      var modalInstance = $uibModal.open({
+        // ...............model open function for assigning qa and transcriber start here..............//
+        $scope.openmodeltranco = function (uid) {
+          // $scope.taskid=taskId
+          // console.log(uid);
+         $scope.trancouserid= uid;
+          var modalInstance = $uibModal.open({
 
-        templateUrl: 'myModalContenttrancoadmin.html',
-        controller: 'ModalUiCtrltrancoadmin',
-        scope : $scope,
-        size: 'lg',
-        backdrop: 'static',
-        resolve: {
-          items: function () {
-            return $scope.trancouserid;
-            // $scope.list=qatranlist;
-            // console.log(qatranlist);
-          }
-        }
-      });
+            templateUrl: 'myModalContenttrancoadmin.html',
+            controller: 'ModalUiCtrltrancoadmin',
+            scope : $scope,
+            size: 'lg',
+            backdrop: 'static',
+            resolve: {
+              items: function () {
+                return $scope.trancouserid;
+                // $scope.list=qatranlist;
+                // console.log(qatranlist);
+              }
+            }
+          });
 
-      modalInstance.result.then(function (selectedItem) { 
-        $scope.selected = selectedItem;
-      }, function () {
-        $log.info('Modal dismissed at: ' + new Date());
-      });
-      $scope.showLoader = true;
-      $scope.showform = false;
-    };
+          modalInstance.result.then(function (selectedItem) { 
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+          $scope.showLoader = true;
+          $scope.showform = false;
+        };
 
-    // ...............model open function for assigning qa and transcriber end here..............//
+        // ...............model open function for assigning qa and transcriber end here..............//
+    }else{
+    $state.go('app.dashboard', {}, { reload: true });
+    };    
 }]);
 
 // .......LIST company controller end ..............................///

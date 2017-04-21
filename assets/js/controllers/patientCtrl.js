@@ -1,6 +1,7 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
+app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","toaster" ,"$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster, $state,$stateParams ){
+  if($localStorage.user_data['user_permission'][0].add_patient== 1){  
     //................................http post request for getting doctor list start here........................
         // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};
@@ -69,14 +70,17 @@ app.controller('addpatientCtrl', ["$scope","$location","$http","$localStorage","
               console.log("Error adding Patient");
         }); 
     }
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log" , "$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
-    
+app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log" , "$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams ) {
+  if($localStorage.user_data['user_permission'][0].list_patient== 1){  
     if($rootScope.opentoastpatient== "1"){
       
       $timeout(function () {
@@ -200,6 +204,9 @@ app.controller('listpatientCtrl', ["$scope", "$filter", "ngTableParams", "$uibMo
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  }  
 }]);
 
 // .......LIST company controller end ..............................///

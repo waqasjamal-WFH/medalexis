@@ -1,7 +1,8 @@
 'use strict';
 // .......add company controller start ..............................///
-app.controller('addreceptionistCtrl', ["$scope","$location","$http","$localStorage","toaster",function($scope,$location,$http,$localStorage,toaster){
-	 //................................http post request for getting company list start here........................
+app.controller('addreceptionistCtrl', ["$scope","$location","$http","$localStorage","toaster" ,"$state", "$stateParams",function($scope,$location,$http,$localStorage,toaster, $state,$stateParams ){
+	if($localStorage.user_data['user_permission'][0].add_receptionist== 1){ 
+   //................................http post request for getting company list start here........................
         // var datas=[];
         var param={'token' :$localStorage.user_data.response.token};
         $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/getCompany", param)
@@ -176,13 +177,17 @@ app.controller('addreceptionistCtrl', ["$scope","$location","$http","$localStora
               console.log("Error adding Receptionist");
         }); 
     }
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };  
 }]);
 
 // .......add company controller end ..............................///
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listreceptionistCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout) {
+app.controller('listreceptionistCtrl', ["$scope", "$filter", "ngTableParams", "$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams, $uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state, $stateParams) {
+  if($localStorage.user_data['user_permission'][0].list_receptionist== 1){  
     if($rootScope.opentoastrecep== "1"){
       
       $timeout(function () {
@@ -317,6 +322,9 @@ app.controller('listreceptionistCtrl', ["$scope", "$filter", "ngTableParams", "$
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+  }else{
+    $state.go('app.dashboard', {}, { reload: true });
+  };  
 }]);
 
 // .......LIST company controller end ..............................///
