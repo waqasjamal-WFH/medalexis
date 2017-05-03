@@ -201,9 +201,9 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
                   .cancel('Sounds like a scam');
 
             $mdDialog.show(confirm).then(function() {
-              $scope.status = 'You decided to get rid of your debt.';
+              // $scope.status = 'You decided to get rid of your debt.';
             }, function() {
-              $scope.status = 'You decided to keep your debt.';
+              // $scope.status = 'You decided to keep your debt.';
             });
         };
 
