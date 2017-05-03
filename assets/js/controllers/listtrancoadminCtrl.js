@@ -192,21 +192,21 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
     if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){
         $scope.customFullscreen = false;
         $scope.showConfirm = function(ev) {
-            // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-                  .title('Would you like to delete your debt?')
-                  .textContent('All of the banks have agreed to forgive you your debts.')
-                  .ariaLabel('Lucky day')
-                  .targetEvent(ev)
-                  .ok('Please do it!')
-                  .cancel('Sounds like a scam');
+    // Appending dialog to document.body to cover sidenav in docs app
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete your debt?')
+          .textContent('All of the banks have agreed to forgive you your debts.')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Please do it!')
+          .cancel('Sounds like a scam');
 
-            $mdDialog.show(confirm).then(function() {
-              // $scope.status = 'You decided to get rid of your debt.';
-            }, function() {
-              // $scope.status = 'You decided to keep your debt.';
-            });
-        };
+    $mdDialog.show(confirm).then(function() {
+      $scope.status = 'You decided to get rid of your debt.';
+    }, function() {
+      $scope.status = 'You decided to keep your debt.';
+    });
+  };
 
         if($rootScope.opentoasttranco== "1"){
           
