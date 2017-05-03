@@ -7,7 +7,7 @@ angular.module("packet", [
 	'ngCookies',
 	'ngStorage',
 	'ngSanitize',
-	'ngTouch',
+	// 'ngTouch',
 	'ui.router',
 	'ui.bootstrap',
 	'angularMoment',
