@@ -189,7 +189,24 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 // .......LIST company controller Start ..............................///
 
 app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams) {
-    if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){    
+    if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){
+        $scope.showConfirm = function(ev) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Would you like to delete your debt?')
+                  .textContent('All of the banks have agreed to forgive you your debts.')
+                  .ariaLabel('Lucky day')
+                  .targetEvent(ev)
+                  .ok('Please do it!')
+                  .cancel('Sounds like a scam');
+
+            $mdDialog.show(confirm).then(function() {
+              $scope.status = 'You decided to get rid of your debt.';
+            }, function() {
+              $scope.status = 'You decided to keep your debt.';
+            });
+        };
+
         if($rootScope.opentoasttranco== "1"){
           
           $timeout(function () {
