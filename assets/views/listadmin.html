@@ -6,7 +6,7 @@ start: INLINE EDIT EXAMPLE -->
                 <div class="panel-body">
                     <h5 class="over-title margin-bottom-15">List <span class="text-bold">Tranco Admin</span></h5>
                     <!-- /// controller:  'ngTableCtrl6' -  localtion: assets/js/controllers/ngTableCtrl.js /// -->
-                    <div ng-controller="listadminCtrl">
+                    <div ng-controller="listadminCtrl" class="md-padding" id="popupContainer" ng-cloak>
                         <form class="form-inline">
                             <input ng-model="query" type="text"
                                    placeholder="Filter by" autofocus>
@@ -45,7 +45,7 @@ start: INLINE EDIT EXAMPLE -->
                                             <div class="pull-right margin-right-10">
                                                 <md-button class="btn btn-danger btn-o btn-sm"  
                                                        ng-click="showConfirm($event)"> delete </md-button>
-                                                       
+
                                             </div>
                                         </td>
                                     </tr>

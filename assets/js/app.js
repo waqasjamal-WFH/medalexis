@@ -35,5 +35,7 @@ angular.module("packet", [
 	// 'btorfs.multiselect',
 	// 'am.multiselect'
 	'ui.multiselect',
-	'ngMaterial'
+	'ngMaterial',
+	'ngMessages',
+	'material.svgAssetsCache'
 ]);
