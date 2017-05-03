@@ -188,7 +188,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 
 // .......LIST company controller Start ..............................///
 
-app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams) {
+app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams","$mdDialog", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams,$mdDialog) {
     if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){
         $scope.showConfirm = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
