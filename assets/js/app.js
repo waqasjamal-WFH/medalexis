@@ -36,6 +36,6 @@ angular.module("packet", [
 	// 'am.multiselect'
 	'ui.multiselect',
 	'ngMaterial',
-	'ngMessages',
-	'material.svgAssetsCache'
+	'ngMessages'
+	// 'material.svgAssetsCache'
 ]);
