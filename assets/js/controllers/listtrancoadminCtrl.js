@@ -190,6 +190,7 @@ app.controller('addadminCtrl', ["$scope","$location","$http","$localStorage","to
 
 app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal", "$log","$localStorage","$location","$http","toaster","$rootScope","$timeout" ,"$state", "$stateParams","$mdDialog", function ($scope, $filter, ngTableParams,$uibModal, $log, $localStorage, $location ,$http, toaster, $rootScope, $timeout, $state,$stateParams,$mdDialog) {
     if($localStorage.user_data['user_permission'][0].list_trancoadmin== 1){
+        $scope.customFullscreen = false;
         $scope.showConfirm = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
