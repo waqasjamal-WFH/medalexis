@@ -204,6 +204,21 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
          $rootScope.opentoasttranscriber= "";
        }, 1000);   
     };
+
+    if($rootScope.opentoasttranscriberdelete== "1"){
+      
+      $timeout(function () {
+
+       $scope.toaster = {
+          type: 'success',
+          title: 'Successful',
+          text: 'Transcriber deleted Successfully'
+        };
+         
+         toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+         $rootScope.opentoasttranscriberdelete= "";
+       }, 1000);   
+    };
     // console.log("root " + $rootScope.opentoasttranscriber);
     var static_data = [{
         "username": 'No data',
@@ -324,6 +339,37 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
     };
 
     // ...............model open function for assigning qa and transcriber end here..............//
+
+
+
+    $scope.openmodeldeletetranscriber = function (uid) {
+     
+       $scope.tranuserid= uid;
+       // console.log($scope.userid);
+      var modalInstance = $uibModal.open({
+
+        templateUrl: 'myModalContentdeletetranscriber.html',
+        controller: 'ModalUiCtrltrandelete',
+        scope : $scope,
+        size: 'lg',
+        backdrop: 'static',
+        resolve: {
+          items: function () {
+            return $scope.tranuserid;
+            // $scope.list=qatranlist;
+            // console.log(qatranlist);
+          }
+        }
+      });
+
+      modalInstance.result.then(function (selectedItem) { 
+        $scope.selected = selectedItem;
+      }, function () {
+        $log.info('Modal dismissed at: ' + new Date());
+      });
+      $scope.showLoader = true;
+      $scope.showform = false;
+    };
   }else{
     $state.go('app.dashboard', {}, { reload: true });
   }  
@@ -582,6 +628,56 @@ app.controller('ModalUiCtrltran', ["$scope", "$rootScope", "$uibModalInstance", 
             }
         }).catch(function(){
               console.log("Error Editing Tranco Admin");
+        }); 
+    };
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
+
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };  
+}]);
+
+/// EDIT model controller end here ..............................//
+
+
+// EDIT model controller start here.............................////
+
+
+app.controller('ModalUiCtrltrandelete', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage" ,"toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage , toaster, $state , $stateParams) {
+    
+    
+  
+  
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
+    $scope.ok = function () {
+
+        var data= {"token":$localStorage.user_data.response.token , "uid":$scope.tranuserid 
+          
+        };
+
+    
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/deleteuser", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoasttranscriberdelete= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listtranscriber', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error deleting Transcriber'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error deleting Tranco Admin");
         }); 
     };
 

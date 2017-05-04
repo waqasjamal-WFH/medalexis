@@ -683,7 +683,7 @@ app.controller('ModalUiCtrltrancoadmindelete', ["$scope", "$rootScope", "$uibMod
             return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
         }
     }).catch(function(){
-          console.log("Error Editing Tranco Admin");
+          console.log("Error deleting Tranco Admin");
     });
   };
 
