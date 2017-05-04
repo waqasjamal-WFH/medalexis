@@ -351,7 +351,7 @@ app.controller('listtranscriberCtrl', ["$scope", "$filter", "ngTableParams","$ui
         templateUrl: 'myModalContentdeletetranscriber.html',
         controller: 'ModalUiCtrltrandelete',
         scope : $scope,
-        size: 'lg',
+        size: 'sm',
         backdrop: 'static',
         resolve: {
           items: function () {
