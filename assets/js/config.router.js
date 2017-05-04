@@ -194,7 +194,7 @@ function ($stateProvider, $urlRouterProvider, $controllerProvider, $compileProvi
         ncyBreadcrumb: {
             label: 'ngTable'
         },
-        resolve: loadSequence('ngTable','ngMaterial', 'listtrancoadminCtrl')
+        resolve: loadSequence('ngTable', 'listtrancoadminCtrl')
     }).state('app.addtrancoadmin', {
         url: '/addtrancoadmin',
         templateUrl: "assets/views/addtrancoadmin.html",

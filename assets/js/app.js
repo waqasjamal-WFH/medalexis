@@ -34,8 +34,6 @@ angular.module("packet", [
 	'ngPDFKit',
 	// 'btorfs.multiselect',
 	// 'am.multiselect'
-	'ui.multiselect',
-	'ngMaterial'
-	// 'ngMessages'
-	// 'material.svgAssetsCache'
+	'ui.multiselect'
+	
 ]);
