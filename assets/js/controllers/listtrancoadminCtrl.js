@@ -205,6 +205,21 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
              $rootScope.opentoasttranco= "";
            }, 1000);   
         };
+
+        if($rootScope.opentoasttrancodelete== "1"){
+          
+          $timeout(function () {
+
+           $scope.toaster = {
+              type: 'success',
+              title: 'Successful',
+              text: 'Tranco Admin delete Successfully'
+            };
+            
+             toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+             $rootScope.opentoasttrancodelete= "";
+           }, 1000);   
+        };
         var static_data = [{
             "username": 'No data',
             "last_name": "No data",
@@ -647,6 +662,29 @@ app.controller('ModalUiCtrltrancoadmindelete', ["$scope", "$rootScope", "$uibMod
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
   $scope.ok = function () {
     console.log($scope.trancouserid);
+    var data= {"token":$localStorage.user_data.response.token , "uid":$scope.trancouserid 
+      
+    };
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/delete_selected_user", data)
+    .then(function(response) {
+
+       if(response.data.status=="success"){
+            $rootScope.opentoasttrancodelete= "1";
+        
+            $uibModalInstance.dismiss('cancel');
+        
+            $state.go('app.listtrancoadmin', {}, { reload: true });
+        }else{
+            $scope.toaster = {
+              type: 'error',
+              title: 'Unsuccessful',
+              text: 'Error deleting Tranco Admin'
+            };
+            return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+        }
+    }).catch(function(){
+          console.log("Error Editing Tranco Admin");
+    });
   };
 
   //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
