@@ -667,7 +667,7 @@ app.controller('ModalUiCtrltrancoadmindelete', ["$scope", "$rootScope", "$uibMod
     };
     $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/deleteuser", data)
     .then(function(response) {
-
+      console.log(response.data.status);
        if(response.data.status=="success"){
             $rootScope.opentoasttrancodelete= "1";
         
