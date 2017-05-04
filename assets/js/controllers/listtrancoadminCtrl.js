@@ -328,6 +328,38 @@ app.controller('listadminCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         };
 
         // ...............model open function for assigning qa and transcriber end here..............//
+
+        // ...............model open function for assigning qa and transcriber start here..............//
+        $scope.openmodeldelete = function (uid) {
+          // $scope.taskid=taskId
+          // console.log(uid);
+         $scope.trancouserid= uid;
+          var modalInstance = $uibModal.open({
+
+            templateUrl: 'myModalContentdeletetranco.html',
+            controller: 'ModalUiCtrltrancoadmindelete',
+            scope : $scope,
+            size: 'sm',
+            backdrop: 'static',
+            resolve: {
+              items: function () {
+                return $scope.trancouserid;
+                // $scope.list=qatranlist;
+                // console.log(qatranlist);
+              }
+            }
+          });
+
+          modalInstance.result.then(function (selectedItem) { 
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+          $scope.showLoader = true;
+          $scope.showform = false;
+        };
+
+        // ...............model open function for assigning qa and transcriber end here..............//
     }else{
     $state.go('app.dashboard', {}, { reload: true });
     };    
@@ -467,7 +499,7 @@ app.controller('ModalUiCtrltrancoadmin', ["$scope", "$rootScope", "$uibModalInst
     }); 
   //.............................http post request for getting company list end here...............................
 
-//
+
 
   $scope.items = items;
   $scope.selected = {
@@ -595,3 +627,34 @@ app.controller('ModalUiCtrltrancoadmin', ["$scope", "$rootScope", "$uibModalInst
 }]);
 
 /// EDIT model controller end here ..............................//
+
+
+
+
+
+
+
+
+// DELETE model controller start here.............................////
+
+
+app.controller('ModalUiCtrltrancoadmindelete', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage","toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage, toaster, $state , $stateParams) {
+  
+
+  
+
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
+  $scope.ok = function () {
+    console.log($scope.trancouserid);
+  };
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
+
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };  
+}]);
+
+/// DELETE model controller end here ..............................//
