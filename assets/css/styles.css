@@ -51,10 +51,7 @@
 /*  Basic Elements & Classes
 /* ---------------------------------------------------------------------- */
 
-.rowTd {
-    padding: 5px important;
 
-}
 html, body {
   height: 100%;
   width: 100%;
@@ -210,6 +207,19 @@ h5.over-title {
   -o-animation: spin 2s infinite linear;
   animation: spin 2s infinite linear;
 }
+
+
+
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    padding: 5px important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+
+
+
 
 @media (min-width: 992px) {
   .app-navbar-fixed {
