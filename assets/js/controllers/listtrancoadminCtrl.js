@@ -665,7 +665,7 @@ app.controller('ModalUiCtrltrancoadmindelete', ["$scope", "$rootScope", "$uibMod
     var data= {"token":$localStorage.user_data.response.token , "uid":$scope.trancouserid 
       
     };
-    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/delete_selected_user", data)
+    $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/deleteuser", data)
     .then(function(response) {
 
        if(response.data.status=="success"){
