@@ -132,6 +132,6 @@ app.constant('JS_REQUIRES', {
         files: ['bower_components/froala/src/angular-froala.js','bower_components/froala/src/froala-sanitize.js']
     }, {
         name: 'ngMaterial',
-        files: ['http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css','http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js']
+        files: ['http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css','http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js','http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js','http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js','http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js']
     }]
 });
