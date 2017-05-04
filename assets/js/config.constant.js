@@ -130,5 +130,8 @@ app.constant('JS_REQUIRES', {
     }, {
         name: 'froala',
         files: ['bower_components/froala/src/angular-froala.js','bower_components/froala/src/froala-sanitize.js']
+    }, {
+        name: 'ngMaterial',
+        files: ['http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css','http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js']
     }]
 });
