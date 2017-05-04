@@ -51,10 +51,6 @@
 /*  Basic Elements & Classes
 /* ---------------------------------------------------------------------- */
 
-.table>tbody>tr>td {
-    padding: 5px important;
-
-}
 html, body {
   height: 100%;
   width: 100%;
