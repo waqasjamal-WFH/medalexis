@@ -206,6 +206,21 @@ app.controller('listnurseCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
            }, 1000);   
         };
 
+        if($rootScope.opentoastnursedelete== "1"){
+      
+          $timeout(function () {
+
+           $scope.toaster = {
+              type: 'success',
+              title: 'Successful',
+              text: 'Nurse deleted Successfully'
+            };
+             
+            toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            $rootScope.opentoastnursedelete= "";
+          }, 1000);   
+        };
+
         var static_data = [{
             "username": 'No data',
             "last_name": "No data",
@@ -323,6 +338,35 @@ app.controller('listnurseCtrl', ["$scope", "$filter", "ngTableParams","$uibModal
         };
 
         // ...............model open function for assigning qa and transcriber end here..............//
+
+        $scope.openmodeldeletenurse = function (uid) {
+     
+         $scope.nurseid= uid;
+         // console.log($scope.userid);
+          var modalInstance = $uibModal.open({
+
+            templateUrl: 'myModalContentdeletenurse.html',
+            controller: 'ModalUiCtrlnursedelete',
+            scope : $scope,
+            size: 'sm',
+            backdrop: 'static',
+            resolve: {
+              items: function () {
+                return $scope.nurseid;
+                // $scope.list=qatranlist;
+                // console.log(qatranlist);
+              }
+            }
+          });
+
+          modalInstance.result.then(function (selectedItem) { 
+            $scope.selected = selectedItem;
+          }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+          });
+          $scope.showLoader = true;
+          $scope.showform = false;
+        };
     }else{
     $state.go('app.dashboard', {}, { reload: true });
     };    
@@ -593,3 +637,47 @@ app.controller('ModalUiCtrlnurse', ["$scope", "$rootScope", "$uibModalInstance",
 }]);
 
 /// EDIT model controller end here ..............................//
+
+app.controller('ModalUiCtrlnursedelete', ["$scope", "$rootScope", "$uibModalInstance", "items","$http","$location","PDFKit","$sce","$localStorage" ,"toaster","$state", "$stateParams", function ($scope, $rootScope, $uibModalInstance, items,$http, $location,PDFKit,$sce,$localStorage , toaster, $state , $stateParams) {
+    
+    
+  
+  
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission START....////
+    $scope.ok = function () {
+
+        var data= {"token":$localStorage.user_data.response.token , "uid":$scope.nurseid 
+          
+        };
+
+    
+        $http.post($location.protocol()+"://"+$location.host()+"/medilixis_server/public/deleteuser", data)
+        .then(function(response) {
+
+           if(response.data.status=="success"){
+                $rootScope.opentoastnursedelete= "1";
+            
+                $uibModalInstance.dismiss('cancel');
+            
+                $state.go('app.listnurse', {}, { reload: true });
+            }else{
+                $scope.toaster = {
+                  type: 'error',
+                  title: 'Unsuccessful',
+                  text: 'Error deleting Nurse'
+                };
+                return toaster.pop($scope.toaster.type, $scope.toaster.title,$scope.toaster.text);
+            }
+        }).catch(function(){
+              console.log("Error deleting Nurse");
+        }); 
+    };
+
+  //....................on click ok button on assigning qa and transcriber model id inserted to mysql table task_ permission END....////
+
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };  
+}]);
